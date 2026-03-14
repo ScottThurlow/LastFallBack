@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Last Fall Back Act — Washington State</title>
+<meta name="description" content="A citizens' initiative to permanently establish standard time in Washington State. End the biannual clock change — backed by science, supported by medicine.">
+<meta property="og:title" content="Last Fall Back Act — Washington State">
+<meta property="og:description" content="End the clock change. Permanently. Washington State citizens' initiative.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --ink:      #08101F;
+  --ink-mid:  #1E2D45;
+  --ink-soft: #4A5568;
+  --ink-muted:#8896A4;
+  --bg:       #F6F5F2;
+  --bg-white: #FFFFFF;
+  --blue:     #0057FF;
+  --blue-dim: #E8EFFE;
+  --teal:     #00A878;
+  --teal-dim: #E0F7F0;
+  --red-dim:  #FEF0EF;
+  --red:      #E53E3E;
+  --border:   #E2E5EA;
+  --border-strong: #C8CDD5;
+  --radius:   12px;
+  --radius-sm: 6px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ─── NAV ─────────────────────────────────── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  height: 64px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 40px;
+  background: rgba(246,245,242,0.88);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  transition: box-shadow 0.2s;
+}
+nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
+
+.nav-wordmark {
+  display: flex; align-items: center; gap: 10px;
+  text-decoration: none; color: var(--ink);
+}
+.nav-icon {
+  width: 32px; height: 32px; background: var(--ink);
+  border-radius: 8px; display: flex; align-items: center; justify-content: center;
+}
+.nav-icon svg { width: 18px; height: 18px; stroke: white; fill: none; stroke-width: 2.5; stroke-linecap: round; }
+.nav-name {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700; font-size: 0.95rem; letter-spacing: -0.01em;
+}
+
+.nav-right { display: flex; align-items: center; gap: 8px; }
+.nav-link {
+  font-size: 0.85rem; font-weight: 500; color: var(--ink-soft);
+  text-decoration: none; padding: 6px 14px; border-radius: var(--radius-sm);
+  transition: background 0.15s, color 0.15s;
+}
+.nav-link:hover { background: rgba(0,0,0,0.05); color: var(--ink); }
+.nav-btn {
+  font-size: 0.85rem; font-weight: 600; color: white;
+  background: var(--ink); text-decoration: none;
+  padding: 8px 18px; border-radius: var(--radius-sm);
+  transition: background 0.15s, transform 0.15s;
+}
+.nav-btn:hover { background: var(--ink-mid); transform: translateY(-1px); }
+
+/* ─── HERO ────────────────────────────────── */
+#hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  text-align: center;
+  padding: 120px 24px 80px;
+  position: relative; overflow: hidden;
+}
+
+.hero-grid-bg {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 48px 48px;
+  opacity: 0.5;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
+}
+
+.hero-glow {
+  position: absolute;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(0,87,255,0.08) 0%, transparent 70%);
+  top: 50%; left: 50%; transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--bg-white); border: 1px solid var(--border);
+  border-radius: 100px; padding: 6px 14px 6px 8px;
+  font-size: 0.78rem; font-weight: 500; color: var(--ink-soft);
+  margin-bottom: 32px;
+  opacity: 0; animation: rise 0.7s ease forwards 0.1s;
+  position: relative;
+}
+.hero-badge-dot {
+  width: 22px; height: 22px; background: var(--blue-dim);
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+}
+.hero-badge-dot::after {
+  content: ''; width: 8px; height: 8px;
+  background: var(--blue); border-radius: 50%;
+}
+
+.hero-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(3rem, 7vw, 6.5rem);
+  font-weight: 800; line-height: 1.0; letter-spacing: -0.03em;
+  color: var(--ink); max-width: 900px;
+  opacity: 0; animation: rise 0.9s ease forwards 0.25s;
+}
+.hero-title em { font-style: normal; color: var(--blue); }
+
+.hero-sub {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-weight: 300; line-height: 1.7; color: var(--ink-soft);
+  max-width: 600px; margin: 24px auto 40px;
+  opacity: 0; animation: rise 0.9s ease forwards 0.4s;
+}
+
+.hero-actions {
+  display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;
+  opacity: 0; animation: rise 0.9s ease forwards 0.55s;
+}
+
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 14px 28px; border-radius: var(--radius-sm);
+  font-size: 0.95rem; font-weight: 600; text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-dark { background: var(--ink); color: white; }
+.btn-dark:hover { background: var(--ink-mid); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(8,16,31,0.2); }
+.btn-outline { background: transparent; color: var(--ink); border: 1.5px solid var(--border-strong); }
+.btn-outline:hover { border-color: var(--ink); background: white; transform: translateY(-2px); }
+.btn-blue { background: var(--blue); color: white; }
+.btn-blue:hover { background: #0049E0; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,87,255,0.3); }
+
+.hero-scroll-hint {
+  position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--ink-muted); opacity: 0; animation: rise 1s ease forwards 1s;
+}
+.scroll-chevron {
+  width: 16px; height: 16px;
+  border-right: 2px solid var(--ink-muted);
+  border-bottom: 2px solid var(--ink-muted);
+  transform: rotate(45deg);
+  animation: bob 2s ease infinite;
+}
+
+@keyframes rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes bob { 0%,100% { transform: rotate(45deg) translateY(0); } 50% { transform: rotate(45deg) translateY(4px); } }
+
+/* ─── SECTION SHELL ──────────────────────── */
+.section { padding: 96px 24px; }
+.section-narrow { max-width: 760px; margin: 0 auto; }
+.section-wide { max-width: 1160px; margin: 0 auto; }
+
+.eyebrow {
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--blue); margin-bottom: 12px;
+}
+.section-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 700; letter-spacing: -0.02em; line-height: 1.15;
+  color: var(--ink); margin-bottom: 16px;
+}
+.section-body {
+  font-size: 1.05rem; line-height: 1.75; color: var(--ink-soft);
+  font-weight: 300;
+}
+
+/* ─── STATS ──────────────────────────────── */
+#stats { background: var(--ink); }
+
+.stats-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: var(--radius); overflow: hidden;
+}
+.stat-cell {
+  padding: 40px 32px;
+  background: var(--ink);
+}
+.stat-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 3rem; font-weight: 800; letter-spacing: -0.04em;
+  color: white; line-height: 1; margin-bottom: 8px;
+  display: flex; align-items: baseline; gap: 2px;
+}
+.stat-num .accent { color: var(--blue); }
+.stat-label { font-size: 0.85rem; color: rgba(255,255,255,0.45); font-weight: 400; line-height: 1.5; }
+
+/* ─── ESSENCE ────────────────────────────── */
+#essence { background: var(--bg-white); }
+
+.essence-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 2px; margin-top: 56px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--radius); overflow: hidden;
+}
+.essence-card {
+  background: var(--bg-white); padding: 40px 32px;
+  transition: background 0.2s;
+}
+.essence-card:hover { background: #FAFBFF; }
+.essence-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em;
+  color: var(--blue); text-transform: uppercase; margin-bottom: 20px;
+}
+.essence-heading {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.3rem; font-weight: 700; letter-spacing: -0.01em;
+  color: var(--ink); margin-bottom: 12px; line-height: 1.25;
+}
+.essence-text {
+  font-size: 0.95rem; line-height: 1.7; color: var(--ink-soft); font-weight: 300;
+}
+.essence-pill {
+  display: inline-block; margin-top: 20px;
+  background: var(--blue-dim); color: var(--blue);
+  font-size: 0.75rem; font-weight: 600; padding: 4px 10px;
+  border-radius: 100px;
+}
+.essence-pill.green { background: var(--teal-dim); color: var(--teal); }
+
+/* ─── SCIENCE ────────────────────────────── */
+#science { background: var(--bg); }
+
+.science-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 16px; margin-top: 56px;
+}
+.sci-card {
+  background: var(--bg-white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 32px;
+  transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s;
+  text-decoration: none; color: inherit; display: block;
+}
+.sci-card:hover {
+  box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+  transform: translateY(-2px);
+  border-color: var(--border-strong);
+}
+.sci-card-header {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: 12px; margin-bottom: 14px;
+}
+.sci-org {
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--blue);
+}
+.sci-link-icon { flex-shrink: 0; opacity: 0.3; transition: opacity 0.2s; }
+.sci-card:hover .sci-link-icon { opacity: 0.7; }
+.sci-finding {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.15rem; font-weight: 600; letter-spacing: -0.01em;
+  color: var(--ink); line-height: 1.35; margin-bottom: 10px;
+}
+.sci-detail { font-size: 0.88rem; line-height: 1.65; color: var(--ink-soft); font-weight: 300; }
+.sci-tag {
+  display: inline-block; margin-top: 16px;
+  background: var(--border); color: var(--ink-soft);
+  font-size: 0.7rem; font-weight: 600; padding: 3px 8px;
+  border-radius: 4px; letter-spacing: 0.05em;
+}
+
+/* ─── TIMELINE ───────────────────────────── */
+#timeline { background: var(--bg-white); }
+
+.tl-wrap { margin-top: 56px; position: relative; }
+.tl-line {
+  position: absolute; left: 23px; top: 24px; bottom: 0;
+  width: 2px; background: linear-gradient(to bottom, var(--blue), var(--border));
+}
+
+.tl-item {
+  display: flex; gap: 32px; padding: 0 0 48px 0;
+  position: relative;
+}
+.tl-dot-wrap { flex-shrink: 0; width: 48px; display: flex; justify-content: center; padding-top: 2px; }
+.tl-dot {
+  width: 16px; height: 16px; border-radius: 50%;
+  background: white; border: 2px solid var(--blue);
+  position: relative; z-index: 1;
+  transition: background 0.2s;
+}
+.tl-dot.filled { background: var(--blue); }
+.tl-content { flex: 1; padding-bottom: 8px; }
+.tl-phase {
+  font-size: 0.7rem; font-weight: 600; letter-spacing: 0.15em;
+  text-transform: uppercase; color: var(--ink-muted); margin-bottom: 4px;
+}
+.tl-event {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.1rem; font-weight: 700; color: var(--ink);
+  margin-bottom: 6px; letter-spacing: -0.01em;
+}
+.tl-desc { font-size: 0.92rem; line-height: 1.65; color: var(--ink-soft); font-weight: 300; }
+
+/* ─── WA CONTEXT ─────────────────────────── */
+#context { background: var(--bg); }
+
+.context-box {
+  background: var(--bg-white); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 40px; margin-top: 40px;
+  display: flex; gap: 32px; align-items: flex-start;
+}
+.context-icon {
+  width: 48px; height: 48px; background: var(--blue-dim);
+  border-radius: 12px; display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.context-icon svg { width: 24px; height: 24px; stroke: var(--blue); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.context-text h3 {
+  font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 700;
+  color: var(--ink); margin-bottom: 8px;
+}
+.context-text p { font-size: 0.95rem; line-height: 1.7; color: var(--ink-soft); font-weight: 300; }
+.context-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  margin-top: 12px; font-size: 0.85rem; font-weight: 600;
+  color: var(--blue); text-decoration: none;
+  transition: gap 0.2s;
+}
+.context-link:hover { gap: 10px; }
+
+/* ─── SIGN UP ────────────────────────────── */
+#signup { background: var(--ink); }
+
+.signup-inner {
+  max-width: 640px; margin: 0 auto; text-align: center;
+}
+.signup-inner .eyebrow { color: rgba(255,255,255,0.4); }
+.signup-inner .section-title { color: white; }
+.signup-inner .section-body { color: rgba(255,255,255,0.55); margin-bottom: 40px; }
+
+.signup-form {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius); padding: 36px;
+  text-align: left;
+}
+.form-row { display: flex; gap: 12px; }
+.form-group { flex: 1; margin-bottom: 16px; }
+.form-label {
+  display: block; font-size: 0.78rem; font-weight: 600;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  color: rgba(255,255,255,0.45); margin-bottom: 6px;
+}
+.form-input {
+  width: 100%; padding: 13px 16px;
+  background: rgba(255,255,255,0.07);
+  border: 1.5px solid rgba(255,255,255,0.12);
+  border-radius: var(--radius-sm); color: white;
+  font-size: 0.95rem; font-family: 'DM Sans', sans-serif;
+  outline: none; transition: border-color 0.2s, background 0.2s;
+  -webkit-appearance: none;
+}
+.form-input::placeholder { color: rgba(255,255,255,0.2); }
+.form-input:focus {
+  border-color: var(--blue);
+  background: rgba(0,87,255,0.08);
+}
+
+.form-check {
+  display: flex; align-items: flex-start; gap: 12px; margin-bottom: 20px;
+}
+.form-check input[type=checkbox] {
+  width: 18px; height: 18px; margin-top: 2px;
+  flex-shrink: 0; accent-color: var(--blue);
+  cursor: pointer;
+}
+.form-check label {
+  font-size: 0.88rem; line-height: 1.55;
+  color: rgba(255,255,255,0.5); cursor: pointer;
+}
+.form-check label a { color: rgba(255,255,255,0.75); }
+
+.btn-submit {
+  width: 100%; padding: 15px;
+  background: var(--blue); color: white;
+  font-size: 0.97rem; font-weight: 600;
+  font-family: 'DM Sans', sans-serif;
+  border: none; border-radius: var(--radius-sm);
+  cursor: pointer; transition: all 0.2s; letter-spacing: 0.01em;
+}
+.btn-submit:hover { background: #0049E0; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(0,87,255,0.35); }
+.btn-submit:active { transform: translateY(0); }
+.btn-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+.form-note {
+  margin-top: 14px; font-size: 0.78rem;
+  color: rgba(255,255,255,0.28); text-align: center; line-height: 1.6;
+}
+
+.form-success {
+  display: none; text-align: center; padding: 24px;
+  background: rgba(0,168,120,0.12); border: 1px solid rgba(0,168,120,0.25);
+  border-radius: var(--radius-sm);
+}
+.form-success-icon { font-size: 2rem; margin-bottom: 12px; }
+.form-success h3 {
+  font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 700;
+  color: var(--teal); margin-bottom: 6px;
+}
+.form-success p { font-size: 0.9rem; color: rgba(255,255,255,0.5); line-height: 1.6; }
+
+/* ─── FOOTER ─────────────────────────────── */
+footer {
+  background: #040C18; padding: 48px 24px;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+.footer-inner {
+  max-width: 1160px; margin: 0 auto;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 20px;
+}
+.footer-left .footer-wordmark {
+  font-family: 'Syne', sans-serif; font-size: 0.9rem; font-weight: 700;
+  color: rgba(255,255,255,0.6); margin-bottom: 6px;
+}
+.footer-left p { font-size: 0.78rem; color: rgba(255,255,255,0.22); line-height: 1.6; max-width: 420px; }
+.footer-right { display: flex; gap: 24px; }
+.footer-link {
+  font-size: 0.8rem; color: rgba(255,255,255,0.3);
+  text-decoration: none; transition: color 0.2s;
+}
+.footer-link:hover { color: rgba(255,255,255,0.7); }
+
+/* ─── REVEAL ANIMATION ───────────────────── */
+.reveal {
+  opacity: 0; transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ─── RESPONSIVE ─────────────────────────── */
+@media (max-width: 900px) {
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .essence-grid { grid-template-columns: 1fr; }
+  .science-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 680px) {
+  nav { padding: 0 20px; }
+  .nav-link { display: none; }
+  .section { padding: 72px 20px; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .form-row { flex-direction: column; gap: 0; }
+  .context-box { flex-direction: column; gap: 20px; }
+  .footer-inner { flex-direction: column; align-items: flex-start; }
+  .tl-line { display: none; }
+  .signup-form { padding: 24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ─── NAV ─────────────────────────────────────────── -->
+<nav id="nav">
+  <a href="#hero" class="nav-wordmark">
+    <div class="nav-icon">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg>
+    </div>
+    <span class="nav-name">Last Fall Back Act</span>
+  </a>
+  <div class="nav-right">
+    <a href="#science" class="nav-link">The Science</a>
+    <a href="#timeline" class="nav-link">Timeline</a>
+    <a href="#signup" class="nav-btn">I'm Interested</a>
+  </div>
+</nav>
+
+<!-- ─── HERO ─────────────────────────────────────────── -->
+<section id="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow"></div>
+
+  <div class="hero-badge">
+    <div class="hero-badge-dot"></div>
+    Washington State Citizens' Initiative · 2028 Election Cycle
+  </div>
+
+  <h1 class="hero-title">
+    Washington's last<br><em>clock change.</em> Ever.
+  </h1>
+
+  <p class="hero-sub">
+    A citizens' initiative to permanently end the biannual clock change in Washington State — grounded in science, respectful of federal law, and actionable right now.
+  </p>
+
+  <div class="hero-actions">
+    <a href="#signup" class="btn btn-dark">I'm interested &amp; willing to sign</a>
+    <a href="#essence" class="btn btn-outline">How it works</a>
+  </div>
+
+  <div class="hero-scroll-hint">
+    <span>Explore</span>
+    <div class="scroll-chevron"></div>
+  </div>
+</section>
+
+<!-- ─── STATS ─────────────────────────────────────────── -->
+<div id="stats">
+  <div class="section-wide" style="padding: 0 24px;">
+    <div class="stats-grid">
+      <div class="stat-cell">
+        <div class="stat-num"><span class="counter" data-target="24" data-suffix="%">0%</span><span class="accent">↑</span></div>
+        <div class="stat-label">Increase in cardiac events in the 3 days after spring forward</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num"><span class="counter" data-target="6" data-suffix="%">0%</span><span class="accent">↑</span></div>
+        <div class="stat-label">Increase in fatal traffic crashes the week after DST begins</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num"><span class="counter" data-target="272" data-suffix="K">0K</span></div>
+        <div class="stat-label">Signatures needed from registered WA voters to file</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num"><span style="color:white">0</span></div>
+        <div class="stat-label">Federal authorization required — states may adopt permanent standard time now</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── ESSENCE ───────────────────────────────────────── -->
+<section id="essence" class="section">
+  <div class="section-wide">
+    <p class="eyebrow reveal">The Initiative</p>
+    <h2 class="section-title reveal">Three provisions. Clean logic.</h2>
+    <p class="section-body reveal" style="max-width:580px;">The Last Fall Back Act is structured to work immediately — and to handle any future federal action gracefully.</p>
+
+    <div class="essence-grid reveal">
+      <div class="essence-card">
+        <div class="essence-num">Provision 01</div>
+        <h3 class="essence-heading">Permanent Standard Time — Immediately</h3>
+        <p class="essence-text">Once enacted, Washington observes Pacific Standard Time year-round. If the Act takes effect after a fall-back date — as it would following a November election — the very next spring-forward is canceled. No waiting for the following autumn.</p>
+        <span class="essence-pill">Effective immediately</span>
+      </div>
+      <div class="essence-card">
+        <div class="essence-num">Provision 02</div>
+        <h3 class="essence-heading">No More Clock Changes — In Either Direction</h3>
+        <p class="essence-text">All Washington State agencies, instrumentalities, and political subdivisions are prohibited from advancing official timekeeping on any subsequent Spring Forward Date. The disruption ends permanently.</p>
+        <span class="essence-pill">Year-round stability</span>
+      </div>
+      <div class="essence-card">
+        <div class="essence-num">Provision 03</div>
+        <h3 class="essence-heading">A Built-In Federal Bridge</h3>
+        <p class="essence-text">If Congress ever enacts a law permitting states to permanently observe Daylight Saving Time, Washington transitions to permanent PDT on the next spring date — at least 60 days after federal authorization. Either way, the clock-changing ends.</p>
+        <span class="essence-pill green">Future-proof</span>
+      </div>
+    </div>
+
+    <div class="context-box reveal">
+      <div class="context-icon">
+        <svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+      </div>
+      <div class="context-text">
+        <h3>Why standard time — not permanent DST?</h3>
+        <p>States have clear federal authority to adopt permanent <em>standard</em> time under 15 U.S.C. § 260a — the same authority Arizona and Hawaii use today. Permanent daylight saving time, by contrast, requires Congressional authorization that has not been enacted. The Last Fall Back Act takes the path that's available now. It also aligns with the medically recommended option: the American Academy of Sleep Medicine specifically recommends permanent standard time over permanent DST for its superior alignment with human biology.</p>
+        <a class="context-link" href="https://www.law.cornell.edu/uscode/text/15/260a" target="_blank" rel="noopener">
+          Read 15 U.S.C. § 260a — Federal Uniform Time Act
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SCIENCE ────────────────────────────────────────── -->
+<section id="science" class="section">
+  <div class="section-wide">
+    <p class="eyebrow reveal">The Evidence</p>
+    <h2 class="section-title reveal">The science is not ambiguous.</h2>
+    <p class="section-body reveal" style="max-width:600px;">Every major medical organization that has studied the question agrees. The research below is publicly available — click any card to read the source.</p>
+
+    <div class="science-grid" style="margin-top:48px;">
+
+      <a class="sci-card reveal" href="https://aasm.org/aasm-calls-for-elimination-of-daylight-saving-time/" target="_blank" rel="noopener">
+        <div class="sci-card-header">
+          <div class="sci-org">American Academy of Sleep Medicine</div>
+          <svg class="sci-link-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </div>
+        <div class="sci-finding">Formally recommends permanent standard time</div>
+        <p class="sci-detail">The AASM's position statement calls for elimination of seasonal time changes in favor of year-round standard time, citing superior alignment with human circadian biology. This is the formal position of the nation's leading sleep medicine organization.</p>
+        <span class="sci-tag">Position Statement · aasm.org</span>
+      </a>
+
+      <a class="sci-card reveal" href="https://www.heart.org/en/news/2019/03/08/daylight-saving-time-is-here-what-does-that-mean-for-your-health" target="_blank" rel="noopener">
+        <div class="sci-card-header">
+          <div class="sci-org">American Heart Association</div>
+          <svg class="sci-link-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </div>
+        <div class="sci-finding">Cardiac events spike after spring forward</div>
+        <p class="sci-detail">The AHA documents the evidence that the spring clock change is associated with measurable increases in myocardial infarction and stroke in the days immediately following. Sleep disruption triggers cardiovascular events in vulnerable individuals.</p>
+        <span class="sci-tag">AHA News · heart.org</span>
+      </a>
+
+      <a class="sci-card reveal" href="https://academic.oup.com/sleep/article/43/6/zsaa046/5819719" target="_blank" rel="noopener">
+        <div class="sci-card-header">
+          <div class="sci-org">Journal SLEEP — Oxford Academic</div>
+          <svg class="sci-link-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </div>
+        <div class="sci-finding">Permanent standard time is the healthiest choice</div>
+        <p class="sci-detail">Peer-reviewed analysis comparing permanent standard time vs. permanent DST finds that standard time best supports circadian alignment, sleep duration, and population health outcomes across all seasons.</p>
+        <span class="sci-tag">Peer-Reviewed · Oxford Academic</span>
+      </a>
+
+      <a class="sci-card reveal" href="https://www.cell.com/current-biology/fulltext/S0960-9822(19)31114-8" target="_blank" rel="noopener">
+        <div class="sci-card-header">
+          <div class="sci-org">Current Biology — Cell Press</div>
+          <svg class="sci-link-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </div>
+        <div class="sci-finding">Social clocks vs. solar clocks: a measurable conflict</div>
+        <p class="sci-detail">Roenneberg et al. document the widespread mismatch between social timekeeping and solar time, showing that standard time reduces chronic circadian misalignment across populations — with downstream effects on metabolic and mental health.</p>
+        <span class="sci-tag">Peer-Reviewed · cell.com</span>
+      </a>
+
+      <a class="sci-card reveal" href="https://jcsm.aasm.org/doi/10.5664/jcsm.7970" target="_blank" rel="noopener">
+        <div class="sci-card-header">
+          <div class="sci-org">Journal of Clinical Sleep Medicine</div>
+          <svg class="sci-link-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </div>
+        <div class="sci-finding">DST transitions linked to accidents, MIs, and psychiatric events</div>
+        <p class="sci-detail">Systematic review finds that DST transitions are associated with increased incidences of traffic fatalities, workplace accidents, acute myocardial infarction, mood disorders, and suicide attempts — effects that persist beyond the immediate transition week.</p>
+        <span class="sci-tag">Systematic Review · JCSM</span>
+      </a>
+
+      <a class="sci-card reveal" href="https://app.leg.wa.gov/billsummary?BillNumber=5139&Year=2019&Chamber=Senate" target="_blank" rel="noopener">
+        <div class="sci-card-header">
+          <div class="sci-org">Washington State Legislature</div>
+          <svg class="sci-link-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </div>
+        <div class="sci-finding">Washington already voted to end the clock change in 2019</div>
+        <p class="sci-detail">ESSB 5139, signed into law in 2019, expresses the legislature's intent to observe permanent DST — but only if Congress acts. That authorization hasn't come. The Last Fall Back Act takes the path that doesn't require waiting.</p>
+        <span class="sci-tag">Public Law · app.leg.wa.gov</span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── TIMELINE ──────────────────────────────────────── -->
+<section id="timeline" class="section">
+  <div class="section-wide">
+    <p class="eyebrow reveal">The Path Forward</p>
+    <h2 class="section-title reveal">How this becomes law.</h2>
+    <p class="section-body reveal" style="max-width:560px;">Washington's citizens' initiative process gives residents a direct path to the legislature — and to the ballot if needed.</p>
+
+    <div class="tl-wrap reveal">
+      <div class="tl-line"></div>
+
+      <div class="tl-item">
+        <div class="tl-dot-wrap"><div class="tl-dot filled"></div></div>
+        <div class="tl-content">
+          <div class="tl-phase">Now — Early 2026</div>
+          <div class="tl-event">Outreach &amp; Coalition Building</div>
+          <p class="tl-desc">Engaging health organizations, business groups, labor, and civic partners. Refining the initiative text with legal counsel. Building organizational infrastructure.</p>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+        <div class="tl-content">
+          <div class="tl-phase">Mid 2026</div>
+          <div class="tl-event">Formal Filing &amp; Launch</div>
+          <p class="tl-desc">Filing the initiative with the Washington Secretary of State. Coordinated announcement with coalition partners. Signature collection begins.</p>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+        <div class="tl-content">
+          <div class="tl-phase">Mid 2026 – Early 2027</div>
+          <div class="tl-event">Signature Collection</div>
+          <p class="tl-desc">Gathering 272,000+ valid signatures from registered Washington voters — through volunteers, partner networks, and professional signature collection. A 6-month window from legislative adjournment.</p>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+        <div class="tl-content">
+          <div class="tl-phase">2027 Legislative Session</div>
+          <div class="tl-event">Legislature Considers the Initiative</div>
+          <p class="tl-desc">The Washington Legislature may pass the initiative as written, reject it, or propose an alternative. If passed — done. If not, the initiative proceeds to voters.</p>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+        <div class="tl-content">
+          <div class="tl-phase">November 2028 General Election</div>
+          <div class="tl-event">Washington Voters Decide</div>
+          <p class="tl-desc">If not enacted by the legislature, the initiative appears on the 2028 general election ballot. A majority vote enacts it into law.</p>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+        <div class="tl-content">
+          <div class="tl-phase">November 2028 — Immediately After Enactment</div>
+          <div class="tl-event">The Last Clock Change</div>
+          <p class="tl-desc">Washington falls back in November 2028. The spring-forward scheduled for March 2029 is canceled. Washington is on permanent Pacific Standard Time — forever, or until Congress authorizes states to adopt permanent DST, at which point a smooth, planned transition follows.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SIGNUP ─────────────────────────────────────────── -->
+<section id="signup" class="section">
+  <div class="signup-inner">
+    <p class="eyebrow">Express Your Interest</p>
+    <h2 class="section-title">Ready to support this?</h2>
+    <p class="section-body">We're in the early stages — building our coalition and gathering feedback. If you'd like to be notified when the petition opens and stay informed on progress, let us know.</p>
+
+    <div class="signup-form">
+      <div id="formFields">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="fname">First Name</label>
+            <input class="form-input" type="text" id="fname" name="firstName" placeholder="Jane" autocomplete="given-name">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="lname">Last Name</label>
+            <input class="form-input" type="text" id="lname" name="lastName" placeholder="Smith" autocomplete="family-name">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="email">Email Address</label>
+          <input class="form-input" type="email" id="email" name="email" placeholder="jane@example.com" autocomplete="email">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="city">City / Town</label>
+          <input class="form-input" type="text" id="city" name="city" placeholder="Bellevue">
+        </div>
+        <div class="form-check">
+          <input type="checkbox" id="wavoter" name="waVoter">
+          <label for="wavoter">I am a registered voter in Washington State and am willing to sign the official petition when it opens.</label>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" id="updates" name="updates" checked>
+          <label for="updates">Keep me informed on petition progress, events, and ways to help.</label>
+        </div>
+        <!-- Honeypot: hidden from real users, bots fill it in — do not remove -->
+        <div style="display:none;" aria-hidden="true">
+          <label for="website">Website (leave blank)</label>
+          <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+        </div>
+        <button class="btn-submit" onclick="handleSubmit(event)" id="submitBtn">
+          I'm interested &amp; willing to sign →
+        </button>
+        <p class="form-note">Your information is kept private and used only for petition coordination and updates you opt into. We will never sell or share your data.</p>
+      </div>
+      <div class="form-success" id="formSuccess">
+        <div class="form-success-icon">✓</div>
+        <h3>You're on the list.</h3>
+        <p>Thank you. We'll be in touch as the initiative moves forward. If you know others who'd support this, share the site with them — the more voices the better.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─────────────────────────────────────────── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-left">
+      <div class="footer-wordmark">Last Fall Back Act · Washington State</div>
+      <p>A citizens' initiative effort. Not yet a registered political committee. For questions: <a href="mailto:info@lastfallback.org" style="color:rgba(255,255,255,0.4);">info@lastfallback.org</a><br>
+      © 2026 Last Fall Back Act. This website does not constitute an official petition. Official signature collection begins upon filing with the Washington Secretary of State.</p>
+    </div>
+    <div class="footer-right">
+      <a href="#essence" class="footer-link">The Initiative</a>
+      <a href="#science" class="footer-link">Science</a>
+      <a href="#timeline" class="footer-link">Timeline</a>
+      <a href="mailto:info@lastfallback.org" class="footer-link">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── Nav scroll shadow ──────────────────────
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 10);
+});
+
+// ── Reveal on scroll ──────────────────────
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 80);
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// ── Counter animation ─────────────────────
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    const el = entry.target;
+    const target = parseInt(el.dataset.target);
+    const suffix = el.dataset.suffix || '';
+    let start = 0;
+    const duration = 1400;
+    const startTime = performance.now();
+    function tick(now) {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const ease = 1 - Math.pow(1 - progress, 3);
+      const val = Math.round(ease * target);
+      el.textContent = val + suffix;
+      if (progress < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+    counterObserver.unobserve(el);
+  });
+}, { threshold: 0.5 });
+
+document.querySelectorAll('.counter').forEach(el => counterObserver.observe(el));
+
+// ── Form submission — posts to submit.php on same server ─
+async function handleSubmit(e) {
+  e.preventDefault();
+  const btn = document.getElementById('submitBtn');
+
+  const fname   = document.getElementById('fname').value.trim();
+  const lname   = document.getElementById('lname').value.trim();
+  const email   = document.getElementById('email').value.trim();
+  const city    = document.getElementById('city').value.trim();
+  const waVoter = document.getElementById('wavoter').checked;
+  const updates = document.getElementById('updates').checked;
+  // Honeypot — always empty for real users; bots fill it in
+  const honeypot = document.getElementById('website').value;
+
+  if (!fname || !lname) {
+    alert('Please enter your first and last name.');
+    return;
+  }
+  if (!/\S+@\S+\.\S+/.test(email)) {
+    alert('Please enter a valid email address.');
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Submitting…';
+
+  try {
+    const res = await fetch('submit.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        firstName: fname,
+        lastName:  lname,
+        email,
+        city,
+        waVoter:      waVoter ? 'Yes' : 'No',
+        wantsUpdates: updates ? 'Yes' : 'No',
+        website:      honeypot   // honeypot field
+      })
+    });
+
+    const data = await res.json();
+
+    if (data.success) {
+      showSuccess();
+    } else {
+      throw new Error(data.error || 'Unknown error');
+    }
+  } catch (err) {
+    btn.disabled = false;
+    btn.textContent = "I'm interested & willing to sign →";
+    alert('Something went wrong: ' + err.message + '\n\nYou can also email us directly at info@lastfallback.org');
+  }
+}
+
+function showSuccess() {
+  document.getElementById('formFields').style.display = 'none';
+  document.getElementById('formSuccess').style.display = 'block';
+}
+</script>
+</body>
+</html>
