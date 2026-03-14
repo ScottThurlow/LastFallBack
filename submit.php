@@ -47,6 +47,7 @@ $email        = filter_var(trim($body['email'] ?? ''), FILTER_VALIDATE_EMAIL);
 $city         = clean($body['city']         ?? '');
 $waVoter      = clean($body['waVoter']      ?? 'No');
 $wantsUpdates = clean($body['wantsUpdates'] ?? 'No');
+$volunteer    = clean($body['volunteer']    ?? 'No');
 $honeypot     = trim($body['website']       ?? '');
 $timestamp    = date('Y-m-d H:i:s T');
 $ip           = $_SERVER['REMOTE_ADDR'] ?? '';
@@ -65,20 +66,21 @@ $log_file   = $log_dir . 'signers.csv';
 $log_exists = file_exists($log_file);
 $fh = fopen($log_file, 'a');
 if ($fh) {
-    if (!$log_exists) fputcsv($fh, ['Timestamp','First Name','Last Name','Email','City','WA Voter','Wants Updates','IP']);
-    fputcsv($fh, [$timestamp,$firstName,$lastName,$email,$city,$waVoter,$wantsUpdates,$ip]);
+    if (!$log_exists) fputcsv($fh, ['Timestamp','First Name','Last Name','Email','City','WA Voter','Wants Updates','Volunteer','IP']);
+    fputcsv($fh, [$timestamp,$firstName,$lastName,$email,$city,$waVoter,$wantsUpdates,$volunteer,$ip]);
     fclose($fh);
 }
 
 // -- Email content ------------------------------------------------------------
-$subject  = "[SIGNER] Last Fall Back Act -- {$firstName} {$lastName}";
+$subject  = "[SIGNER]" . ($volunteer === 'Yes' ? "[VOLUNTEER]" : "") . " Last Fall Back Act -- {$firstName} {$lastName}";
 $textBody  = "New interest form submission -- Last Fall Back Act\n";
 $textBody .= str_repeat('-', 52) . "\n\n";
 $textBody .= "Name:           {$firstName} {$lastName}\n";
 $textBody .= "Email:          {$email}\n";
 $textBody .= "City:           " . ($city ?: '(not provided)') . "\n";
 $textBody .= "WA Voter:       {$waVoter}\n";
-$textBody .= "Wants Updates:  {$wantsUpdates}\n\n";
+$textBody .= "Wants Updates:  {$wantsUpdates}\n";
+$textBody .= "Volunteer:      {$volunteer}\n\n";
 $textBody .= str_repeat('-', 52) . "\n";
 $textBody .= "Submitted:      {$timestamp}\n";
 $textBody .= "IP:             {$ip}\n";

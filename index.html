@@ -804,6 +804,10 @@ footer {
           <input type="checkbox" id="updates" name="updates" checked>
           <label for="updates">Keep me informed on petition progress, events, and ways to help.</label>
         </div>
+        <div class="form-check">
+          <input type="checkbox" id="volunteer" name="volunteer">
+          <label for="volunteer">I'd like to volunteer to collect signatures.</label>
+        </div>
         <!-- Honeypot: hidden from real users, bots fill it in — do not remove -->
         <div style="display:none;" aria-hidden="true">
           <label for="website">Website (leave blank)</label>
@@ -894,6 +898,7 @@ async function handleSubmit(e) {
   const city    = document.getElementById('city').value.trim();
   const waVoter = document.getElementById('wavoter').checked;
   const updates = document.getElementById('updates').checked;
+  const volunteer = document.getElementById('volunteer').checked;
   // Honeypot — always empty for real users; bots fill it in
   const honeypot = document.getElementById('website').value;
 
@@ -920,7 +925,8 @@ async function handleSubmit(e) {
         city,
         waVoter:      waVoter ? 'Yes' : 'No',
         wantsUpdates: updates ? 'Yes' : 'No',
-        website:      honeypot   // honeypot field
+        volunteer:    volunteer ? 'Yes' : 'No',
+        website:      honeypot
       })
     });
 
