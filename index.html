@@ -8,7 +8,7 @@
 <meta property="og:title" content="Last Fall Back Act — Washington State">
 <meta property="og:description" content="End the clock change. Permanently. Washington State citizens' initiative.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@700;800;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -65,7 +65,7 @@ nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
 }
 .nav-icon svg { width: 18px; height: 18px; stroke: white; fill: none; stroke-width: 2.5; stroke-linecap: round; }
 .nav-name {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Barlow', sans-serif;
   font-weight: 700; font-size: 0.95rem; letter-spacing: -0.01em;
 }
 
@@ -89,12 +89,14 @@ nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
   min-height: 100vh;
   display: flex; flex-direction: column; justify-content: center; align-items: center;
   text-align: center;
-  padding: 120px 24px 80px;
-  position: relative; overflow: hidden;
+  padding: 120px 24px 100px;
+  position: relative; overflow: visible;
 }
 
 .hero-grid-bg {
   position: absolute; inset: 0;
+  overflow: hidden;
+  border-radius: 0;
   background-image:
     linear-gradient(var(--border) 1px, transparent 1px),
     linear-gradient(90deg, var(--border) 1px, transparent 1px);
@@ -130,13 +132,32 @@ nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
 }
 
 .hero-title {
-  font-family: 'Syne', sans-serif;
-  font-size: clamp(3rem, 7vw, 6.5rem);
-  font-weight: 800; line-height: 1.0; letter-spacing: -0.03em;
-  color: var(--ink); max-width: 900px;
+  font-family: 'Barlow', sans-serif;
+  font-size: clamp(2.4rem, 5vw, 4.8rem);
+  font-weight: 900; letter-spacing: -0.01em;
+  color: var(--ink); max-width: 860px;
+  display: flex; flex-direction: column; align-items: center;
+  gap: 0;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
   opacity: 0; animation: rise 0.9s ease forwards 0.25s;
 }
-.hero-title em { font-style: normal; color: var(--blue); }
+.ht-line {
+  display: block;
+  line-height: 1.3;
+  padding-bottom: 0.15em;
+}
+.ht-blue { 
+  color: var(--blue);
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  will-change: transform;
+  isolation: isolate;
+  padding-bottom: 0.25em;
+  margin-bottom: -0.1em;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
+}
 
 .hero-sub {
   font-size: clamp(1rem, 2vw, 1.25rem);
@@ -190,7 +211,7 @@ nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
   text-transform: uppercase; color: var(--blue); margin-bottom: 12px;
 }
 .section-title {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Barlow', sans-serif;
   font-size: clamp(1.8rem, 3.5vw, 2.8rem);
   font-weight: 700; letter-spacing: -0.02em; line-height: 1.15;
   color: var(--ink); margin-bottom: 16px;
@@ -214,7 +235,7 @@ nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
   background: var(--ink);
 }
 .stat-num {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Barlow', sans-serif;
   font-size: 3rem; font-weight: 800; letter-spacing: -0.04em;
   color: white; line-height: 1; margin-bottom: 8px;
   display: flex; align-items: baseline; gap: 2px;
@@ -238,12 +259,12 @@ nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
 }
 .essence-card:hover { background: #FAFBFF; }
 .essence-num {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Barlow', sans-serif;
   font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em;
   color: var(--blue); text-transform: uppercase; margin-bottom: 20px;
 }
 .essence-heading {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Barlow', sans-serif;
   font-size: 1.3rem; font-weight: 700; letter-spacing: -0.01em;
   color: var(--ink); margin-bottom: 12px; line-height: 1.25;
 }
@@ -289,7 +310,7 @@ nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
 .sci-link-icon { flex-shrink: 0; opacity: 0.3; transition: opacity 0.2s; }
 .sci-card:hover .sci-link-icon { opacity: 0.7; }
 .sci-finding {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Barlow', sans-serif;
   font-size: 1.15rem; font-weight: 600; letter-spacing: -0.01em;
   color: var(--ink); line-height: 1.35; margin-bottom: 10px;
 }
@@ -328,7 +349,7 @@ nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
   text-transform: uppercase; color: var(--ink-muted); margin-bottom: 4px;
 }
 .tl-event {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Barlow', sans-serif;
   font-size: 1.1rem; font-weight: 700; color: var(--ink);
   margin-bottom: 6px; letter-spacing: -0.01em;
 }
@@ -349,7 +370,7 @@ nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
 }
 .context-icon svg { width: 24px; height: 24px; stroke: var(--blue); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 .context-text h3 {
-  font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 700;
+  font-family: 'Barlow', sans-serif; font-size: 1.1rem; font-weight: 700;
   color: var(--ink); margin-bottom: 8px;
 }
 .context-text p { font-size: 0.95rem; line-height: 1.7; color: var(--ink-soft); font-weight: 300; }
@@ -437,7 +458,7 @@ nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
 }
 .form-success-icon { font-size: 2rem; margin-bottom: 12px; }
 .form-success h3 {
-  font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 700;
+  font-family: 'Barlow', sans-serif; font-size: 1.2rem; font-weight: 700;
   color: var(--teal); margin-bottom: 6px;
 }
 .form-success p { font-size: 0.9rem; color: rgba(255,255,255,0.5); line-height: 1.6; }
@@ -453,7 +474,7 @@ footer {
   flex-wrap: wrap; gap: 20px;
 }
 .footer-left .footer-wordmark {
-  font-family: 'Syne', sans-serif; font-size: 0.9rem; font-weight: 700;
+  font-family: 'Barlow', sans-serif; font-size: 0.9rem; font-weight: 700;
   color: rgba(255,255,255,0.6); margin-bottom: 6px;
 }
 .footer-left p { font-size: 0.78rem; color: rgba(255,255,255,0.22); line-height: 1.6; max-width: 420px; }
@@ -518,7 +539,9 @@ footer {
   </div>
 
   <h1 class="hero-title">
-    Washington's last<br><em>clock change.</em> Ever.
+    <span class="ht-line">Washington's last</span>
+    <span class="ht-line ht-blue">clock change.</span>
+    <span class="ht-line">Ever.</span>
   </h1>
 
   <p class="hero-sub">

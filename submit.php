@@ -1,177 +1,184 @@
 <?php
 /**
  * Last Fall Back Act — Form Submission Handler
- * Emails interest form data to signers@lastfallback.org
- * Place this file in the same directory as index.html on your Plesk server
+ * Uses direct SMTP (no external libraries) via GoDaddy mail servers.
+ *
+ * ── SETUP: Fill in your noreply@lastfallback.org mailbox password below ──────
  */
 
-// ── Configuration ──────────────────────────────────────
-define('TO_EMAIL',      'signers@lastfallback.org');
-define('FROM_EMAIL',    'noreply@lastfallback.org');   // must be on your domain
-define('SUBJECT',       'Last Fall Back Act — New Interest Form Submission');
-define('ALLOWED_ORIGIN', 'https://lastfallback.org');  // update to your domain
+define('TO_EMAIL',       'signers@lastfallback.org');
+define('SMTP_HOST',      'smtp.gmail.com');
+define('SMTP_PORT',      587);
+define('SMTP_USER',      'lastfallback@gmail.com');
+define('SMTP_PASS',      'uvcoexoydwqlgnpi');  // no spaces
+define('SMTP_FROM_NAME', 'Last Fall Back Act');
+define('SMTP_ENCRYPTION','tls');
 
-// ── CORS / Origin check ────────────────────────────────
+// ── CORS ──────────────────────────────────────────────────────────────────────
 header('Content-Type: application/json');
-
-// Allow same-origin and your domain
-$origin = isset($_SERVER['HTTP_ORIGIN']) ? $_SERVER['HTTP_ORIGIN'] : '';
-$allowed = [
-    'https://lastfallback.org',
-    'https://www.lastfallback.org',
-    'http://localhost',     // for local testing
-    'http://127.0.0.1',
-];
-if (in_array($origin, $allowed)) {
-    header('Access-Control-Allow-Origin: ' . $origin);
-}
+$allowed = ['https://lastfallback.org','https://www.lastfallback.org','http://localhost','http://127.0.0.1'];
+$origin  = $_SERVER['HTTP_ORIGIN'] ?? '';
+if (in_array($origin, $allowed)) header('Access-Control-Allow-Origin: ' . $origin);
 header('Access-Control-Allow-Methods: POST, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type');
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') { http_response_code(200); exit; }
+if ($_SERVER['REQUEST_METHOD'] !== 'POST')    { http_response_code(405); echo json_encode(['success'=>false,'error'=>'Method not allowed']); exit; }
 
-// Handle preflight
-if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
-    http_response_code(200);
-    exit;
-}
+// ── Rate limit (5 submissions per IP per hour) ────────────────────────────────
+$rl_dir  = sys_get_temp_dir() . '/lfba_rl/';
+if (!is_dir($rl_dir)) mkdir($rl_dir, 0700, true);
+$rl_file = $rl_dir . md5($_SERVER['REMOTE_ADDR'] ?? '') . '.json';
+$now     = time();
+$rl      = file_exists($rl_file) ? (json_decode(file_get_contents($rl_file), true) ?: ['times'=>[]]) : ['times'=>[]];
+$rl['times'] = array_values(array_filter($rl['times'], fn($t) => ($now - $t) < 3600));
+if (count($rl['times']) >= 5) { http_response_code(429); echo json_encode(['success'=>false,'error'=>'Too many submissions. Please try again later.']); exit; }
+$rl['times'][] = $now;
+file_put_contents($rl_file, json_encode($rl));
 
-// ── Only accept POST ───────────────────────────────────
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    http_response_code(405);
-    echo json_encode(['success' => false, 'error' => 'Method not allowed']);
-    exit;
-}
+// ── Parse & sanitise ──────────────────────────────────────────────────────────
+$body = json_decode(file_get_contents('php://input'), true) ?: $_POST;
+function clean($v) { return htmlspecialchars(strip_tags(str_replace(["\r","\n","\t"],' ',trim($v??''))),ENT_QUOTES,'UTF-8'); }
 
-// ── Rate limiting (simple file-based) ─────────────────
-// Prevents a single IP from flooding submissions
-$rate_limit_dir = sys_get_temp_dir() . '/lfba_rl/';
-if (!is_dir($rate_limit_dir)) {
-    mkdir($rate_limit_dir, 0700, true);
-}
-$ip_hash = md5($_SERVER['REMOTE_ADDR']);
-$rate_file = $rate_limit_dir . $ip_hash . '.txt';
-$now = time();
-$window = 3600;   // 1 hour window
-$max_submissions = 5;
-
-if (file_exists($rate_file)) {
-    $data = json_decode(file_get_contents($rate_file), true);
-    // Remove entries outside the window
-    $data['times'] = array_filter($data['times'], fn($t) => ($now - $t) < $window);
-    if (count($data['times']) >= $max_submissions) {
-        http_response_code(429);
-        echo json_encode(['success' => false, 'error' => 'Too many submissions. Please try again later.']);
-        exit;
-    }
-    $data['times'][] = $now;
-} else {
-    $data = ['times' => [$now]];
-}
-file_put_contents($rate_file, json_encode($data));
-
-// ── Parse JSON body ────────────────────────────────────
-$raw = file_get_contents('php://input');
-$body = json_decode($raw, true);
-
-if (!$body) {
-    // Fall back to POST form data
-    $body = $_POST;
-}
-
-// ── Sanitize helper ────────────────────────────────────
-function clean($val) {
-    if (!isset($val)) return '';
-    // Strip any newlines from fields that could enable header injection
-    $val = str_replace(["\r", "\n", "\t"], ' ', $val);
-    return htmlspecialchars(strip_tags(trim($val)), ENT_QUOTES, 'UTF-8');
-}
-
-// ── Extract and validate fields ────────────────────────
-$firstName  = clean($body['firstName'] ?? '');
-$lastName   = clean($body['lastName']  ?? '');
-$email      = filter_var(trim($body['email'] ?? ''), FILTER_VALIDATE_EMAIL);
-$city       = clean($body['city']      ?? '');
-$waVoter    = clean($body['waVoter']   ?? 'No');
+$firstName    = clean($body['firstName']    ?? '');
+$lastName     = clean($body['lastName']     ?? '');
+$email        = filter_var(trim($body['email'] ?? ''), FILTER_VALIDATE_EMAIL);
+$city         = clean($body['city']         ?? '');
+$waVoter      = clean($body['waVoter']      ?? 'No');
 $wantsUpdates = clean($body['wantsUpdates'] ?? 'No');
-$timestamp  = date('Y-m-d H:i:s T');
-$ip         = $_SERVER['REMOTE_ADDR'];
+$honeypot     = trim($body['website']       ?? '');
+$timestamp    = date('Y-m-d H:i:s T');
+$ip           = $_SERVER['REMOTE_ADDR'] ?? '';
 
-// Required field validation
-if (empty($firstName) || empty($lastName)) {
-    http_response_code(400);
-    echo json_encode(['success' => false, 'error' => 'First and last name are required.']);
-    exit;
-}
-if (!$email) {
-    http_response_code(400);
-    echo json_encode(['success' => false, 'error' => 'A valid email address is required.']);
-    exit;
-}
+// Honeypot check — bots fill this hidden field, real users don't
+if (!empty($honeypot)) { http_response_code(200); echo json_encode(['success'=>true]); exit; }
 
-// ── Honeypot check (spam trap) ─────────────────────────
-// The HTML form has a hidden field named "website" — real users leave it blank
-$honeypot = trim($body['website'] ?? '');
-if (!empty($honeypot)) {
-    // Silently accept but don't send — looks like success to bots
-    http_response_code(200);
-    echo json_encode(['success' => true]);
-    exit;
-}
+// Required fields
+if (empty($firstName) || empty($lastName)) { http_response_code(400); echo json_encode(['success'=>false,'error'=>'First and last name are required.']); exit; }
+if (!$email) { http_response_code(400); echo json_encode(['success'=>false,'error'=>'A valid email address is required.']); exit; }
 
-// ── Compose email ──────────────────────────────────────
-$to      = TO_EMAIL;
-$subject = SUBJECT;
-
-$message  = "New interest form submission — Last Fall Back Act\n";
-$message .= str_repeat('─', 50) . "\n\n";
-$message .= "Name:           {$firstName} {$lastName}\n";
-$message .= "Email:          {$email}\n";
-$message .= "City:           " . ($city ?: '(not provided)') . "\n";
-$message .= "WA Voter:       {$waVoter}\n";
-$message .= "Wants Updates:  {$wantsUpdates}\n";
-$message .= "\n";
-$message .= str_repeat('─', 50) . "\n";
-$message .= "Submitted:      {$timestamp}\n";
-$message .= "IP Address:     {$ip}\n";
-$message .= str_repeat('─', 50) . "\n";
-
-$headers  = "From: Last Fall Back Act <" . FROM_EMAIL . ">\r\n";
-$headers .= "Reply-To: {$firstName} {$lastName} <{$email}>\r\n";
-$headers .= "X-Mailer: PHP/" . phpversion() . "\r\n";
-$headers .= "MIME-Version: 1.0\r\n";
-$headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
-
-// ── Log submission to CSV (backup record) ─────────────
-// Written to a private directory outside web root if possible,
-// otherwise to a protected subdirectory
-$log_dir = dirname(__FILE__) . '/submissions/';
-if (!is_dir($log_dir)) {
-    mkdir($log_dir, 0700, true);
-    // Write .htaccess to block direct web access
-    file_put_contents($log_dir . '.htaccess', "Deny from all\n");
-}
-$log_file = $log_dir . 'signers.csv';
+// ── CSV backup (always write before attempting email) ─────────────────────────
+$log_dir = __DIR__ . '/submissions/';
+if (!is_dir($log_dir)) { mkdir($log_dir, 0700, true); file_put_contents($log_dir.'.htaccess',"Require all denied\n"); }
+$log_file   = $log_dir . 'signers.csv';
 $log_exists = file_exists($log_file);
-$log_handle = fopen($log_file, 'a');
-if ($log_handle) {
-    if (!$log_exists) {
-        // Write header row
-        fputcsv($log_handle, ['Timestamp', 'First Name', 'Last Name', 'Email', 'City', 'WA Voter', 'Wants Updates', 'IP']);
-    }
-    fputcsv($log_handle, [$timestamp, $firstName, $lastName, $email, $city, $waVoter, $wantsUpdates, $ip]);
-    fclose($log_handle);
+$fh = fopen($log_file, 'a');
+if ($fh) {
+    if (!$log_exists) fputcsv($fh, ['Timestamp','First Name','Last Name','Email','City','WA Voter','Wants Updates','IP']);
+    fputcsv($fh, [$timestamp,$firstName,$lastName,$email,$city,$waVoter,$wantsUpdates,$ip]);
+    fclose($fh);
 }
 
-// ── Send email ─────────────────────────────────────────
-$sent = mail($to, $subject, $message, $headers);
+// ── Email content ─────────────────────────────────────────────────────────────
+// [SIGNER] prefix lets you create an auto-file rule in your email client
+$subject = "[SIGNER] Last Fall Back Act — {$firstName} {$lastName}";
 
-if ($sent) {
+$msg  = "New interest form submission — Last Fall Back Act\n";
+$msg .= str_repeat('-', 52) . "\n\n";
+$msg .= "Name:           {$firstName} {$lastName}\n";
+$msg .= "Email:          {$email}\n";
+$msg .= "City:           " . ($city ?: '(not provided)') . "\n";
+$msg .= "WA Voter:       {$waVoter}\n";
+$msg .= "Wants Updates:  {$wantsUpdates}\n\n";
+$msg .= str_repeat('-', 52) . "\n";
+$msg .= "Submitted:      {$timestamp}\n";
+$msg .= "IP:             {$ip}\n";
+$msg .= str_repeat('-', 52) . "\n";
+
+// ── Direct SMTP function (no PHPMailer needed) ────────────────────────────────
+function smtp_send($cfg, $to, $subject, $body) {
+    $errno = 0; $errstr = ''; $timeout = 15;
+
+    // Open socket — ssl:// for port 465, plain for 587 (STARTTLS follows)
+    $host_str = ($cfg['enc'] === 'ssl') ? "ssl://{$cfg['host']}" : $cfg['host'];
+    $conn = @fsockopen($host_str, $cfg['port'], $errno, $errstr, $timeout);
+    if (!$conn) return "Connection failed ({$errno}): {$errstr}";
+
+    stream_set_timeout($conn, $timeout);
+
+    // Read one SMTP response (handles multi-line responses)
+    $read = function() use ($conn) {
+        $out = '';
+        while (!feof($conn)) {
+            $line = fgets($conn, 512);
+            $out .= $line;
+            if (strlen($line) >= 4 && $line[3] === ' ') break; // end of response
+        }
+        return $out;
+    };
+    $cmd = function($c) use ($conn, $read) { fwrite($conn, $c."\r\n"); return $read(); };
+
+    // Banner
+    $r = $read();
+    if (substr($r,0,3) !== '220') { fclose($conn); return "Bad banner: {$r}"; }
+
+    // EHLO
+    $cmd("EHLO lastfallback.org");
+
+    // STARTTLS upgrade (port 587 / tls mode only)
+    if ($cfg['enc'] === 'tls') {
+        $r = $cmd("STARTTLS");
+        if (substr($r,0,3) !== '220') { fclose($conn); return "STARTTLS failed: {$r}"; }
+        stream_socket_enable_crypto($conn, true, STREAM_CRYPTO_METHOD_TLS_CLIENT);
+        $cmd("EHLO lastfallback.org");
+    }
+
+    // AUTH LOGIN
+    $r = $cmd("AUTH LOGIN");
+    if (substr($r,0,3) !== '334') { fclose($conn); return "AUTH rejected: {$r}"; }
+    $r = $cmd(base64_encode($cfg['user']));
+    if (substr($r,0,3) !== '334') { fclose($conn); return "Username rejected: {$r}"; }
+    $r = $cmd(base64_encode($cfg['pass']));
+    if (substr($r,0,3) !== '235') { fclose($conn); return "Password rejected — check SMTP_PASS in submit.php: {$r}"; }
+
+    // Envelope
+    $r = $cmd("MAIL FROM:<{$cfg['user']}>");
+    if (substr($r,0,3) !== '250') { fclose($conn); return "MAIL FROM rejected: {$r}"; }
+    $r = $cmd("RCPT TO:<{$to}>");
+    if (substr($r,0,3) !== '250') { fclose($conn); return "RCPT TO rejected: {$r}"; }
+
+    // Data
+    $r = $cmd("DATA");
+    if (substr($r,0,3) !== '354') { fclose($conn); return "DATA rejected: {$r}"; }
+
+    $enc_subj = '=?UTF-8?B?'.base64_encode($subject).'?=';
+    $full  = "Date: ".date('r')."\r\n";
+    $full .= "From: {$cfg['name']} <{$cfg['user']}>\r\n";
+    $full .= "To: <{$to}>\r\n";
+    $full .= "Subject: {$enc_subj}\r\n";
+    $full .= "Message-ID: <".time().".".md5(uniqid())."@lastfallback.org>\r\n";
+    $full .= "MIME-Version: 1.0\r\n";
+    $full .= "Content-Type: text/plain; charset=UTF-8\r\n";
+    $full .= "Content-Transfer-Encoding: 8bit\r\n";
+    $full .= "\r\n".$body."\r\n.";
+
+    $r = $cmd($full);
+    $cmd("QUIT");
+    fclose($conn);
+
+    return (substr($r,0,3) === '250') ? null : "Send failed: {$r}";
+}
+
+// ── Send ──────────────────────────────────────────────────────────────────────
+$cfg = [
+    'host' => SMTP_HOST,
+    'port' => SMTP_PORT,
+    'enc'  => SMTP_ENCRYPTION,
+    'user' => SMTP_USER,
+    'pass' => SMTP_PASS,
+    'name' => SMTP_FROM_NAME,
+];
+
+$error = smtp_send($cfg, TO_EMAIL, $subject, $msg);
+
+if ($error === null) {
     http_response_code(200);
     echo json_encode(['success' => true]);
 } else {
-    // Email failed but we logged the submission — don't lose the lead
+    error_log('LFBA SMTP error: ' . $error);
+    // Submission is already in the CSV — lead is not lost even if email fails
     http_response_code(500);
     echo json_encode([
         'success' => false,
-        'error'   => 'Mail delivery failed. Your submission was recorded. Please also email us directly at info@lastfallback.org'
+        'error'   => 'Mail delivery failed. Your submission was saved — please also email us at info@lastfallback.org'
     ]);
 }
