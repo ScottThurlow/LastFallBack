@@ -11,7 +11,7 @@
 
 define('TO_EMAIL',       'signers@lastfallback.org');
 define('TO_NAME',        'Last Fall Back Act Signers');
-define('FROM_EMAIL',     'lastfallback@gmail.com');
+define('FROM_EMAIL',     'noreply@lastfallback.org');
 define('FROM_NAME',      'Last Fall Back Act');
 define('BREVO_API_KEY',  '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');  // <- paste your Brevo API key here
 define('BREVO_API_URL',  'https://api.brevo.com/v3/smtp/email');
@@ -60,11 +60,8 @@ if (empty($firstName) || empty($lastName)) { http_response_code(400); echo json_
 if (!$email) { http_response_code(400); echo json_encode(['success'=>false,'error'=>'A valid email address is required.']); exit; }
 
 // -- CSV backup (uses temp dir to avoid permission issues) --------------------
-$log_dir = $_SERVER['DOCUMENT_ROOT'] . '/../../tmp/lfba_data/';
+$log_dir = 'G:\\PleskVhosts\\kumajyo.com\\tmp\\lfba_data\\';
 
-if (!$log_dir) {
-    error_log('LFBA: No writable directory found for CSV. Tried: ' . implode(', ', $candidates));
-}
 if (!is_dir($log_dir)) @mkdir($log_dir, 0700, true);
 $log_file   = $log_dir . 'signers.csv';
 $log_exists = file_exists($log_file);
