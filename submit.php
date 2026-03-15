@@ -60,15 +60,39 @@ if (empty($firstName) || empty($lastName)) { http_response_code(400); echo json_
 if (!$email) { http_response_code(400); echo json_encode(['success'=>false,'error'=>'A valid email address is required.']); exit; }
 
 // -- CSV backup (uses temp dir to avoid permission issues) --------------------
-$log_dir = sys_get_temp_dir() . '/lfba_submissions/';
-if (!is_dir($log_dir)) mkdir($log_dir, 0700, true);
-$log_file   = $log_dir . 'signers.csv';
-$log_exists = file_exists($log_file);
-$fh = fopen($log_file, 'a');
-if ($fh) {
-    if (!$log_exists) fputcsv($fh, ['Timestamp','First Name','Last Name','Email','City','WA Voter','Wants Updates','Volunteer','IP']);
-    fputcsv($fh, [$timestamp,$firstName,$lastName,$email,$city,$waVoter,$wantsUpdates,$volunteer,$ip]);
-    fclose($fh);
+$doc_root  = $_SERVER['DOCUMENT_ROOT'];
+
+$candidates = [
+    $doc_root . '/../../tmp/lfba_data/',
+    $doc_root . '/../tmp/lfba_data/',
+    $doc_root . '/../../tmp/',
+    $doc_root . '/../data/',
+    sys_get_temp_dir() . '/lfba_data/',
+];
+
+$log_dir = null;
+foreach ($candidates as $path) {
+    $real = realpath(dirname($path)) ?: dirname($path);
+    if (!is_dir($path)) @mkdir($path, 0700, true);
+    if (is_dir($path) && is_writable($path)) {
+        $log_dir = $path;
+        break;
+    }
+}
+
+if (!$log_dir) {
+    error_log('LFBA: No writable directory found for CSV. Tried: ' . implode(', ', $candidates));
+}
+if ($log_dir) {
+    if (!is_dir($log_dir)) @mkdir($log_dir, 0700, true);
+    $log_file   = $log_dir . 'signers.csv';
+    $log_exists = file_exists($log_file);
+    $fh = fopen($log_file, 'a');
+    if ($fh) {
+        if (!$log_exists) fputcsv($fh, ['Timestamp','First Name','Last Name','Email','City','WA Voter','Wants Updates','Volunteer','IP']);
+        fputcsv($fh, [$timestamp,$firstName,$lastName,$email,$city,$waVoter,$wantsUpdates,$volunteer,$ip]);
+        fclose($fh);
+    }
 }
 
 // -- Email content ------------------------------------------------------------
