@@ -1,19 +1,5 @@
----
 deployment:
   tasks:
     - export DEPLOYPATH=/home/$USER/public_html/lastfallback.org
-    - /bin/mkdir -p $DEPLOYPATH
-    - /bin/mkdir -p $DEPLOYPATH/images
-    - /bin/mkdir -p $DEPLOYPATH/submissions
-    - /bin/cp index.html $DEPLOYPATH/
-    - /bin/cp submit.php $DEPLOYPATH/
-    - /bin/cp robots.txt $DEPLOYPATH/
-    - /bin/cp sitemap.xml $DEPLOYPATH/
-    - /bin/cp BingSiteAuth.xml $DEPLOYPATH/
-    - /bin/cp favicon.ico $DEPLOYPATH/
-    - /bin/cp favicon.svg $DEPLOYPATH/
-    - /bin/cp favicon-16x16.png $DEPLOYPATH/
-    - /bin/cp favicon-32x32.png $DEPLOYPATH/
-    - /bin/cp images/* $DEPLOYPATH/images/
-    - /bin/cp submissions/.htaccess $DEPLOYPATH/submissions/
-    - /bin/cp submissions/README.txt $DEPLOYPATH/submissions/
+    - /bin/cp -R * $DEPLOYPATH
+    - /bin/cp -R .htaccess $DEPLOYPATH 2>/dev/null || :

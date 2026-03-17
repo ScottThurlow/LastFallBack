@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git -C /Users/scott/Code/LastFallBack show --name-only HEAD)",
+      "Bash(git -C /Users/scott/Code/LastFallBack ls-files)",
+      "Bash(grep -r \"key\\\\|secret\\\\|password\\\\|token\" /Users/scott/Code/LastFallBack --exclude-dir=.git --exclude=*.png --exclude=*.ico --exclude=*.svg)",
+      "Bash(git -C /Users/scott/Code/LastFallBack log --all --source --remotes --branches -p -- submit.php)",
+      "Bash(git -C /Users/scott/Code/LastFallBack log --all --oneline)",
+      "Bash(git -C /Users/scott/Code/LastFallBack remote -v)",
+      "Bash(git -C /Users/scott/Code/LastFallBack log --all --oneline --graph)"
+    ]
+  }
+}
