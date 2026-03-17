@@ -1,20 +1,33 @@
 <?php
 /**
  * Last Fall Back Act — Form Submission Handler
- * Sends via Brevo (formerly Sendinblue) HTTPS API — works on GoDaddy Windows hosting.
+ * Sends via Brevo (formerly Sendinblue) HTTPS API — Linux/cPanel hosting.
  *
  * ── SETUP ─────────────────────────────────────────────────────────────────────
- * 1. Get your API key from brevo.com → SMTP & API → API Keys
- * 2. Replace YOUR_BREVO_API_KEY_HERE below with your key
+ * Create ~/lastfallback.env on the server (outside public_html):
+ *   BREVO_API_KEY=xkeysib-your-key-here
  * ──────────────────────────────────────────────────────────────────────────────
  */
+
+// Load secrets from env file outside web root
+$env_file = $_SERVER['HOME'] . '/lastfallback.env';
+if (file_exists($env_file)) {
+    foreach (file($env_file, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES) as $line) {
+        if (str_starts_with($line, '#')) continue;
+        if (str_contains($line, '=')) putenv(trim($line));
+    }
+}
 
 define('TO_EMAIL',       'signers@lastfallback.org');
 define('TO_NAME',        'Last Fall Back Act Signers');
 define('FROM_EMAIL',     'noreply@lastfallback.org');
 define('FROM_NAME',      'Last Fall Back Act');
-define('BREVO_API_KEY',  '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');  // <- paste your Brevo API key here
+define('BREVO_API_KEY',  getenv('BREVO_API_KEY') ?: '');
 define('BREVO_API_URL',  'https://api.brevo.com/v3/smtp/email');
+
+if (empty(BREVO_API_KEY)) {
+    error_log('LastFallBack.org: BREVO_API_KEY not set — check ~/lastfallback.env');
+}
 
 // -- CORS ---------------------------------------------------------------------
 header('Content-Type: application/json');
