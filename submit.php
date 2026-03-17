@@ -72,8 +72,8 @@ if (!empty($honeypot)) { http_response_code(200); echo json_encode(['success'=>t
 if (empty($firstName) || empty($lastName)) { http_response_code(400); echo json_encode(['success'=>false,'error'=>'First and last name are required.']); exit; }
 if (!$email) { http_response_code(400); echo json_encode(['success'=>false,'error'=>'A valid email address is required.']); exit; }
 
-// -- CSV backup (uses submissions dir within web root) --------------------
-$log_dir = __DIR__ . '/submissions/';
+// -- CSV backup (stored outside web root for security & deploy safety) ----
+$log_dir = $_SERVER['HOME'] . '/lastfallback_data/';
 
 if (!is_dir($log_dir)) @mkdir($log_dir, 0755, true);
 $log_file   = $log_dir . 'lastfallback_org_signers.csv';
