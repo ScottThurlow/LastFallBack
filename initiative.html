@@ -141,7 +141,7 @@ nav {
 
 /* ── HERO ── */
 .page-hero {
-  padding: 120px 24px 160px;
+  padding: 120px 24px 64px;
   background: var(--ink);
   text-align: center;
   position: relative;
@@ -181,8 +181,7 @@ nav {
 
 /* ── TOC ── */
 .toc-wrap {
-  max-width: 900px; margin: -100px auto 0; padding: 0 24px;
-  position: relative; z-index: 10;
+  margin: 0 0 48px; padding: 0;
 }
 .toc-card {
   background: var(--bg-white); border: 1px solid var(--border);
@@ -418,26 +417,6 @@ footer {
 
 <main id="main-content">
 
-<!-- TABLE OF CONTENTS -->
-<nav class="toc-wrap" aria-label="Table of contents">
-  <div class="toc-card">
-    <h2 class="toc-title" id="toc-heading">Contents</h2>
-    <ul class="toc-list" aria-labelledby="toc-heading">
-      <li><span class="toc-num" aria-hidden="true">I</span><a href="#findings">Findings and Declarations</a></li>
-      <li><span class="toc-num" aria-hidden="true">II</span><a href="#definitions">Definitions</a></li>
-      <li><span class="toc-num" aria-hidden="true">III</span><a href="#s31">Section 3.1 — Permanent Adoption of Standard Time</a></li>
-      <li><span class="toc-num" aria-hidden="true">IV</span><a href="#s32">Section 3.2 — Cancellation of Daylight Saving Time Transitions</a></li>
-      <li><span class="toc-num" aria-hidden="true">V</span><a href="#s33">Section 3.3 — Conditional Transition to Permanent Daylight Saving Time</a></li>
-      <li><span class="toc-num" aria-hidden="true">VI</span><a href="#s34">Section 3.4 — Amendment of Existing Law</a></li>
-      <li><span class="toc-num" aria-hidden="true">VII</span><a href="#s35">Section 3.5 — Regulatory Authority</a></li>
-      <li><span class="toc-num" aria-hidden="true">VIII</span><a href="#s36">Section 3.6 — Severability</a></li>
-      <li><span class="toc-num" aria-hidden="true">IX</span><a href="#s37">Section 3.7 — Liberal Construction</a></li>
-      <li><span class="toc-num" aria-hidden="true">X</span><a href="#s38">Section 3.8 — Effective Date</a></li>
-      <li><span class="toc-num" aria-hidden="true">XI</span><a href="#fiscal">Fiscal Note</a></li>
-    </ul>
-  </div>
-</nav>
-
 <!-- INITIATIVE TEXT -->
 <article class="initiative-body" id="initiative-text">
 
@@ -449,6 +428,26 @@ footer {
   <aside class="legal-note" aria-label="About this document">
     <p><strong>About this document:</strong> This is the full text of the Last Fall Back Act as drafted for submission as a citizens' initiative to the Washington State Legislature pursuant to Article II, Section 1 of the Washington State Constitution. This text has not yet been filed with the Washington Secretary of State. The initiative is currently in the coalition-building and organizational phase. Visit <a href="/#signup" style="color:var(--blue);">LastFallBack.org</a> to express your interest and be notified when the petition opens.</p>
   </aside>
+
+  <!-- TABLE OF CONTENTS -->
+  <nav class="toc-wrap" aria-label="Table of contents">
+    <div class="toc-card">
+      <h2 class="toc-title" id="toc-heading">Contents</h2>
+      <ul class="toc-list" aria-labelledby="toc-heading">
+        <li><span class="toc-num" aria-hidden="true">I</span><a href="#findings">Findings and Declarations</a></li>
+        <li><span class="toc-num" aria-hidden="true">II</span><a href="#definitions">Definitions</a></li>
+        <li><span class="toc-num" aria-hidden="true">III</span><a href="#s31">Section 3.1 — Permanent Adoption of Standard Time</a></li>
+        <li><span class="toc-num" aria-hidden="true">IV</span><a href="#s32">Section 3.2 — Cancellation of Daylight Saving Time Transitions</a></li>
+        <li><span class="toc-num" aria-hidden="true">V</span><a href="#s33">Section 3.3 — Conditional Transition to Permanent Daylight Saving Time</a></li>
+        <li><span class="toc-num" aria-hidden="true">VI</span><a href="#s34">Section 3.4 — Amendment of Existing Law</a></li>
+        <li><span class="toc-num" aria-hidden="true">VII</span><a href="#s35">Section 3.5 — Regulatory Authority</a></li>
+        <li><span class="toc-num" aria-hidden="true">VIII</span><a href="#s36">Section 3.6 — Severability</a></li>
+        <li><span class="toc-num" aria-hidden="true">IX</span><a href="#s37">Section 3.7 — Liberal Construction</a></li>
+        <li><span class="toc-num" aria-hidden="true">X</span><a href="#s38">Section 3.8 — Effective Date</a></li>
+        <li><span class="toc-num" aria-hidden="true">XI</span><a href="#fiscal">Fiscal Note</a></li>
+      </ul>
+    </div>
+  </nav>
 
   <!-- FINDINGS -->
   <section class="init-section" id="findings" aria-labelledby="findings-heading">
