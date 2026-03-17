@@ -10,7 +10,8 @@
  */
 
 // Derive home directory (works under Apache where $_SERVER['HOME'] may be unset)
-$home = getenv('HOME') ?: ($_SERVER['HOME'] ?? dirname($_SERVER['DOCUMENT_ROOT']));
+// DOCUMENT_ROOT is e.g. /home/user/public_html/lastfallback.org — go up two levels
+$home = getenv('HOME') ?: ($_SERVER['HOME'] ?? dirname($_SERVER['DOCUMENT_ROOT'], 2));
 
 // Load secrets from env file outside web root
 $env_file = $home . '/lastfallback.env';
