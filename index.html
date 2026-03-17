@@ -1,13 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta name="theme-color" content="#08101F">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Last Fall Back Act — Washington State</title>
-<meta name="description" content="A citizens' initiative to permanently establish standard time in Washington State. End the biannual clock change — backed by science, supported by medicine.">
-<meta property="og:title" content="Last Fall Back Act — Washington State">
-<meta property="og:description" content="End the clock change. Permanently. Washington State citizens' initiative.">
+<title>Last Fall Back Act — End Daylight Saving Time in Washington State</title>
+<meta name="description" content="A citizens' initiative to permanently establish standard time in Washington State. End the biannual clock change — backed by sleep science, supported by the American Academy of Sleep Medicine.">
+<meta name="keywords" content="daylight saving time, standard time, Washington State, citizens initiative, clock change, DST, Last Fall Back Act, permanent standard time, end clock change">
 <link rel="canonical" href="https://lastfallback.org/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://lastfallback.org/">
+<meta property="og:site_name" content="Last Fall Back Act">
+<meta property="og:title" content="Last Fall Back Act — End Daylight Saving Time in Washington State">
+<meta property="og:description" content="A citizens' initiative to permanently establish standard time in Washington State. End the biannual clock change — backed by science, supported by medicine.">
+<meta property="og:locale" content="en_US">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Last Fall Back Act — End Daylight Saving Time in Washington State">
+<meta name="twitter:description" content="A citizens' initiative to permanently end the biannual clock change in Washington State.">
 <link rel="sitemap" type="application/xml" href="/sitemap.xml">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -35,6 +48,37 @@
 
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ─── ACCESSIBILITY ──────────────────────── */
+.skip-link {
+  position: absolute; top: -100%; left: 50%; transform: translateX(-50%);
+  background: var(--blue); color: white; padding: 12px 24px;
+  border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+  font-weight: 600; font-size: 0.9rem; text-decoration: none;
+  z-index: 9999; transition: top 0.2s;
+}
+.skip-link:focus { top: 0; }
+
+:focus-visible {
+  outline: 3px solid var(--blue);
+  outline-offset: 2px;
+}
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
 
 :root {
   --ink:      #08101F;
@@ -513,6 +557,7 @@ footer {
   display: block;
   color: var(--ink);
 }
+button.share-card { cursor: pointer; font-family: inherit; }
 .share-card:hover {
   border-color: var(--blue);
   transform: translateY(-3px);
@@ -562,14 +607,73 @@ footer {
   .signup-form { padding: 24px; }
 }
 </style>
+<!-- Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "name": "Last Fall Back Act",
+      "url": "https://lastfallback.org/",
+      "description": "A citizens' initiative to permanently establish standard time in Washington State."
+    },
+    {
+      "@type": "Organization",
+      "name": "Last Fall Back Act",
+      "url": "https://lastfallback.org/",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "info@lastfallback.org",
+        "contactType": "general inquiry"
+      },
+      "sameAs": [
+        "https://www.facebook.com/profile.php?id=61582174989609",
+        "https://discord.gg/NQzfnWwK"
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Why standard time instead of permanent daylight saving time?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "States have clear federal authority to adopt permanent standard time under 15 U.S.C. § 260a — the same authority Arizona and Hawaii use today. Permanent daylight saving time requires Congressional authorization that has not been enacted. The Last Fall Back Act takes the path that's available now and aligns with the medically recommended option from the American Academy of Sleep Medicine."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How many signatures are needed for the initiative?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "272,000 or more valid signatures from registered Washington State voters are needed to file the initiative with the Secretary of State."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "When would the last clock change happen?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "If enacted, Washington would fall back in November 2028 and the spring-forward scheduled for March 2029 would be canceled. Washington would be on permanent Pacific Standard Time."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
 <!-- ─── NAV ─────────────────────────────────────────── -->
-<nav id="nav">
-  <a href="#hero" class="nav-wordmark">
-    <div class="nav-icon">
-      <svg viewBox="0 0 32 32" width="18" height="18" xmlns="http://www.w3.org/2000/svg">
+<nav id="nav" aria-label="Main navigation">
+  <a href="#hero" class="nav-wordmark" aria-label="Last Fall Back Act — Home">
+    <div class="nav-icon" aria-hidden="true">
+      <svg viewBox="0 0 32 32" width="18" height="18" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <circle cx="14" cy="13" r="9" fill="none" stroke="white" stroke-width="2"/>
         <line x1="14" y1="13" x2="9.5" y2="8.5" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
         <line x1="14" y1="13" x2="14" y2="6.5" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
@@ -589,17 +693,18 @@ footer {
   </div>
 </nav>
 
+<main id="main-content">
 <!-- ─── HERO ─────────────────────────────────────────── -->
-<section id="hero">
-  <div class="hero-grid-bg"></div>
-  <div class="hero-glow"></div>
+<section id="hero" aria-labelledby="hero-heading">
+  <div class="hero-grid-bg" aria-hidden="true"></div>
+  <div class="hero-glow" aria-hidden="true"></div>
 
   <div class="hero-badge">
-    <div class="hero-badge-dot"></div>
+    <div class="hero-badge-dot" aria-hidden="true"></div>
     Washington State Citizens' Initiative · 2028 Election Cycle
   </div>
 
-  <h1 class="hero-title">
+  <h1 class="hero-title" id="hero-heading">
     <span class="ht-line">Washington's last</span>
     <span class="ht-line ht-blue">clock change.</span>
     <span class="ht-line">Ever.</span>
@@ -614,7 +719,7 @@ footer {
     <a href="#essence" class="btn btn-outline">How it works</a>
   </div>
 
-  <div class="hero-scroll-hint">
+  <div class="hero-scroll-hint" aria-hidden="true">
     <span>Explore</span>
     <div class="scroll-chevron"></div>
   </div>
@@ -645,10 +750,10 @@ footer {
 </div>
 
 <!-- ─── ESSENCE ───────────────────────────────────────── -->
-<section id="essence" class="section">
+<section id="essence" class="section" aria-labelledby="essence-heading">
   <div class="section-wide">
     <p class="eyebrow reveal">The Initiative</p>
-    <h2 class="section-title reveal">Three provisions. Clean logic.</h2>
+    <h2 class="section-title reveal" id="essence-heading">Three provisions. Clean logic.</h2>
     <p class="section-body reveal" style="max-width:580px;">The Last Fall Back Act is structured to work immediately — and to handle any future federal action gracefully.</p>
 
     <div class="essence-grid reveal">
@@ -674,14 +779,14 @@ footer {
 
     <div class="context-box reveal">
       <div class="context-icon">
-        <svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
       </div>
       <div class="context-text">
         <h3>Why standard time — not permanent DST?</h3>
         <p>States have clear federal authority to adopt permanent <em>standard</em> time under 15 U.S.C. § 260a — the same authority Arizona and Hawaii use today. Permanent daylight saving time, by contrast, requires Congressional authorization that has not been enacted. The Last Fall Back Act takes the path that's available now. It also aligns with the medically recommended option: the American Academy of Sleep Medicine specifically recommends permanent standard time over permanent DST for its superior alignment with human biology.</p>
         <a class="context-link" href="https://www.law.cornell.edu/uscode/text/15/260a" target="_blank" rel="noopener">
           Read 15 U.S.C. § 260a — Federal Uniform Time Act
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
       </div>
     </div>
@@ -689,10 +794,10 @@ footer {
 </section>
 
 <!-- ─── SCIENCE ────────────────────────────────────────── -->
-<section id="science" class="section">
+<section id="science" class="section" aria-labelledby="science-heading">
   <div class="section-wide">
     <p class="eyebrow reveal">The Evidence</p>
-    <h2 class="section-title reveal">The science is not ambiguous.</h2>
+    <h2 class="section-title reveal" id="science-heading">The science is not ambiguous.</h2>
     <p class="section-body reveal" style="max-width:600px;">Every major medical organization that has studied the question agrees. The research below is publicly available — click any card to read the source.</p>
 
     <div class="science-grid" style="margin-top:48px;">
@@ -700,7 +805,7 @@ footer {
       <a class="sci-card reveal" href="https://aasm.org/aasm-calls-for-elimination-of-daylight-saving-time/" target="_blank" rel="noopener">
         <div class="sci-card-header">
           <div class="sci-org">American Academy of Sleep Medicine</div>
-          <svg class="sci-link-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          <svg class="sci-link-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
         </div>
         <div class="sci-finding">Formally recommends permanent standard time</div>
         <p class="sci-detail">The AASM's position statement calls for elimination of seasonal time changes in favor of year-round standard time, citing superior alignment with human circadian biology. This is the formal position of the nation's leading sleep medicine organization.</p>
@@ -710,7 +815,7 @@ footer {
       <a class="sci-card reveal" href="https://www.heart.org/en/news/2019/03/08/daylight-saving-time-is-here-what-does-that-mean-for-your-health" target="_blank" rel="noopener">
         <div class="sci-card-header">
           <div class="sci-org">American Heart Association</div>
-          <svg class="sci-link-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          <svg class="sci-link-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
         </div>
         <div class="sci-finding">Cardiac events spike after spring forward</div>
         <p class="sci-detail">The AHA documents the evidence that the spring clock change is associated with measurable increases in myocardial infarction and stroke in the days immediately following. Sleep disruption triggers cardiovascular events in vulnerable individuals.</p>
@@ -720,7 +825,7 @@ footer {
       <a class="sci-card reveal" href="https://academic.oup.com/sleep/article/43/6/zsaa046/5819719" target="_blank" rel="noopener">
         <div class="sci-card-header">
           <div class="sci-org">Journal SLEEP — Oxford Academic</div>
-          <svg class="sci-link-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          <svg class="sci-link-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
         </div>
         <div class="sci-finding">Permanent standard time is the healthiest choice</div>
         <p class="sci-detail">Peer-reviewed analysis comparing permanent standard time vs. permanent DST finds that standard time best supports circadian alignment, sleep duration, and population health outcomes across all seasons.</p>
@@ -730,7 +835,7 @@ footer {
       <a class="sci-card reveal" href="https://www.cell.com/current-biology/fulltext/S0960-9822(19)31114-8" target="_blank" rel="noopener">
         <div class="sci-card-header">
           <div class="sci-org">Current Biology — Cell Press</div>
-          <svg class="sci-link-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          <svg class="sci-link-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
         </div>
         <div class="sci-finding">Social clocks vs. solar clocks: a measurable conflict</div>
         <p class="sci-detail">Roenneberg et al. document the widespread mismatch between social timekeeping and solar time, showing that standard time reduces chronic circadian misalignment across populations — with downstream effects on metabolic and mental health.</p>
@@ -740,7 +845,7 @@ footer {
       <a class="sci-card reveal" href="https://jcsm.aasm.org/doi/10.5664/jcsm.7970" target="_blank" rel="noopener">
         <div class="sci-card-header">
           <div class="sci-org">Journal of Clinical Sleep Medicine</div>
-          <svg class="sci-link-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          <svg class="sci-link-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
         </div>
         <div class="sci-finding">DST transitions linked to accidents, MIs, and psychiatric events</div>
         <p class="sci-detail">Systematic review finds that DST transitions are associated with increased incidences of traffic fatalities, workplace accidents, acute myocardial infarction, mood disorders, and suicide attempts — effects that persist beyond the immediate transition week.</p>
@@ -750,7 +855,7 @@ footer {
       <a class="sci-card reveal" href="https://app.leg.wa.gov/billsummary?BillNumber=5139&Year=2019&Chamber=Senate" target="_blank" rel="noopener">
         <div class="sci-card-header">
           <div class="sci-org">Washington State Legislature</div>
-          <svg class="sci-link-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          <svg class="sci-link-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
         </div>
         <div class="sci-finding">Washington already voted to end the clock change in 2019</div>
         <p class="sci-detail">ESSB 5139, signed into law in 2019, expresses the legislature's intent to observe permanent DST — but only if Congress acts. That authorization hasn't come. The Last Fall Back Act takes the path that doesn't require waiting.</p>
@@ -762,10 +867,10 @@ footer {
 </section>
 
 <!-- ─── TIMELINE ──────────────────────────────────────── -->
-<section id="timeline" class="section">
+<section id="timeline" class="section" aria-labelledby="timeline-heading">
   <div class="section-wide">
     <p class="eyebrow reveal">The Path Forward</p>
-    <h2 class="section-title reveal">How this becomes law.</h2>
+    <h2 class="section-title reveal" id="timeline-heading">How this becomes law.</h2>
     <p class="section-body reveal" style="max-width:560px;">Washington's citizens' initiative process gives residents a direct path to the legislature — and to the ballot if needed.</p>
 
     <div class="tl-wrap reveal">
@@ -829,27 +934,27 @@ footer {
 </section>
 
 <!-- ─── SIGNUP ─────────────────────────────────────────── -->
-<section id="signup" class="section">
+<section id="signup" class="section" aria-labelledby="signup-heading">
   <div class="signup-inner">
     <p class="eyebrow">Express Your Interest</p>
-    <h2 class="section-title">Ready to support this?</h2>
+    <h2 class="section-title" id="signup-heading">Ready to support this?</h2>
     <p class="section-body">We're in the early stages — building our coalition and gathering feedback. If you'd like to be notified when the petition opens and stay informed on progress, let us know.</p>
 
-    <div class="signup-form">
+    <form class="signup-form" id="interestForm" novalidate aria-label="Express your interest in the Last Fall Back Act">
       <div id="formFields">
         <div class="form-row">
           <div class="form-group">
-            <label class="form-label" for="fname">First Name</label>
-            <input class="form-input" type="text" id="fname" name="firstName" placeholder="Jane" autocomplete="given-name">
+            <label class="form-label" for="fname">First Name <span aria-hidden="true">*</span></label>
+            <input class="form-input" type="text" id="fname" name="firstName" placeholder="Jane" autocomplete="given-name" required aria-required="true">
           </div>
           <div class="form-group">
-            <label class="form-label" for="lname">Last Name</label>
-            <input class="form-input" type="text" id="lname" name="lastName" placeholder="Smith" autocomplete="family-name">
+            <label class="form-label" for="lname">Last Name <span aria-hidden="true">*</span></label>
+            <input class="form-input" type="text" id="lname" name="lastName" placeholder="Smith" autocomplete="family-name" required aria-required="true">
           </div>
         </div>
         <div class="form-group">
-          <label class="form-label" for="email">Email Address</label>
-          <input class="form-input" type="email" id="email" name="email" placeholder="jane@example.com" autocomplete="email">
+          <label class="form-label" for="email">Email Address <span aria-hidden="true">*</span></label>
+          <input class="form-input" type="email" id="email" name="email" placeholder="jane@example.com" autocomplete="email" required aria-required="true">
         </div>
         <div class="form-group">
           <label class="form-label" for="city">City / Town</label>
@@ -872,64 +977,64 @@ footer {
           <label for="website">Website (leave blank)</label>
           <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
         </div>
-        <button class="btn-submit" onclick="handleSubmit(event)" id="submitBtn">
+        <button class="btn-submit" type="submit" id="submitBtn">
           I'm interested &amp; willing to sign →
         </button>
         <p class="form-note">Your information is kept private and used only for petition coordination and updates you opt into. We will never sell or share your data.</p>
       </div>
-      <div class="form-success" id="formSuccess">
-        <div class="form-success-icon">✓</div>
+      <div class="form-success" id="formSuccess" role="status" aria-live="polite">
+        <div class="form-success-icon" aria-hidden="true">✓</div>
         <h3>You're on the list.</h3>
         <p>Thank you. We'll be in touch as the initiative moves forward. If you know others who'd support this, share the site with them — the more voices the better.</p>
       </div>
-    </div>
+    </form>
   </div>
 </section>
 
 <!-- ─── CONNECT ─────────────────────────────────────────── -->
-<section id="connect" class="section" style="background:var(--bg-white);">
+<section id="connect" class="section" style="background:var(--bg-white);" aria-labelledby="connect-heading">
   <div class="section-wide">
     <p class="eyebrow reveal" style="color:var(--blue);">Spread the Word</p>
-    <h2 class="section-title reveal" style="color:var(--ink);">Every Washingtonian you reach<br>is one more voice for change.</h2>
+    <h2 class="section-title reveal" style="color:var(--ink);" id="connect-heading">Every Washingtonian you reach<br>is one more voice for change.</h2>
 
     <div class="share-grid reveal">
-      <a class="share-card" href="https://www.facebook.com/profile.php?id=61582174989609" target="_blank">
-        <div class="share-icon">f</div>
+      <a class="share-card" href="https://www.facebook.com/profile.php?id=61582174989609" target="_blank" rel="noopener" aria-label="Follow us on Facebook">
+        <div class="share-icon" aria-hidden="true">f</div>
         <div class="share-title">Follow on Facebook</div>
         <div class="share-text">Updates, news and announcements</div>
       </a>
-      <a class="share-card" href="https://discord.gg/NQzfnWwK" target="_blank">
-        <div class="share-icon">💬</div>
+      <a class="share-card" href="https://discord.gg/NQzfnWwK" target="_blank" rel="noopener" aria-label="Join our Discord server">
+        <div class="share-icon" aria-hidden="true">💬</div>
         <div class="share-title">Join our Discord</div>
         <div class="share-text">Discuss, volunteer and coordinate</div>
       </a>
-      <a class="share-card" href="https://twitter.com/intent/tweet?text=Washington%27s+next+clock+change+should+be+its+last.+Support+the+Last+Fall+Back+Act+%23LastFallBack+%23WAState&url=https://LastFallBack.org" target="_blank">
-        <div class="share-icon">𝕏</div>
+      <a class="share-card" href="https://twitter.com/intent/tweet?text=Washington%27s+next+clock+change+should+be+its+last.+Support+the+Last+Fall+Back+Act+%23LastFallBack+%23WAState&url=https://LastFallBack.org" target="_blank" rel="noopener" aria-label="Share on X / Twitter (opens in new tab)">
+        <div class="share-icon" aria-hidden="true">𝕏</div>
         <div class="share-title">Share on X / Twitter</div>
         <div class="share-text">Reach your followers with one click</div>
       </a>
-      <a class="share-card" href="https://www.facebook.com/sharer/sharer.php?u=https://LastFallBack.org" target="_blank">
-        <div class="share-icon">f</div>
+      <a class="share-card" href="https://www.facebook.com/sharer/sharer.php?u=https://LastFallBack.org" target="_blank" rel="noopener" aria-label="Share on Facebook (opens in new tab)">
+        <div class="share-icon" aria-hidden="true">f</div>
         <div class="share-title">Share on Facebook</div>
         <div class="share-text">Post to your timeline and groups</div>
       </a>
-      <a class="share-card" href="https://www.linkedin.com/sharing/share-offsite/?url=https://LastFallBack.org" target="_blank">
-        <div class="share-icon">in</div>
+      <a class="share-card" href="https://www.linkedin.com/sharing/share-offsite/?url=https://LastFallBack.org" target="_blank" rel="noopener" aria-label="Share on LinkedIn (opens in new tab)">
+        <div class="share-icon" aria-hidden="true">in</div>
         <div class="share-title">Share on LinkedIn</div>
         <div class="share-text">Reach colleagues and professionals</div>
       </a>
-      <a class="share-card" href="mailto:?subject=Washington's last clock change — sign the petition&body=I just signed the Last Fall Back Act petition. It would make Washington's next autumn clock change its last, permanently establishing standard time and ending the biannual disruption. Sign at: https://LastFallBack.org">
-        <div class="share-icon">✉️</div>
+      <a class="share-card" href="mailto:?subject=Washington's last clock change — sign the petition&body=I just signed the Last Fall Back Act petition. It would make Washington's next autumn clock change its last, permanently establishing standard time and ending the biannual disruption. Sign at: https://LastFallBack.org" aria-label="Email friends about the initiative">
+        <div class="share-icon" aria-hidden="true">✉️</div>
         <div class="share-title">Email Friends</div>
         <div class="share-text">Pre-written email, ready to send</div>
       </a>
-      <a class="share-card" onclick="copyLink()" style="cursor:pointer;">
-        <div class="share-icon">🔗</div>
+      <button class="share-card" onclick="copyLink()" type="button" aria-label="Copy link to clipboard">
+        <div class="share-icon" aria-hidden="true">🔗</div>
         <div class="share-title">Copy Link</div>
-        <div class="share-text" id="copyText">LastFallBack.org — copy and paste</div>
-      </a>
-      <a class="share-card" href="#sign">
-        <div class="share-icon">📋</div>
+        <div class="share-text" id="copyText" aria-live="polite">LastFallBack.org — copy and paste</div>
+      </button>
+      <a class="share-card" href="#signup" aria-label="Volunteer to collect signatures">
+        <div class="share-icon" aria-hidden="true">📋</div>
         <div class="share-title">Volunteer to Collect</div>
         <div class="share-text">Help gather signatures in your community</div>
       </a>
@@ -937,8 +1042,10 @@ footer {
   </div>
 </section>
 
+</main>
+
 <!-- ─── FOOTER ─────────────────────────────────────────── -->
-<footer>
+<footer role="contentinfo">
   <div class="footer-inner">
     <div class="footer-left">
       <div class="footer-wordmark">Last Fall Back Act · Washington State</div>
@@ -950,8 +1057,8 @@ footer {
       <a href="#essence" class="footer-link">The Initiative</a>
       <a href="#science" class="footer-link">Science</a>
       <a href="#timeline" class="footer-link">Timeline</a>
-      <a href="https://www.facebook.com/profile.php?id=61582174989609" class="footer-link" target="_blank">Facebook</a>
-      <a href="https://discord.gg/NQzfnWwK" class="footer-link" target="_blank">Discord</a>
+      <a href="https://www.facebook.com/profile.php?id=61582174989609" class="footer-link" target="_blank" rel="noopener">Facebook<span class="sr-only"> (opens in new tab)</span></a>
+      <a href="https://discord.gg/NQzfnWwK" class="footer-link" target="_blank" rel="noopener">Discord<span class="sr-only"> (opens in new tab)</span></a>
       <a href="mailto:info@lastfallback.org" class="footer-link">Contact</a>
     </div>
   </div>
@@ -1001,6 +1108,7 @@ const counterObserver = new IntersectionObserver((entries) => {
 document.querySelectorAll('.counter').forEach(el => counterObserver.observe(el));
 
 // ── Form submission — posts to submit.php on same server ─
+document.getElementById('interestForm').addEventListener('submit', handleSubmit);
 async function handleSubmit(e) {
   e.preventDefault();
   const btn = document.getElementById('submitBtn');

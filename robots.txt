@@ -2,5 +2,6 @@ User-agent: *
 Allow: /
 Disallow: /submissions/
 Disallow: /submit.php
+Disallow: /test-linux.php
 
 Sitemap: https://lastfallback.org/sitemap.xml
