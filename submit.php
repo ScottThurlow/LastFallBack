@@ -9,8 +9,11 @@
  * ──────────────────────────────────────────────────────────────────────────────
  */
 
+// Derive home directory (works under Apache where $_SERVER['HOME'] may be unset)
+$home = getenv('HOME') ?: ($_SERVER['HOME'] ?? dirname($_SERVER['DOCUMENT_ROOT']));
+
 // Load secrets from env file outside web root
-$env_file = $_SERVER['HOME'] . '/lastfallback.env';
+$env_file = $home . '/lastfallback.env';
 if (file_exists($env_file)) {
     foreach (file($env_file, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES) as $line) {
         if (str_starts_with($line, '#')) continue;
@@ -73,7 +76,7 @@ if (empty($firstName) || empty($lastName)) { http_response_code(400); echo json_
 if (!$email) { http_response_code(400); echo json_encode(['success'=>false,'error'=>'A valid email address is required.']); exit; }
 
 // -- CSV backup (stored outside web root for security & deploy safety) ----
-$log_dir = $_SERVER['HOME'] . '/lastfallback_data/';
+$log_dir = $home . '/lastfallback_data/';
 
 if (!is_dir($log_dir)) @mkdir($log_dir, 0755, true);
 $log_file   = $log_dir . 'lastfallback_org_signers.csv';
