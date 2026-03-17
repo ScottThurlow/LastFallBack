@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') { http_response_code(200); exit; }
 if ($_SERVER['REQUEST_METHOD'] !== 'POST')    { http_response_code(405); echo json_encode(['success'=>false,'error'=>'Method not allowed']); exit; }
 
 // -- Rate limit (5 per IP per hour) -------------------------------------------
-$rl_dir  = sys_get_temp_dir() . '/lfba_rl/';
+$rl_dir  = sys_get_temp_dir() . '/lastfallback_org_ratelimit/';
 if (!is_dir($rl_dir)) mkdir($rl_dir, 0700, true);
 $rl_file = $rl_dir . md5($_SERVER['REMOTE_ADDR'] ?? '') . '.json';
 $now     = time();
@@ -59,11 +59,11 @@ if (!empty($honeypot)) { http_response_code(200); echo json_encode(['success'=>t
 if (empty($firstName) || empty($lastName)) { http_response_code(400); echo json_encode(['success'=>false,'error'=>'First and last name are required.']); exit; }
 if (!$email) { http_response_code(400); echo json_encode(['success'=>false,'error'=>'A valid email address is required.']); exit; }
 
-// -- CSV backup (uses temp dir to avoid permission issues) --------------------
-$log_dir = 'G:\\PleskVhosts\\kumajyo.com\\tmp\\lfba_data\\';
+// -- CSV backup (uses submissions dir within web root) --------------------
+$log_dir = __DIR__ . '/submissions/';
 
-if (!is_dir($log_dir)) @mkdir($log_dir, 0700, true);
-$log_file   = $log_dir . 'signers.csv';
+if (!is_dir($log_dir)) @mkdir($log_dir, 0755, true);
+$log_file   = $log_dir . 'lastfallback_org_signers.csv';
 $log_exists = file_exists($log_file);
 $fh = fopen($log_file, 'a');
 if ($fh) {
@@ -118,7 +118,7 @@ if ($httpCode >= 200 && $httpCode < 300) {
     http_response_code(200);
     echo json_encode(['success' => true]);
 } else {
-    error_log('LFBA Brevo error: HTTP ' . $httpCode . ' -- ' . ($curlError ?: $response));
+    error_log('LastFallBack.org Brevo error: HTTP ' . $httpCode . ' -- ' . ($curlError ?: $response));
     http_response_code(500);
     echo json_encode([
         'success' => false,
