@@ -14,7 +14,7 @@ echo "OS: <strong>" . PHP_OS . "</strong><br>\n";
 
 // Test 2: Required Extensions
 echo "<h2>Required Extensions</h2>\n";
-$extensions = ['curl', 'json'];
+$extensions = ['json'];
 foreach ($extensions as $ext) {
     $status = extension_loaded($ext) ? '✅ Loaded' : '❌ Missing';
     echo "{$ext}: <strong>{$status}</strong><br>\n";
@@ -40,27 +40,7 @@ $temp_dir = sys_get_temp_dir();
 $temp_writable = is_writable($temp_dir) ? '✅ Writable' : '❌ Not writable';
 echo "System temp directory: <strong>{$temp_writable}</strong> ({$temp_dir})<br>\n";
 
-// Test 4: Brevo API Test (basic curl test)
-echo "<h2>Network/API Test</h2>\n";
-if (function_exists('curl_init')) {
-    $ch = curl_init('https://api.brevo.com/v3/account');
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_TIMEOUT, 10);
-    curl_setopt($ch, CURLOPT_HTTPHEADER, ['Accept: application/json']);
-    $result = curl_exec($ch);
-    $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-    curl_close($ch);
-    
-    if ($result !== false && $http_code > 0) {
-        echo "Brevo API connectivity: <strong>✅ Reachable</strong> (HTTP {$http_code})<br>\n";
-    } else {
-        echo "Brevo API connectivity: <strong>❌ Failed</strong><br>\n";
-    }
-} else {
-    echo "cURL: <strong>❌ Not available</strong><br>\n";
-}
-
-// Test 5: File creation test
+// Test 4: File creation test
 echo "<h2>File Operations Test</h2>\n";
 $test_file = $submissions_dir . 'test_write.tmp';
 if (file_put_contents($test_file, 'test') !== false) {

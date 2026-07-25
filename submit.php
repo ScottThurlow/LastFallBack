@@ -1,37 +1,13 @@
 <?php
 /**
  * Last Fall Back Act — Form Submission Handler
- * Sends via Brevo (formerly Sendinblue) HTTPS API — Linux/cPanel hosting.
- *
- * ── SETUP ─────────────────────────────────────────────────────────────────────
- * Create ~/lastfallback.env on the server (outside public_html):
- *   BREVO_API_KEY=xkeysib-your-key-here
- * ──────────────────────────────────────────────────────────────────────────────
+ * Records submissions to a CSV data store outside the web root.
+ * Email notifications are disabled.
  */
 
 // Derive home directory (works under Apache where $_SERVER['HOME'] may be unset)
 // DOCUMENT_ROOT is e.g. /home/user/public_html/lastfallback.org — go up two levels
 $home = getenv('HOME') ?: ($_SERVER['HOME'] ?? dirname($_SERVER['DOCUMENT_ROOT'], 2));
-
-// Load secrets from env file outside web root
-$env_file = $home . '/lastfallback.env';
-if (file_exists($env_file)) {
-    foreach (file($env_file, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES) as $line) {
-        if (str_starts_with($line, '#')) continue;
-        if (str_contains($line, '=')) putenv(trim($line));
-    }
-}
-
-define('TO_EMAIL',       'signers@lastfallback.org');
-define('TO_NAME',        'Last Fall Back Act Signers');
-define('FROM_EMAIL',     'noreply@lastfallback.org');
-define('FROM_NAME',      'Last Fall Back Act');
-define('BREVO_API_KEY',  getenv('BREVO_API_KEY') ?: '');
-define('BREVO_API_URL',  'https://api.brevo.com/v3/smtp/email');
-
-if (empty(BREVO_API_KEY)) {
-    error_log('LastFallBack.org: BREVO_API_KEY not set — check ~/lastfallback.env');
-}
 
 // -- CORS ---------------------------------------------------------------------
 header('Content-Type: application/json');
@@ -76,7 +52,7 @@ if (!empty($honeypot)) { http_response_code(200); echo json_encode(['success'=>t
 if (empty($firstName) || empty($lastName)) { http_response_code(400); echo json_encode(['success'=>false,'error'=>'First and last name are required.']); exit; }
 if (!$email) { http_response_code(400); echo json_encode(['success'=>false,'error'=>'A valid email address is required.']); exit; }
 
-// -- CSV backup (stored outside web root for security & deploy safety) ----
+// -- Record to CSV data store (outside web root for security & deploy safety) --
 $log_dir = $home . '/lastfallback_data/';
 
 if (!is_dir($log_dir)) @mkdir($log_dir, 0755, true);
@@ -84,61 +60,17 @@ $log_file   = $log_dir . 'lastfallback_org_signers.csv';
 $log_exists = file_exists($log_file);
 $fh = fopen($log_file, 'a');
 if ($fh) {
-    if (!$log_exists) fputcsv($fh, ['Timestamp','First Name','Last Name','Email','City','WA Voter','Wants Updates','Volunteer','IP']);
-    fputcsv($fh, [$timestamp,$firstName,$lastName,$email,$city,$waVoter,$wantsUpdates,$volunteer,$ip]);
+    // Explicit $escape: default is deprecated in PHP 8.4+ and the warning would corrupt the JSON response
+    if (!$log_exists) fputcsv($fh, ['Timestamp','First Name','Last Name','Email','City','WA Voter','Wants Updates','Volunteer','IP'], ',', '"', '\\');
+    fputcsv($fh, [$timestamp,$firstName,$lastName,$email,$city,$waVoter,$wantsUpdates,$volunteer,$ip], ',', '"', '\\');
     fclose($fh);
-}
-
-// -- Email content ------------------------------------------------------------
-$subject  = "[SIGNER]" . ($volunteer === 'Yes' ? "[VOLUNTEER]" : "") . " Last Fall Back Act -- {$firstName} {$lastName}";
-$textBody  = "New interest form submission -- Last Fall Back Act\n";
-$textBody .= str_repeat('-', 52) . "\n\n";
-$textBody .= "Name:           {$firstName} {$lastName}\n";
-$textBody .= "Email:          {$email}\n";
-$textBody .= "City:           " . ($city ?: '(not provided)') . "\n";
-$textBody .= "WA Voter:       {$waVoter}\n";
-$textBody .= "Wants Updates:  {$wantsUpdates}\n";
-$textBody .= "Volunteer:      {$volunteer}\n\n";
-$textBody .= str_repeat('-', 52) . "\n";
-$textBody .= "Submitted:      {$timestamp}\n";
-$textBody .= "IP:             {$ip}\n";
-$textBody .= str_repeat('-', 52) . "\n";
-
-// -- Send via Brevo HTTPS API -------------------------------------------------
-$payload = json_encode([
-    'sender'      => ['name' => FROM_NAME, 'email' => FROM_EMAIL],
-    'to'          => [['email' => TO_EMAIL, 'name' => TO_NAME]],
-    'subject'     => $subject,
-    'textContent' => $textBody,
-]);
-
-$ch = curl_init(BREVO_API_URL);
-curl_setopt_array($ch, [
-    CURLOPT_RETURNTRANSFER => true,
-    CURLOPT_POST           => true,
-    CURLOPT_POSTFIELDS     => $payload,
-    CURLOPT_HTTPHEADER     => [
-        'Content-Type: application/json',
-        'api-key: ' . BREVO_API_KEY,
-        'Accept: application/json',
-    ],
-    CURLOPT_TIMEOUT        => 15,
-    CURLOPT_SSL_VERIFYPEER => true,
-]);
-
-$response  = curl_exec($ch);
-$httpCode  = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-$curlError = curl_error($ch);
-curl_close($ch);
-
-if ($httpCode >= 200 && $httpCode < 300) {
     http_response_code(200);
     echo json_encode(['success' => true]);
 } else {
-    error_log('LastFallBack.org Brevo error: HTTP ' . $httpCode . ' -- ' . ($curlError ?: $response));
+    error_log('LastFallBack.org: could not open ' . $log_file . ' for writing');
     http_response_code(500);
     echo json_encode([
         'success' => false,
-        'error'   => 'Mail delivery failed. Your submission was saved -- please also email us at info@lastfallback.org'
+        'error'   => 'Could not save your submission. Please email us at info@lastfallback.org'
     ]);
 }

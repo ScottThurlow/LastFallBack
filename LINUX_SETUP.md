@@ -20,7 +20,6 @@ chmod 755 .
 
 ## Required PHP Extensions
 Your hosting should have these PHP extensions enabled:
-- curl (for Brevo email API)
 - json (for JSON handling)
 - Standard file functions
 
@@ -31,12 +30,10 @@ Your hosting should have these PHP extensions enabled:
 
 ## Testing
 After deployment, test the form submission to ensure:
-1. CSV files are created in `/submissions/` directory
-2. Emails are sent via Brevo API
-3. Rate limiting works properly
+1. CSV records are written to `~/lastfallback_data/lastfallback_org_signers.csv`
+2. Rate limiting works properly
+
+Email notifications are disabled — submissions are recorded to the CSV data store only.
 
 ## Domain Configuration
 Update your domain to point to the new Linux hosting if not already done.
-
-## Brevo API
-The Brevo API key is already configured and should work on Linux hosting.
