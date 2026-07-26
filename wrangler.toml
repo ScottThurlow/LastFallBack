@@ -1,0 +1,14 @@
+# Cloudflare Pages config for lastfallback.org
+# The D1 binding lets functions/submit.js write signups via env.DB.
+# TURNSTILE_SECRET is NOT here — set it as an encrypted secret:
+#   wrangler pages secret put TURNSTILE_SECRET
+# or in the Pages project: Settings → Environment variables & secrets.
+name = "lastfallback"
+compatibility_date = "2024-11-01"
+pages_build_output_dir = "."
+
+[[d1_databases]]
+binding = "DB"
+database_name = "lastfallback-signups"
+# Fill in after `wrangler d1 create lastfallback-signups`:
+database_id = "REPLACE_WITH_D1_DATABASE_ID"

@@ -588,9 +588,8 @@ button.share-card { cursor: pointer; font-family: inherit; }
   .tl-line { display: none; }
   .signup-form { padding: 24px; }
 }
-/* Formspree AJAX states */
-[data-fs-success] { display: none; }
-.fs-error-banner {
+/* Form error banner */
+.form-error-banner {
   border: 1px solid rgba(229,62,62,0.45);
   background: rgba(229,62,62,0.10);
   color: #B02A2A;
@@ -598,7 +597,8 @@ button.share-card { cursor: pointer; font-family: inherit; }
   padding: 12px 16px; margin-bottom: 16px;
   font-size: 0.95rem;
 }
-.fs-error-banner:empty { display: none; }
+.form-error-banner:empty { display: none; }
+.cf-turnstile { margin: 4px 0 4px; }
 </style>
 <!-- Structured Data -->
 <script type="application/ld+json">
@@ -865,7 +865,7 @@ button.share-card { cursor: pointer; font-family: inherit; }
   <div class="section-wide">
     <p class="eyebrow reveal">The Path Forward</p>
     <h2 class="section-title reveal" id="timeline-heading">How this becomes law.</h2>
-    <p class="section-body reveal" style="max-width:560px;">Washington's citizens' initiative process gives residents a direct path to the legislature — and to the ballot if needed.</p>
+    <p class="section-body reveal" style="max-width:560px;">Our first hope is the Legislature itself. If it doesn't act in the 2027 session, Washington's citizens' initiative process is our path to the 2028 general election ballot.</p>
 
     <div class="tl-wrap reveal">
       <div class="tl-line"></div>
@@ -873,36 +873,36 @@ button.share-card { cursor: pointer; font-family: inherit; }
       <div class="tl-item">
         <div class="tl-dot-wrap"><div class="tl-dot filled"></div></div>
         <div class="tl-content">
-          <div class="tl-phase">Now — Early 2026</div>
-          <div class="tl-event">Outreach &amp; Coalition Building</div>
-          <p class="tl-desc">Engaging health organizations, business groups, labor, and civic partners. Refining the initiative text with legal counsel. Building organizational infrastructure.</p>
+          <div class="tl-phase">Now – May 2027</div>
+          <div class="tl-event">Awareness &amp; Legislative Outreach</div>
+          <p class="tl-desc">Building the coalition, raising public awareness, and making the case directly to legislators — with the goal of the Legislature enacting permanent standard time during the 2027 session, which adjourns in early May 2027. We'll amplify momentum from any national daylight-saving developments.</p>
         </div>
       </div>
 
       <div class="tl-item">
         <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
         <div class="tl-content">
-          <div class="tl-phase">Mid 2026</div>
-          <div class="tl-event">Formal Filing &amp; Launch</div>
-          <p class="tl-desc">Filing the initiative with the Washington Secretary of State. Coordinated announcement with coalition partners. Signature collection begins.</p>
+          <div class="tl-phase">2027 Legislative Session · through early May 2027</div>
+          <div class="tl-event">The Preferred Path: the Legislature Acts</div>
+          <p class="tl-desc">Washington's Legislature can establish permanent standard time on its own — it already signaled that intent in 2019. If it does, the job is done and no initiative is needed.</p>
         </div>
       </div>
 
       <div class="tl-item">
         <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
         <div class="tl-content">
-          <div class="tl-phase">Mid 2026 – Early 2027</div>
+          <div class="tl-phase">Fall 2027</div>
+          <div class="tl-event">If the Session Ends Without Action, We Ramp Up</div>
+          <p class="tl-desc">If the 2027 session closes without permanent standard time, we file the citizens' initiative with the Washington Secretary of State and begin organizing signature collection in earnest.</p>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+        <div class="tl-content">
+          <div class="tl-phase">Fall 2027 – Mid 2028</div>
           <div class="tl-event">Signature Collection</div>
-          <p class="tl-desc">Gathering 272,000+ valid signatures from registered Washington voters — through volunteers, partner networks, and professional signature collection. A 6-month window from legislative adjournment.</p>
-        </div>
-      </div>
-
-      <div class="tl-item">
-        <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
-        <div class="tl-content">
-          <div class="tl-phase">2027 Legislative Session</div>
-          <div class="tl-event">Legislature Considers the Initiative</div>
-          <p class="tl-desc">The Washington Legislature may pass the initiative as written, reject it, or propose an alternative. If passed — done. If not, the initiative proceeds to voters.</p>
+          <p class="tl-desc">Gathering 272,000+ valid signatures from registered Washington voters — through volunteers, partner networks, and professional signature collection — to qualify for the 2028 general election ballot.</p>
         </div>
       </div>
 
@@ -911,7 +911,7 @@ button.share-card { cursor: pointer; font-family: inherit; }
         <div class="tl-content">
           <div class="tl-phase">November 2028 General Election</div>
           <div class="tl-event">Washington Voters Decide</div>
-          <p class="tl-desc">If not enacted by the legislature, the initiative appears on the 2028 general election ballot. A majority vote enacts it into law.</p>
+          <p class="tl-desc">If the Legislature has not already enacted it, the initiative appears on the 2028 general election ballot. A majority vote enacts it into law.</p>
         </div>
       </div>
 
@@ -932,30 +932,27 @@ button.share-card { cursor: pointer; font-family: inherit; }
   <div class="signup-inner">
     <p class="eyebrow">Express Your Interest</p>
     <h2 class="section-title" id="signup-heading">Ready to support this?</h2>
-    <p class="section-body">We're building our coalition now, working toward the 2028 general election. If you'd like to be notified when the petition opens and stay informed on progress, let us know.</p>
+    <p class="section-body">Right now we're raising awareness and making the case for the Legislature to act in 2027. If it doesn't, we take it to the 2028 general election ballot. Either way, add your name to stay informed and be ready when the petition opens.</p>
 
-    <!-- Powered by Formspree (formspree.io). Submits via the @formspree/ajax
-         library for inline success/error handling; the plain action/method POST
-         (with the _next redirect to thanks.html) is the no-JavaScript fallback.
-         Spam control: the _gotcha honeypot below plus Formspree's built-in
-         filtering; reCAPTCHA can be enabled in the Formspree dashboard. -->
-    <div class="fs-error-banner" data-fs-error role="alert"></div>
-    <span data-fs-success hidden></span>
-    <form class="signup-form" id="interestForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" aria-label="Express your interest in the Last Fall Back Act">
+    <!-- Submits to the /submit Cloudflare Pages Function (functions/submit.js),
+         which verifies Cloudflare Turnstile, checks the honeypot, and stores the
+         signup in D1. Requires JavaScript (Turnstile is interactive). -->
+    <div class="form-error-banner" id="formError" role="alert"></div>
+    <form class="signup-form" id="interestForm" action="/submit" method="POST" aria-label="Express your interest in the Last Fall Back Act">
       <div id="formFields">
         <div class="form-row">
           <div class="form-group">
             <label class="form-label" for="fname">First Name <span aria-hidden="true">*</span></label>
-            <input class="form-input" type="text" id="fname" name="firstName" placeholder="Jane" autocomplete="given-name" required aria-required="true" data-fs-field>
+            <input class="form-input" type="text" id="fname" name="firstName" placeholder="Jane" autocomplete="given-name" required aria-required="true">
           </div>
           <div class="form-group">
             <label class="form-label" for="lname">Last Name <span aria-hidden="true">*</span></label>
-            <input class="form-input" type="text" id="lname" name="lastName" placeholder="Smith" autocomplete="family-name" required aria-required="true" data-fs-field>
+            <input class="form-input" type="text" id="lname" name="lastName" placeholder="Smith" autocomplete="family-name" required aria-required="true">
           </div>
         </div>
         <div class="form-group">
           <label class="form-label" for="email">Email Address <span aria-hidden="true">*</span></label>
-          <input class="form-input" type="email" id="email" name="email" placeholder="jane@example.com" autocomplete="email" required aria-required="true" data-fs-field>
+          <input class="form-input" type="email" id="email" name="email" placeholder="jane@example.com" autocomplete="email" required aria-required="true">
         </div>
         <div class="form-group">
           <label class="form-label" for="city">City / Town</label>
@@ -973,14 +970,14 @@ button.share-card { cursor: pointer; font-family: inherit; }
           <input type="checkbox" id="volunteer" name="volunteer">
           <label for="volunteer">I'd like to volunteer to collect signatures.</label>
         </div>
-        <!-- Formspree honeypot (_gotcha): hidden from real users, bots fill it in — do not remove -->
+        <!-- Honeypot (_gotcha): hidden from real users, bots fill it in — do not remove -->
         <div style="display:none;" aria-hidden="true">
           <label for="website">Website (leave blank)</label>
           <input type="text" id="website" name="_gotcha" tabindex="-1" autocomplete="off">
         </div>
-        <input type="hidden" name="_subject" value="New interest — LastFallBack.org">
-        <input type="hidden" name="_next" value="https://lastfallback.org/thanks.html">
-        <button class="btn-submit" type="submit" id="submitBtn" data-fs-submit-btn>
+        <!-- Cloudflare Turnstile — replace data-sitekey with your Turnstile site key -->
+        <div class="cf-turnstile" data-sitekey="YOUR_TURNSTILE_SITE_KEY" data-theme="light"></div>
+        <button class="btn-submit" type="submit" id="submitBtn">
           I'm interested &amp; willing to sign →
         </button>
         <p class="form-note">Your information is kept private and used only for petition coordination and updates you opt into. We will never sell or share your data.</p>
@@ -1112,23 +1109,34 @@ const counterObserver = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.counter').forEach(el => counterObserver.observe(el));
 
-// ── Form submission — Formspree via @formspree/ajax (no server needed) ─
-window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
-formspree("initForm", { formElement: "#interestForm", formId: "YOUR_FORM_ID" });
-
-// On success the library populates [data-fs-success]; reveal the inline confirmation.
-const fsSuccess = document.querySelector("[data-fs-success]");
-if (fsSuccess) {
-  new MutationObserver(() => {
-    if (fsSuccess.textContent.trim()) {
+// ── Form submission — Cloudflare Pages Function (/submit) + Turnstile ─
+const interestForm = document.getElementById("interestForm");
+const formError = document.getElementById("formError");
+interestForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const btn = document.getElementById("submitBtn");
+  formError.textContent = "";
+  btn.disabled = true;
+  btn.textContent = "Submitting…";
+  try {
+    const res = await fetch("/submit", { method: "POST", body: new FormData(interestForm) });
+    const data = await res.json().catch(() => ({ success: false, error: "Unexpected response." }));
+    if (data.success) {
       document.getElementById("formFields").style.display = "none";
       const s = document.getElementById("formSuccess");
       s.style.display = "block";
       s.scrollIntoView({ behavior: "smooth", block: "center" });
+      return;
     }
-  }).observe(fsSuccess, { childList: true, subtree: true });
-}
+    throw new Error(data.error || "Something went wrong.");
+  } catch (err) {
+    formError.textContent = err.message + " You can also email info@lastfallback.org.";
+    btn.disabled = false;
+    btn.textContent = "I'm interested & willing to sign →";
+    if (window.turnstile) window.turnstile.reset();
+  }
+});
 </script>
-<script src="https://unpkg.com/@formspree/ajax@1" defer></script>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </body>
 </html>
