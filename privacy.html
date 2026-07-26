@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="theme-color" content="#08101F">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — Last Fall Back Act</title>
+<meta name="description" content="How the Last Fall Back Act initiative handles your information — the interest form, analytics, cookies, and your choices.">
+<meta name="keywords" content="daylight saving time, standard time, Washington State, citizens initiative, clock change, DST, Last Fall Back Act, permanent standard time, end clock change">
+<link rel="canonical" href="https://lastfallback.org/privacy.html">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://lastfallback.org/privacy.html">
+<meta property="og:site_name" content="Last Fall Back Act">
+<meta property="og:title" content="Privacy Policy — Last Fall Back Act">
+<meta property="og:description" content="A citizens' initiative to permanently establish standard time in Washington State. End the biannual clock change — backed by science, supported by medicine.">
+<meta property="og:locale" content="en_US">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Last Fall Back Act — End Daylight Saving Time in Washington State">
+<meta name="twitter:description" content="A citizens' initiative to permanently end the biannual clock change in Washington State.">
+<link rel="sitemap" type="application/xml" href="/sitemap.xml">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/favicon-32.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@700;800;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ─── ACCESSIBILITY ──────────────────────── */
+.skip-link {
+  position: absolute; top: -100%; left: 50%; transform: translateX(-50%);
+  background: var(--blue); color: white; padding: 12px 24px;
+  border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+  font-weight: 600; font-size: 0.9rem; text-decoration: none;
+  z-index: 9999; transition: top 0.2s;
+}
+.skip-link:focus { top: 0; }
+
+:focus-visible {
+  outline: 3px solid var(--blue);
+  outline-offset: 2px;
+}
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
+
+:root {
+  --ink:      #08101F;
+  --ink-mid:  #1E2D45;
+  --ink-soft: #4A5568;
+  --ink-muted:#8896A4;
+  --bg:       #F6F5F2;
+  --bg-white: #FFFFFF;
+  --blue:     #0057FF;
+  --blue-dim: #E8EFFE;
+  --teal:     #00A878;
+  --teal-dim: #E0F7F0;
+  --red-dim:  #FEF0EF;
+  --red:      #E53E3E;
+  --border:   #E2E5EA;
+  --border-strong: #C8CDD5;
+  --radius:   12px;
+  --radius-sm: 6px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ─── NAV ─────────────────────────────────── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  height: 64px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 40px;
+  background: rgba(246,245,242,0.88);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  transition: box-shadow 0.2s;
+}
+nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
+
+.nav-wordmark {
+  display: flex; align-items: center; gap: 10px;
+  text-decoration: none; color: var(--ink);
+}
+.nav-icon {
+  width: 32px; height: 32px; background: var(--ink);
+  border-radius: 8px; display: flex; align-items: center; justify-content: center;
+}
+.nav-icon svg { width: 18px; height: 18px; stroke: white; fill: none; stroke-width: 2.5; stroke-linecap: round; }
+.nav-name {
+  font-family: 'Barlow', sans-serif;
+  font-weight: 700; font-size: 0.95rem; letter-spacing: -0.01em;
+}
+
+.nav-right { display: flex; align-items: center; gap: 8px; }
+.nav-link {
+  font-size: 0.85rem; font-weight: 500; color: var(--ink-soft);
+  text-decoration: none; padding: 6px 14px; border-radius: var(--radius-sm);
+  transition: background 0.15s, color 0.15s;
+}
+.nav-link:hover { background: rgba(0,0,0,0.05); color: var(--ink); }
+.nav-btn {
+  font-size: 0.85rem; font-weight: 600; color: white;
+  background: var(--ink); text-decoration: none;
+  padding: 8px 18px; border-radius: var(--radius-sm);
+  transition: background 0.15s, transform 0.15s;
+}
+.nav-btn:hover { background: var(--ink-mid); transform: translateY(-1px); }
+
+/* ─── HERO ────────────────────────────────── */
+#hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  text-align: center;
+  padding: 120px 24px 100px;
+  position: relative; overflow: visible;
+}
+
+.hero-grid-bg {
+  position: absolute; inset: 0;
+  overflow: hidden;
+  border-radius: 0;
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 48px 48px;
+  opacity: 0.5;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
+}
+
+.hero-glow {
+  position: absolute;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(0,87,255,0.08) 0%, transparent 70%);
+  top: 50%; left: 50%; transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--bg-white); border: 1px solid var(--border);
+  border-radius: 100px; padding: 6px 14px 6px 8px;
+  font-size: 0.78rem; font-weight: 500; color: var(--ink-soft);
+  margin-bottom: 32px;
+  opacity: 0; animation: rise 0.7s ease forwards 0.1s;
+  position: relative;
+}
+.hero-badge-dot {
+  width: 22px; height: 22px; background: var(--blue-dim);
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+}
+.hero-badge-dot::after {
+  content: ''; width: 8px; height: 8px;
+  background: var(--blue); border-radius: 50%;
+}
+
+.hero-title {
+  font-family: 'Barlow', sans-serif;
+  font-size: clamp(2.4rem, 5vw, 4.8rem);
+  font-weight: 900; letter-spacing: -0.01em;
+  color: var(--ink); max-width: 860px;
+  display: flex; flex-direction: column; align-items: center;
+  gap: 0;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  opacity: 0; animation: rise 0.9s ease forwards 0.25s;
+}
+.ht-line {
+  display: block;
+  line-height: 1.3;
+  padding-bottom: 0.15em;
+}
+.ht-blue { 
+  color: var(--blue);
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  will-change: transform;
+  isolation: isolate;
+  padding-bottom: 0.25em;
+  margin-bottom: -0.1em;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
+}
+
+.hero-sub {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-weight: 300; line-height: 1.7; color: var(--ink-soft);
+  max-width: 600px; margin: 24px auto 40px;
+  opacity: 0; animation: rise 0.9s ease forwards 0.4s;
+}
+
+.hero-actions {
+  display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;
+  opacity: 0; animation: rise 0.9s ease forwards 0.55s;
+}
+
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 14px 28px; border-radius: var(--radius-sm);
+  font-size: 0.95rem; font-weight: 600; text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-dark { background: var(--ink); color: white; }
+.btn-dark:hover { background: var(--ink-mid); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(8,16,31,0.2); }
+.btn-outline { background: transparent; color: var(--ink); border: 1.5px solid var(--border-strong); }
+.btn-outline:hover { border-color: var(--ink); background: white; transform: translateY(-2px); }
+.btn-blue { background: var(--blue); color: white; }
+.btn-blue:hover { background: #0049E0; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,87,255,0.3); }
+
+.hero-scroll-hint {
+  position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--ink-muted); opacity: 0; animation: rise 1s ease forwards 1s;
+}
+.scroll-chevron {
+  width: 16px; height: 16px;
+  border-right: 2px solid var(--ink-muted);
+  border-bottom: 2px solid var(--ink-muted);
+  transform: rotate(45deg);
+  animation: bob 2s ease infinite;
+}
+
+@keyframes rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes bob { 0%,100% { transform: rotate(45deg) translateY(0); } 50% { transform: rotate(45deg) translateY(4px); } }
+
+/* ─── SECTION SHELL ──────────────────────── */
+.section { padding: 96px 24px; }
+.section-narrow { max-width: 760px; margin: 0 auto; }
+.section-wide { max-width: 1160px; margin: 0 auto; }
+
+.eyebrow {
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--blue); margin-bottom: 12px;
+}
+.section-title {
+  font-family: 'Barlow', sans-serif;
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 700; letter-spacing: -0.02em; line-height: 1.15;
+  color: var(--ink); margin-bottom: 16px;
+}
+.section-body {
+  font-size: 1.05rem; line-height: 1.75; color: var(--ink-soft);
+  font-weight: 300;
+}
+
+/* ─── STATS ──────────────────────────────── */
+#stats { background: var(--ink); }
+
+.stats-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: var(--radius); overflow: hidden;
+}
+.stat-cell {
+  padding: 40px 32px;
+  background: var(--ink);
+}
+.stat-num {
+  font-family: 'Barlow', sans-serif;
+  font-size: 3rem; font-weight: 800; letter-spacing: -0.04em;
+  color: white; line-height: 1; margin-bottom: 8px;
+  display: flex; align-items: baseline; gap: 2px;
+}
+.stat-num .accent { color: var(--blue); }
+.stat-label { font-size: 0.85rem; color: rgba(255,255,255,0.45); font-weight: 400; line-height: 1.5; }
+
+/* ─── ESSENCE ────────────────────────────── */
+#essence { background: var(--bg-white); }
+
+.essence-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 2px; margin-top: 56px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--radius); overflow: hidden;
+}
+.essence-card {
+  background: var(--bg-white); padding: 40px 32px;
+  transition: background 0.2s;
+}
+.essence-card:hover { background: #FAFBFF; }
+.essence-num {
+  font-family: 'Barlow', sans-serif;
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em;
+  color: var(--blue); text-transform: uppercase; margin-bottom: 20px;
+}
+.essence-heading {
+  font-family: 'Barlow', sans-serif;
+  font-size: 1.3rem; font-weight: 700; letter-spacing: -0.01em;
+  color: var(--ink); margin-bottom: 12px; line-height: 1.25;
+}
+.essence-text {
+  font-size: 0.95rem; line-height: 1.7; color: var(--ink-soft); font-weight: 300;
+}
+.essence-pill {
+  display: inline-block; margin-top: 20px;
+  background: var(--blue-dim); color: var(--blue);
+  font-size: 0.75rem; font-weight: 600; padding: 4px 10px;
+  border-radius: 100px;
+}
+.essence-pill.green { background: var(--teal-dim); color: var(--teal); }
+
+/* ─── SCIENCE ────────────────────────────── */
+#science { background: var(--bg); }
+
+.science-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 16px; margin-top: 56px;
+}
+.sci-card {
+  background: var(--bg-white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 32px;
+  transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s;
+  text-decoration: none; color: inherit; display: block;
+}
+.sci-card:hover {
+  box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+  transform: translateY(-2px);
+  border-color: var(--border-strong);
+}
+.sci-card-header {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: 12px; margin-bottom: 14px;
+}
+.sci-org {
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--blue);
+}
+.sci-link-icon { flex-shrink: 0; opacity: 0.3; transition: opacity 0.2s; }
+.sci-card:hover .sci-link-icon { opacity: 0.7; }
+.sci-finding {
+  font-family: 'Barlow', sans-serif;
+  font-size: 1.15rem; font-weight: 600; letter-spacing: -0.01em;
+  color: var(--ink); line-height: 1.35; margin-bottom: 10px;
+}
+.sci-detail { font-size: 0.88rem; line-height: 1.65; color: var(--ink-soft); font-weight: 300; }
+.sci-tag {
+  display: inline-block; margin-top: 16px;
+  background: var(--border); color: var(--ink-soft);
+  font-size: 0.7rem; font-weight: 600; padding: 3px 8px;
+  border-radius: 4px; letter-spacing: 0.05em;
+}
+
+/* ─── TIMELINE ───────────────────────────── */
+#timeline { background: var(--bg-white); }
+
+.tl-wrap { margin-top: 56px; position: relative; }
+.tl-line {
+  position: absolute; left: 23px; top: 24px; bottom: 0;
+  width: 2px; background: linear-gradient(to bottom, var(--blue), var(--border));
+}
+
+.tl-item {
+  display: flex; gap: 32px; padding: 0 0 48px 0;
+  position: relative;
+}
+.tl-dot-wrap { flex-shrink: 0; width: 48px; display: flex; justify-content: center; padding-top: 2px; }
+.tl-dot {
+  width: 16px; height: 16px; border-radius: 50%;
+  background: white; border: 2px solid var(--blue);
+  position: relative; z-index: 1;
+  transition: background 0.2s;
+}
+.tl-dot.filled { background: var(--blue); }
+.tl-content { flex: 1; padding-bottom: 8px; }
+.tl-phase {
+  font-size: 0.7rem; font-weight: 600; letter-spacing: 0.15em;
+  text-transform: uppercase; color: var(--ink-muted); margin-bottom: 4px;
+}
+.tl-event {
+  font-family: 'Barlow', sans-serif;
+  font-size: 1.1rem; font-weight: 700; color: var(--ink);
+  margin-bottom: 6px; letter-spacing: -0.01em;
+}
+.tl-desc { font-size: 0.92rem; line-height: 1.65; color: var(--ink-soft); font-weight: 300; }
+
+/* ─── WA CONTEXT ─────────────────────────── */
+#context { background: var(--bg); }
+
+.context-box {
+  background: var(--bg-white); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 40px; margin-top: 40px;
+  display: flex; gap: 32px; align-items: flex-start;
+}
+.context-icon {
+  width: 48px; height: 48px; background: var(--blue-dim);
+  border-radius: 12px; display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.context-icon svg { width: 24px; height: 24px; stroke: var(--blue); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.context-text h3 {
+  font-family: 'Barlow', sans-serif; font-size: 1.1rem; font-weight: 700;
+  color: var(--ink); margin-bottom: 8px;
+}
+.context-text p { font-size: 0.95rem; line-height: 1.7; color: var(--ink-soft); font-weight: 300; }
+.context-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  margin-top: 12px; font-size: 0.85rem; font-weight: 600;
+  color: var(--blue); text-decoration: none;
+  transition: gap 0.2s;
+}
+.context-link:hover { gap: 10px; }
+
+/* ─── SIGN UP ────────────────────────────── */
+#signup { background: var(--ink); }
+
+.signup-inner {
+  max-width: 640px; margin: 0 auto; text-align: center;
+}
+.signup-inner .eyebrow { color: rgba(255,255,255,0.4); }
+.signup-inner .section-title { color: white; }
+.signup-inner .section-body { color: rgba(255,255,255,0.55); margin-bottom: 40px; }
+
+.signup-form {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius); padding: 36px;
+  text-align: left;
+}
+.form-row { display: flex; gap: 12px; }
+.form-group { flex: 1; margin-bottom: 16px; }
+.form-label {
+  display: block; font-size: 0.78rem; font-weight: 600;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  color: rgba(255,255,255,0.45); margin-bottom: 6px;
+}
+.form-input {
+  width: 100%; padding: 13px 16px;
+  background: rgba(255,255,255,0.07);
+  border: 1.5px solid rgba(255,255,255,0.12);
+  border-radius: var(--radius-sm); color: white;
+  font-size: 0.95rem; font-family: 'DM Sans', sans-serif;
+  outline: none; transition: border-color 0.2s, background 0.2s;
+  -webkit-appearance: none;
+}
+.form-input::placeholder { color: rgba(255,255,255,0.2); }
+.form-input:focus {
+  border-color: var(--blue);
+  background: rgba(0,87,255,0.08);
+}
+
+.form-check {
+  display: flex; align-items: flex-start; gap: 12px; margin-bottom: 20px;
+}
+.form-check input[type=checkbox] {
+  width: 18px; height: 18px; margin-top: 2px;
+  flex-shrink: 0; accent-color: var(--blue);
+  cursor: pointer;
+}
+.form-check label {
+  font-size: 0.88rem; line-height: 1.55;
+  color: rgba(255,255,255,0.5); cursor: pointer;
+}
+.form-check label a { color: rgba(255,255,255,0.75); }
+
+.btn-submit {
+  width: 100%; padding: 15px;
+  background: var(--blue); color: white;
+  font-size: 0.97rem; font-weight: 600;
+  font-family: 'DM Sans', sans-serif;
+  border: none; border-radius: var(--radius-sm);
+  cursor: pointer; transition: all 0.2s; letter-spacing: 0.01em;
+}
+.btn-submit:hover { background: #0049E0; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(0,87,255,0.35); }
+.btn-submit:active { transform: translateY(0); }
+.btn-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+.form-note {
+  margin-top: 14px; font-size: 0.78rem;
+  color: rgba(255,255,255,0.28); text-align: center; line-height: 1.6;
+}
+
+.form-success {
+  display: none; text-align: center; padding: 24px;
+  background: rgba(0,168,120,0.12); border: 1px solid rgba(0,168,120,0.25);
+  border-radius: var(--radius-sm);
+}
+.form-success-icon { font-size: 2rem; margin-bottom: 12px; }
+.form-success h3 {
+  font-family: 'Barlow', sans-serif; font-size: 1.2rem; font-weight: 700;
+  color: var(--teal); margin-bottom: 6px;
+}
+.form-success p { font-size: 0.9rem; color: rgba(255,255,255,0.5); line-height: 1.6; }
+
+/* ─── FOOTER ─────────────────────────────── */
+footer {
+  background: #040C18; padding: 48px 24px;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+.footer-inner {
+  max-width: 1160px; margin: 0 auto;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 20px;
+}
+.share-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 48px;
+}
+.share-card {
+  background: var(--bg-white);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px 20px;
+  text-align: center;
+  transition: all 0.25s;
+  text-decoration: none;
+  display: block;
+  color: var(--ink);
+}
+button.share-card { cursor: pointer; font-family: inherit; }
+.share-card:hover {
+  border-color: var(--blue);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0,87,255,0.12);
+}
+.share-icon { font-size: 1.8rem; margin-bottom: 10px; color: var(--ink); }
+.share-title { font-weight: 700; font-size: 0.95rem; color: var(--ink); margin-bottom: 4px; }
+.share-text { font-size: 0.82rem; color: var(--ink-soft); }
+
+@media (max-width: 900px) { .share-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px) { .share-grid { grid-template-columns: 1fr 1fr; } }
+
+.footer-left .footer-wordmark {
+  font-family: 'Barlow', sans-serif; font-size: 0.9rem; font-weight: 700;
+  color: rgba(255,255,255,0.6); margin-bottom: 6px;
+}
+.footer-left p { font-size: 0.78rem; color: rgba(255,255,255,0.22); line-height: 1.6; max-width: 420px; }
+.footer-right { display: flex; gap: 24px; }
+.footer-link {
+  font-size: 0.8rem; color: rgba(255,255,255,0.3);
+  text-decoration: none; transition: color 0.2s;
+}
+.footer-link:hover { color: rgba(255,255,255,0.7); }
+
+/* ─── REVEAL ANIMATION ───────────────────── */
+.reveal {
+  opacity: 0; transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ─── RESPONSIVE ─────────────────────────── */
+@media (max-width: 900px) {
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .essence-grid { grid-template-columns: 1fr; }
+  .science-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 680px) {
+  nav { padding: 0 20px; }
+  .nav-link { display: none; }
+  .section { padding: 72px 20px; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .form-row { flex-direction: column; gap: 0; }
+  .context-box { flex-direction: column; gap: 20px; }
+  .footer-inner { flex-direction: column; align-items: flex-start; }
+  .tl-line { display: none; }
+  .signup-form { padding: 24px; }
+}
+</style>
+<!-- Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "name": "Last Fall Back Act",
+      "url": "https://lastfallback.org/",
+      "description": "A citizens' initiative to permanently establish standard time in Washington State."
+    },
+    {
+      "@type": "Organization",
+      "name": "Last Fall Back Act",
+      "url": "https://lastfallback.org/",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "info@lastfallback.org",
+        "contactType": "general inquiry"
+      },
+      "sameAs": [
+        "https://www.facebook.com/profile.php?id=61582174989609",
+        "https://discord.gg/NQzfnWwK"
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Why standard time instead of permanent daylight saving time?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "States have clear federal authority to adopt permanent standard time under 15 U.S.C. § 260a — the same authority Arizona and Hawaii use today. Permanent daylight saving time requires Congressional authorization that has not been enacted. The Last Fall Back Act takes the path that's available now and aligns with the medically recommended option from the American Academy of Sleep Medicine."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How many signatures are needed for the initiative?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "272,000 or more valid signatures from registered Washington State voters are needed to file the initiative with the Secretary of State."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "When would the last clock change happen?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "If enacted, Washington would fall back in November 2028 and the spring-forward scheduled for March 2029 would be canceled. Washington would be on permanent Pacific Standard Time."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<style>
+.legal-wrap{max-width:760px;margin:0 auto;padding:140px 24px 100px;}
+.legal-wrap h1{font-family:'Barlow',sans-serif;font-weight:900;font-size:2.4rem;line-height:1.1;color:var(--ink);margin:0 0 .35rem;}
+.legal-wrap .updated{font-family:'DM Sans',sans-serif;color:var(--ink-muted);font-size:.9rem;margin:0 0 2rem;}
+.legal-wrap h2{font-family:'Barlow',sans-serif;font-weight:800;font-size:1.3rem;color:var(--ink);margin:2.2rem 0 .5rem;}
+.legal-wrap p,.legal-wrap li{font-family:'DM Sans',sans-serif;color:var(--ink-soft);line-height:1.7;font-size:1rem;}
+.legal-wrap ul{padding-left:1.2rem;margin:.4rem 0 1rem;}
+.legal-wrap li{margin:.35rem 0;}
+.legal-wrap a{color:var(--blue);text-decoration:underline;}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<nav id="nav" aria-label="Main navigation">
+  <a href="/#hero" class="nav-wordmark" aria-label="Last Fall Back Act — Home">
+    <div class="nav-icon" aria-hidden="true">
+      <svg viewBox="0 0 32 32" width="18" height="18" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="14" cy="13" r="9" fill="none" stroke="white" stroke-width="2"/>
+        <line x1="14" y1="13" x2="9.5" y2="8.5" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+        <line x1="14" y1="13" x2="14" y2="6.5" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+        <circle cx="14" cy="13" r="1.2" fill="#0057FF"/>
+        <circle cx="24" cy="24" r="6" fill="#0057FF"/>
+        <line x1="24" y1="20.5" x2="24" y2="27" stroke="white" stroke-width="2" stroke-linecap="round"/>
+        <polyline points="21.5,24.5 24,27.5 26.5,24.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+    </div>
+    <span class="nav-name">Last Fall Back Act</span>
+  </a>
+  <div class="nav-right">
+    <a href="/#science" class="nav-link">The Science</a>
+    <a href="/#timeline" class="nav-link">Timeline</a>
+    <a href="/initiative.html" class="nav-link">Initiative Text</a>
+    <a href="/#connect" class="nav-link">Connect</a>
+    <a href="/#signup" class="nav-btn">I'm Interested</a>
+  </div>
+</nav>
+
+<main id="main-content">
+<div class="legal-wrap">
+
+  <h1>Privacy Policy</h1>
+  <p class="updated">Last updated: July 26, 2026</p>
+
+  <p>The Last Fall Back Act (&ldquo;we,&rdquo; &ldquo;us&rdquo;) is a Washington State citizens&rsquo; initiative effort at <a href="https://lastfallback.org">lastfallback.org</a>. This page explains what information we collect when you visit or sign up to show your support, why we collect it, and the choices you have. This website is not an official petition, and we are not yet a registered political committee.</p>
+
+  <h2>Information you give us</h2>
+  <p>If you fill out the interest form, we collect the information you enter: your <strong>first and last name, email address, city, whether you are a registered Washington voter,</strong> and your choices about <strong>receiving updates</strong> and <strong>volunteering.</strong> Providing this is entirely voluntary. We use it to:</p>
+  <ul>
+    <li>gauge and organize support for the initiative;</li>
+    <li>send you campaign updates <em>if</em> you asked to receive them;</li>
+    <li>contact you about volunteering <em>if</em> you offered to help.</li>
+  </ul>
+  <p>Signing the interest form is <strong>not</strong> the same as signing an official petition. Official signature collection can only begin after the initiative is filed with the Washington Secretary of State.</p>
+
+  <h2>Information collected automatically</h2>
+  <ul>
+    <li><strong>Privacy-first analytics &mdash; Cloudflare Web Analytics:</strong> aggregate usage such as pages viewed, approximate region, and device or browser type. It is <strong>cookieless</strong>, does not fingerprint visitors, and does not track you across other sites. No personal information is collected or sold.</li>
+    <li><strong>Server logs:</strong> our host records standard technical data (such as IP address, request, and timestamp) to deliver and secure the site.</li>
+  </ul>
+
+  <h2>Cookies</h2>
+  <p>We do not use tracking or advertising cookies, and our analytics are cookieless &mdash; so there is nothing to opt out of. Your browser&rsquo;s privacy settings and tracker-blocking extensions work normally here, and the site functions fully without cookies. The only information we store is what you choose to submit through the interest form.</p>
+
+  <h2>How we share information</h2>
+  <p>We do <strong>not</strong> sell your personal information. We share it only with service providers that help us operate the site and manage supporter communications (for example, hosting and email tools), and where required by law. If this effort later becomes a registered political committee, certain records may become subject to Washington State campaign-disclosure law.</p>
+
+  <h2>Your rights</h2>
+  <p>You may ask us to access, correct, or delete the information you submitted, and you can unsubscribe from updates at any time. To do any of these, email <a href="mailto:info@lastfallback.org">info@lastfallback.org</a> and we will respond as required by applicable law.</p>
+
+  <h2>Data retention and location</h2>
+  <p>We keep the information you submit until the initiative effort concludes or you ask us to delete it, and analytics data per our providers&rsquo; standard retention periods. Because Google and Microsoft are global companies, some data may be processed in the United States and other countries under the safeguards those providers maintain.</p>
+
+  <h2>Children</h2>
+  <p>This site is directed to Washington voters and the general public, not to children, and we do not knowingly collect personal information from children.</p>
+
+  <h2>Links and communities</h2>
+  <p>We link to external sites and communities (such as Facebook and Discord). We are not responsible for their privacy practices; this policy covers only lastfallback.org.</p>
+
+  <h2>Changes</h2>
+  <p>We may update this policy from time to time. Material changes will be shown by updating the &ldquo;Last updated&rdquo; date above.</p>
+
+  <h2>Contact</h2>
+  <p>Questions or requests: <a href="mailto:info@lastfallback.org">info@lastfallback.org</a>.</p>
+
+</div>
+</main>
+
+<footer role="contentinfo">
+  <div class="footer-inner">
+    <div class="footer-left">
+      <div class="footer-wordmark">Last Fall Back Act · Washington State</div>
+      <p>A citizens' initiative effort. Not yet a registered political committee. For questions: <a href="mailto:info@lastfallback.org" style="color:rgba(255,255,255,0.4);">info@lastfallback.org</a><br>
+      © 2026 lastfallback.org. This website does not constitute an official petition. Official signature collection begins upon filing with the Washington Secretary of State.<br>
+      Content licensed under <a href="https://creativecommons.org/licenses/by/4.0/" style="color:rgba(255,255,255,0.4);" target="_blank" rel="noopener">CC BY 4.0</a> — reuse with attribution.</p>
+    </div>
+    <div class="footer-right">
+      <a href="/#essence" class="footer-link">The Initiative</a>
+      <a href="/initiative.html" class="footer-link">Full Text</a>
+      <a href="/#science" class="footer-link">Science</a>
+      <a href="/#timeline" class="footer-link">Timeline</a>
+      <a href="https://www.facebook.com/profile.php?id=61582174989609" class="footer-link" target="_blank" rel="noopener">Facebook<span class="sr-only"> (opens in new tab)</span></a>
+      <a href="https://discord.gg/NQzfnWwK" class="footer-link" target="_blank" rel="noopener">Discord<span class="sr-only"> (opens in new tab)</span></a>
+      <a href="/privacy.html" class="footer-link">Privacy</a>
+      <a href="mailto:info@lastfallback.org" class="footer-link">Contact</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
