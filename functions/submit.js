@@ -1,8 +1,16 @@
 // Cloudflare Pages Function — POST /submit
 // Verifies a Cloudflare Turnstile token, checks the honeypot, and stores the
-// signup in D1. Bindings/secrets (configure in the Pages project or wrangler):
-//   env.DB               → D1 database binding (see wrangler.toml)
-//   env.TURNSTILE_SECRET → Turnstile secret key (set as an encrypted secret)
+// signup in D1. Configure in the Pages project → Settings:
+//   env.DB               → D1 binding (variable name DB)
+//   env.TURNSTILE_SECRET → Turnstile secret key (encrypted secret)
+//
+// D1 table (create once in the D1 Console — we intentionally store no IP):
+//   CREATE TABLE signups (
+//     id INTEGER PRIMARY KEY AUTOINCREMENT, created_at TEXT NOT NULL,
+//     first_name TEXT NOT NULL, last_name TEXT NOT NULL, email TEXT NOT NULL,
+//     city TEXT, zip TEXT, wa_voter INTEGER NOT NULL DEFAULT 0,
+//     wants_updates INTEGER NOT NULL DEFAULT 0, volunteer INTEGER NOT NULL DEFAULT 0
+//   );
 
 const json = (obj, status = 200) =>
   new Response(JSON.stringify(obj), {
@@ -42,7 +50,6 @@ export async function onRequestPost(context) {
       body: new URLSearchParams({
         secret: env.TURNSTILE_SECRET,
         response: token,
-        remoteip: request.headers.get("CF-Connecting-IP") || "",
       }),
     }
   ).then((r) => r.json()).catch(() => ({ success: false }));
@@ -82,8 +89,8 @@ export async function onRequestPost(context) {
   try {
     await env.DB.prepare(
       `INSERT INTO signups
-        (created_at, first_name, last_name, email, city, zip, wa_voter, wants_updates, volunteer, ip)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+        (created_at, first_name, last_name, email, city, zip, wa_voter, wants_updates, volunteer)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`
     )
       .bind(
         new Date().toISOString(),
@@ -94,8 +101,7 @@ export async function onRequestPost(context) {
         zip,
         waVoter,
         wantsUpdates,
-        volunteer,
-        request.headers.get("CF-Connecting-IP") || null
+        volunteer
       )
       .run();
   } catch (e) {
