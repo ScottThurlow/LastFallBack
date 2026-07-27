@@ -617,7 +617,6 @@ button.share-card { cursor: pointer; font-family: inherit; }
       "url": "https://lastfallback.org/",
       "contactPoint": {
         "@type": "ContactPoint",
-        "email": "info@lastfallback.org",
         "contactType": "general inquiry"
       },
       "sameAs": [
@@ -1059,7 +1058,7 @@ button.share-card { cursor: pointer; font-family: inherit; }
   <div class="footer-inner">
     <div class="footer-left">
       <div class="footer-wordmark">Last Fall Back Act · Washington State</div>
-      <p>A citizens' initiative effort. Not yet a registered political committee. For questions: <a href="mailto:info@lastfallback.org" style="color:rgba(255,255,255,0.4);">info@lastfallback.org</a><br>
+      <p>A citizens' initiative effort. Not yet a registered political committee. For questions: <span style="color:rgba(255,255,255,0.4);">info @ lastfallback . org</span><br>
       © 2026 lastfallback.org. This website does not constitute an official petition. Official signature collection begins upon filing with the Washington Secretary of State.<br>
       Content licensed under <a href="https://creativecommons.org/licenses/by/4.0/" style="color:rgba(255,255,255,0.4);" target="_blank" rel="noopener">CC BY 4.0</a> — reuse with attribution.</p>
     </div>
@@ -1071,7 +1070,6 @@ button.share-card { cursor: pointer; font-family: inherit; }
       <a href="https://www.facebook.com/profile.php?id=61582174989609" class="footer-link" target="_blank" rel="noopener">Facebook<span class="sr-only"> (opens in new tab)</span></a>
       <a href="https://discord.gg/NQzfnWwK" class="footer-link" target="_blank" rel="noopener">Discord<span class="sr-only"> (opens in new tab)</span></a>
       <a href="/privacy.html" class="footer-link">Privacy</a>
-      <a href="mailto:info@lastfallback.org" class="footer-link">Contact</a>
     </div>
   </div>
 </footer>
@@ -1140,7 +1138,7 @@ interestForm.addEventListener("submit", async (e) => {
     }
     throw new Error(data.error || "Something went wrong.");
   } catch (err) {
-    formError.textContent = err.message + " You can also email info@lastfallback.org.";
+    formError.textContent = err.message + " You can also email info @ lastfallback . org.";
     btn.disabled = false;
     btn.textContent = "I'm interested & willing to sign →";
     if (window.turnstile) window.turnstile.reset();
