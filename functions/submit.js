@@ -45,7 +45,14 @@ export async function onRequestPost(context) {
   ).then((r) => r.json()).catch(() => ({ success: false }));
 
   if (!verify.success) {
-    return json({ success: false, error: "Verification failed. Please try again." }, 400);
+    // turnstile_errors surfaces Cloudflare's error-codes for diagnosis, e.g.
+    // invalid-input-secret (wrong/for-another-widget secret),
+    // missing-input-secret (TURNSTILE_SECRET not set on this environment),
+    // hostname-mismatch, timeout-or-duplicate (token reused/expired).
+    return json(
+      { success: false, error: "Verification failed. Please try again.", turnstile_errors: verify["error-codes"] || [] },
+      400
+    );
   }
 
   // Validate
