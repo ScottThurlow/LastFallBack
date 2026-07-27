@@ -954,9 +954,15 @@ button.share-card { cursor: pointer; font-family: inherit; }
           <label class="form-label" for="email">Email Address <span aria-hidden="true">*</span></label>
           <input class="form-input" type="email" id="email" name="email" placeholder="jane@example.com" autocomplete="email" required aria-required="true">
         </div>
-        <div class="form-group">
-          <label class="form-label" for="city">City / Town</label>
-          <input class="form-input" type="text" id="city" name="city" placeholder="Bellevue">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="city">City / Town</label>
+            <input class="form-input" type="text" id="city" name="city" placeholder="Bellevue">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="zip">ZIP Code</label>
+            <input class="form-input" type="text" id="zip" name="zip" placeholder="98004" inputmode="numeric" autocomplete="postal-code" pattern="[0-9]{5}(-[0-9]{4})?">
+          </div>
         </div>
         <div class="form-check">
           <input type="checkbox" id="wavoter" name="waVoter">

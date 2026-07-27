@@ -7,6 +7,7 @@ CREATE TABLE IF NOT EXISTS signups (
   last_name     TEXT    NOT NULL,
   email         TEXT    NOT NULL,
   city          TEXT,
+  zip           TEXT,
   wa_voter      INTEGER NOT NULL DEFAULT 0,
   wants_updates INTEGER NOT NULL DEFAULT 0,
   volunteer     INTEGER NOT NULL DEFAULT 0,
