@@ -1134,7 +1134,7 @@ interestForm.addEventListener("submit", async (e) => {
       s.scrollIntoView({ behavior: "smooth", block: "center" });
       return;
     }
-    throw new Error((data.error || "Something went wrong.") + (data.turnstile_errors?.length ? " [" + data.turnstile_errors.join(", ") + "]" : ""));
+    throw new Error((data.error || "Something went wrong.") + (data.turnstile_errors?.length ? " [" + data.turnstile_errors.join(", ") + "]" : "") + (data.db_error ? " [" + data.db_error + "]" : ""));
   } catch (err) {
     formError.textContent = err.message + " You can also email info@lastfallback.org.";
     btn.disabled = false;

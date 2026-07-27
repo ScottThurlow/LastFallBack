@@ -76,6 +76,9 @@ export async function onRequestPost(context) {
   }
 
   // Store
+  if (!env.DB) {
+    return json({ success: false, error: "Server not configured: D1 binding DB is missing on this deployment." }, 500);
+  }
   try {
     await env.DB.prepare(
       `INSERT INTO signups
@@ -96,7 +99,7 @@ export async function onRequestPost(context) {
       )
       .run();
   } catch (e) {
-    return json({ success: false, error: "Could not save your submission. Please try again." }, 500);
+    return json({ success: false, error: "Could not save your submission. Please try again.", db_error: String((e && e.message) || e) }, 500);
   }
 
   return json({ success: true });
