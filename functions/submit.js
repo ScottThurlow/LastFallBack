@@ -32,6 +32,9 @@ export async function onRequestPost(context) {
   if (!token) {
     return json({ success: false, error: "Please complete the verification." }, 400);
   }
+  if (!env.TURNSTILE_SECRET) {
+    return json({ success: false, error: "Server not configured: TURNSTILE_SECRET is missing on this deployment." }, 500);
+  }
   const verify = await fetch(
     "https://challenges.cloudflare.com/turnstile/v0/siteverify",
     {
@@ -60,6 +63,7 @@ export async function onRequestPost(context) {
   const lastName = (form.get("lastName") || "").trim();
   const email = (form.get("email") || "").trim();
   const city = (form.get("city") || "").trim();
+  const zip = (form.get("zip") || "").trim();
   const waVoter = form.get("waVoter") ? 1 : 0;
   const wantsUpdates = form.get("updates") ? 1 : 0;
   const volunteer = form.get("volunteer") ? 1 : 0;
@@ -75,8 +79,8 @@ export async function onRequestPost(context) {
   try {
     await env.DB.prepare(
       `INSERT INTO signups
-        (created_at, first_name, last_name, email, city, wa_voter, wants_updates, volunteer, ip)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`
+        (created_at, first_name, last_name, email, city, zip, wa_voter, wants_updates, volunteer, ip)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
     )
       .bind(
         new Date().toISOString(),
@@ -84,6 +88,7 @@ export async function onRequestPost(context) {
         lastName,
         email,
         city,
+        zip,
         waVoter,
         wantsUpdates,
         volunteer,
