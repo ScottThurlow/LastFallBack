@@ -95,6 +95,12 @@ nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
   transition: background 0.15s, transform 0.15s;
 }
 .nav-btn:hover { background: var(--ink-mid); transform: translateY(-1px); }
+.nav-toggle {
+  display: none; background: none; border: none; cursor: pointer; color: var(--ink);
+  width: 40px; height: 40px; align-items: center; justify-content: center;
+  border-radius: var(--radius-sm); flex-shrink: 0;
+}
+.nav-toggle:hover { background: rgba(0,0,0,0.05); }
 
 .legal-wrap { max-width: 760px; margin: 0 auto; padding: 140px 24px 100px; }
 .legal-wrap h1 { font-family: 'Barlow', sans-serif; font-weight: 900; font-size: clamp(1.8rem, 4vw, 2.4rem); color: var(--ink); margin: 0 0 0.5rem; line-height: 1.15; }
@@ -110,11 +116,6 @@ nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
 .org-name { font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 1.05rem; color: var(--ink); margin-bottom: 4px; }
 .org-name a { color: var(--ink); text-decoration: none; }
 .org-name a:hover { color: var(--blue); }
-.org-tag {
-  display: inline-block; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.06em;
-  text-transform: uppercase; color: var(--blue); background: var(--blue-dim);
-  padding: 2px 9px; border-radius: 100px; margin-bottom: 10px;
-}
 .org-desc { font-size: 0.92rem; line-height: 1.65; color: var(--ink-soft); margin-bottom: 8px; }
 .org-link { font-size: 0.85rem; font-weight: 600; }
 
@@ -132,7 +133,18 @@ footer { background: #040C18; padding: 48px 24px; border-top: 1px solid rgba(255
 
 @media (max-width: 680px) {
   nav { padding: 0 20px; }
-  .nav-link { display: none; }
+  .nav-toggle { display: flex; }
+  .nav-right {
+    display: none; position: fixed; top: 64px; left: 0; right: 0;
+    flex-direction: column; align-items: stretch; gap: 2px;
+    background: var(--bg-white); padding: 12px 20px 20px;
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.08);
+    max-height: calc(100vh - 64px); overflow-y: auto;
+  }
+  .nav-right.open { display: flex; }
+  .nav-link { padding: 12px 4px; }
+  .nav-btn { text-align: center; margin-top: 8px; }
   .legal-wrap { padding: 120px 20px 72px; }
   .footer-inner { flex-direction: column; align-items: flex-start; }
 }
@@ -156,7 +168,14 @@ footer { background: #040C18; padding: 48px 24px; border-top: 1px solid rgba(255
     </div>
     <span class="nav-name">Last Fall Back Act</span>
   </a>
-  <div class="nav-right">
+  <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navRight" aria-label="Toggle menu">
+    <svg viewBox="0 0 24 24" width="22" height="22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <line x1="3" y1="6" x2="21" y2="6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <line x1="3" y1="12" x2="21" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <line x1="3" y1="18" x2="21" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+  </button>
+  <div class="nav-right" id="navRight">
     <a href="/press.html" class="nav-link">Press</a>
     <a href="/take-action.html" class="nav-link">Contact Legislators</a>
     <a href="/#signup" class="nav-btn">I'm Interested</a>
@@ -166,18 +185,17 @@ footer { background: #040C18; padding: 48px 24px; border-top: 1px solid rgba(255
 <main id="main-content">
 <div class="legal-wrap">
 
-  <h1>Allies & Resources</h1>
-  <p class="lede">The push to end the biannual clock change isn't unique to Washington. These organizations are working toward that same basic goal — some prioritizing permanent standard time, others permanent daylight time — worth knowing about whether you're a reporter, a legislator's staffer, or just curious who else is doing this work.</p>
+  <h1>Organizations Working to Stop the Clock Change</h1>
+  <p class="lede">The push to end the biannual clock change isn't unique to Washington. These organizations share a common interest: stopping the twice-a-year clock change, in other states and nationally.</p>
 
-  <h2>Washington &amp; state-level efforts</h2>
+  <h2>Washington &amp; state-level</h2>
   <div class="org-card">
-    <div class="org-tag">Supporting this effort</div>
     <div class="org-name"><a href="https://savestandardtime.com" target="_blank" rel="noopener">Save Standard Time</a></div>
-    <p class="org-desc">A 501(c)(4) nonprofit founded by Jay Pea that has supported and testified in favor of permanent-standard-time bills in Washington and other states, including WA SB 5511 (2022), SB 5795 (2024), SB 5001 (2025), and HB 2119 (2026) — none of which have yet received a floor vote. Jay Pea reached out in July 2026 to express support for the Last Fall Back Act.</p>
+    <p class="org-desc">A 501(c)(4) nonprofit founded by Jay Pea that has supported and testified in favor of permanent-standard-time bills in Washington and other states, including WA SB 5511 (2022), SB 5795 (2024), SB 5001 (2025), and HB 2119 (2026) — none of which have yet received a floor vote.</p>
     <a class="org-link" href="https://savestandardtime.com" target="_blank" rel="noopener">savestandardtime.com →</a>
   </div>
 
-  <h2>National coalition &amp; scientific backing</h2>
+  <h2>National</h2>
   <div class="org-card">
     <div class="org-name"><a href="https://ditchdst.com" target="_blank" rel="noopener">Coalition for Permanent Standard Time</a></div>
     <p class="org-desc">A coalition of medical and scientific organizations — including the American Academy of Sleep Medicine, National Sleep Foundation, Sleep Research Society, and Society for Research on Biological Rhythms — pushing for permanent standard time nationally on health grounds. Co-chaired by a sleep-medicine physician and by Jay Pea of Save Standard Time.</p>
@@ -188,16 +206,11 @@ footer { background: #040C18; padding: 48px 24px; border-top: 1px solid rgba(255
     <p class="org-desc">The leading professional society for sleep medicine physicians, and a founding member of the Coalition for Permanent Standard Time. Its published position — permanent standard time aligns best with human circadian biology — underpins the health case for this initiative (see <a href="/press.html#sources">Sources</a>).</p>
     <a class="org-link" href="https://aasm.org" target="_blank" rel="noopener">aasm.org →</a>
   </div>
-
-  <h2>Different priorities, same underlying goal</h2>
   <div class="org-card">
     <div class="org-name"><a href="https://locktheclock.org" target="_blank" rel="noopener">Lock the Clock Alliance</a></div>
-    <p class="org-desc">An industry coalition pushing Congress to pass the Sunshine Protection Act and make daylight saving time permanent nationally — the opposite near-term policy preference from this initiative's default of permanent standard time. We list them because the actual goal — no more clock changes — is shared. The Last Fall Back Act doesn't wait on Congress: it ends the clock change now, on standard time, using authority Washington already has, and switches automatically to permanent daylight time if and when the federal authorization Lock the Clock is pursuing actually arrives (see Section 3.3 of the <a href="/initiative.html">initiative text</a>).</p>
+    <p class="org-desc">An industry coalition pushing Congress to pass the Sunshine Protection Act, ending the twice-a-year clock change nationally through permanent daylight saving time.</p>
     <a class="org-link" href="https://locktheclock.org" target="_blank" rel="noopener">locktheclock.org →</a>
   </div>
-
-  <h2>A note on these listings</h2>
-  <p>Save Standard Time has expressed direct support for the Last Fall Back Act. The other organizations listed here — across both sides of the standard-time/daylight-time preference — are listed as aligned, credible resources working toward the same basic outcome, not as endorsers of this specific initiative, unless and until they say otherwise.</p>
 
 </div>
 </main>
@@ -222,6 +235,26 @@ footer { background: #040C18; padding: 48px 24px; border-top: 1px solid rgba(255
 window.addEventListener('scroll', () => {
   document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 10);
 });
+
+const navToggle = document.getElementById('navToggle');
+const navRight = document.getElementById('navRight');
+if (navToggle && navRight) {
+  navToggle.addEventListener('click', () => {
+    const open = navRight.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  navRight.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navRight.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+  }));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && navRight.classList.contains('open')) {
+      navRight.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+      navToggle.focus();
+    }
+  });
+}
 </script>
 
 </body>

@@ -120,6 +120,12 @@ body {
   transition: background 0.15s;
 }
 .nav-btn:hover { background: var(--ink-mid); }
+.nav-toggle {
+  display: none; background: none; border: none; cursor: pointer; color: var(--ink);
+  width: 40px; height: 40px; align-items: center; justify-content: center;
+  border-radius: var(--radius-sm); flex-shrink: 0;
+}
+.nav-toggle:hover { background: rgba(0,0,0,0.05); }
 
 /* ── HERO ── */
 .page-hero {
@@ -308,7 +314,18 @@ footer {
 /* Responsive */
 @media (max-width: 680px) {
   #site-nav { padding: 0 20px; }
-  .nav-link { display: none; }
+  .nav-toggle { display: flex; }
+  .nav-right {
+    display: none; position: fixed; top: 64px; left: 0; right: 0;
+    flex-direction: column; align-items: stretch; gap: 2px;
+    background: var(--bg-white); padding: 12px 20px 20px;
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.08);
+    max-height: calc(100vh - 64px); overflow-y: auto;
+  }
+  .nav-right.open { display: flex; }
+  .nav-link { padding: 12px 4px; }
+  .nav-btn { text-align: center; margin-top: 8px; }
   .initiative-body { padding: 40px 20px 64px; }
   .toc-card { padding: 24px 20px; }
 }
@@ -379,7 +396,14 @@ footer {
     </div>
     <span class="nav-name">Last Fall Back Act</span>
   </a>
-  <div class="nav-right">
+  <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navRight" aria-label="Toggle menu">
+    <svg viewBox="0 0 24 24" width="22" height="22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <line x1="3" y1="6" x2="21" y2="6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <line x1="3" y1="12" x2="21" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <line x1="3" y1="18" x2="21" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+  </button>
+  <div class="nav-right" id="navRight">
     <a href="/" class="nav-link">Home</a>
     <a href="/#science" class="nav-link">The Science</a>
     <a href="/initiative.html" class="nav-link" aria-current="page">Initiative Text</a>
@@ -592,6 +616,29 @@ footer {
   Official signature collection begins upon filing with the Washington Secretary of State.<br>
   Content licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a> — reuse with attribution.</p>
 </footer>
+
+
+<script>
+const navToggle = document.getElementById('navToggle');
+const navRight = document.getElementById('navRight');
+if (navToggle && navRight) {
+  navToggle.addEventListener('click', () => {
+    const open = navRight.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  navRight.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navRight.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+  }));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && navRight.classList.contains('open')) {
+      navRight.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+      navToggle.focus();
+    }
+  });
+}
+</script>
 
 </body>
 </html>

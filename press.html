@@ -99,6 +99,12 @@ nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
   transition: background 0.15s, transform 0.15s;
 }
 .nav-btn:hover { background: var(--ink-mid); transform: translateY(-1px); }
+.nav-toggle {
+  display: none; background: none; border: none; cursor: pointer; color: var(--ink);
+  width: 40px; height: 40px; align-items: center; justify-content: center;
+  border-radius: var(--radius-sm); flex-shrink: 0;
+}
+.nav-toggle:hover { background: rgba(0,0,0,0.05); }
 
 /* ─── CONTENT ─────────────────────────────── */
 .press-wrap { max-width: 860px; margin: 0 auto; padding: 140px 24px 100px; }
@@ -206,7 +212,18 @@ footer { background: #040C18; padding: 48px 24px; border-top: 1px solid rgba(255
 
 @media (max-width: 680px) {
   nav { padding: 0 20px; }
-  .nav-link { display: none; }
+  .nav-toggle { display: flex; }
+  .nav-right {
+    display: none; position: fixed; top: 64px; left: 0; right: 0;
+    flex-direction: column; align-items: stretch; gap: 2px;
+    background: var(--bg-white); padding: 12px 20px 20px;
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.08);
+    max-height: calc(100vh - 64px); overflow-y: auto;
+  }
+  .nav-right.open { display: flex; }
+  .nav-link { padding: 12px 4px; }
+  .nav-btn { text-align: center; margin-top: 8px; }
   .press-wrap { padding: 120px 20px 72px; }
   .fact-grid, .asset-grid { grid-template-columns: 1fr; }
   .contact-card { flex-direction: column; align-items: flex-start; }
@@ -232,7 +249,14 @@ footer { background: #040C18; padding: 48px 24px; border-top: 1px solid rgba(255
     </div>
     <span class="nav-name">Last Fall Back Act</span>
   </a>
-  <div class="nav-right">
+  <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navRight" aria-label="Toggle menu">
+    <svg viewBox="0 0 24 24" width="22" height="22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <line x1="3" y1="6" x2="21" y2="6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <line x1="3" y1="12" x2="21" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <line x1="3" y1="18" x2="21" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+  </button>
+  <div class="nav-right" id="navRight">
     <a href="/#science" class="nav-link">The Science</a>
     <a href="/initiative.html" class="nav-link">Initiative Text</a>
     <a href="/take-action.html" class="nav-link">Contact Legislators</a>
@@ -455,6 +479,26 @@ footer { background: #040C18; padding: 48px 24px; border-top: 1px solid rgba(255
 window.addEventListener('scroll', () => {
   document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 10);
 });
+
+const navToggle = document.getElementById('navToggle');
+const navRight = document.getElementById('navRight');
+if (navToggle && navRight) {
+  navToggle.addEventListener('click', () => {
+    const open = navRight.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  navRight.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navRight.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+  }));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && navRight.classList.contains('open')) {
+      navRight.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+      navToggle.focus();
+    }
+  });
+}
 </script>
 
 </body>
