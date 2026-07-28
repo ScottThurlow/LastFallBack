@@ -22,3 +22,6 @@ submissions/*.csv
 # Internal planning docs — not for the public web root (no build step; repo
 # root is served as-is, so anything committed here is publicly fetchable)
 handoffs/
+
+# Press release drafts — iterated on locally, not shipped until finalized
+press-release-launch.html
