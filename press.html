@@ -153,6 +153,11 @@ nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
 .cite-item .cite-source a { color: var(--blue); text-decoration: none; }
 .cite-item .cite-source a:hover { text-decoration: underline; }
 
+.founder-row { display: flex; gap: 24px; align-items: flex-start; flex-wrap: wrap; }
+.founder-photo { width: 120px; height: 120px; object-fit: cover; border-radius: var(--radius); flex-shrink: 0; border: 1px solid var(--border); }
+.founder-name { font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 1.1rem; color: var(--ink); margin-bottom: 2px; }
+.founder-role { font-size: 0.9rem; color: var(--ink-muted); margin-bottom: 10px; }
+
 .asset-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 16px; }
 .asset-card {
   background: var(--bg-white); border: 1px solid var(--border);
@@ -241,8 +246,9 @@ footer { background: #040C18; padding: 48px 24px; border-top: 1px solid rgba(255
   <h1 class="press-title">Media resources for the Last Fall Back Act.</h1>
   <p class="press-sub">Everything reporters need to cover Washington's citizen effort to end the biannual clock change — without waiting for another call.</p>
 
-  <nav class="press-nav" aria-label="On this page">
+  <div class="press-nav" role="navigation" aria-label="On this page">
     <a href="#description">Description</a>
+    <a href="#founder">Founder</a>
     <a href="#facts">Fact Sheet</a>
     <a href="#authority">State vs. Federal</a>
     <a href="#timeline">Timeline</a>
@@ -250,11 +256,23 @@ footer { background: #040C18; padding: 48px 24px; border-top: 1px solid rgba(255
     <a href="#faq">FAQ</a>
     <a href="#assets">Brand Assets</a>
     <a href="#contact">Contact</a>
-  </nav>
+  </div>
 
   <section class="press-section" id="description">
     <h2>Campaign description</h2>
     <p>The Last Fall Back Act is a Washington State citizens' initiative effort to permanently end the biannual clock change. It would adopt permanent Pacific Standard Time using authority Washington already has under federal law — no act of Congress required — and cancel future spring-forward transitions. If Congress later authorizes states to observe daylight saving time year-round, the initiative includes a built-in bridge to permanent Pacific Daylight Time. The effort is grounded in peer-reviewed research on the health and safety harms of clock changes, including elevated cardiac-event and traffic-fatality risk in the days after "spring forward." Washington's 2019 Legislature already voted to make this switch — <em>if</em> Congress acted first. The Last Fall Back Act asks the Legislature to act now, on the state's own authority, with a ballot initiative as the fallback path.</p>
+  </section>
+
+  <section class="press-section" id="founder">
+    <h2>Founder</h2>
+    <div class="founder-row">
+      <img class="founder-photo" src="/images/founder-scott-thurlow.jpg" alt="Scott Thurlow">
+      <div>
+        <div class="founder-name">Scott Thurlow</div>
+        <div class="founder-role">Founder, Last Fall Back Act</div>
+        <p><a href="https://www.linkedin.com/in/sthurlow" target="_blank" rel="noopener">linkedin.com/in/sthurlow</a></p>
+      </div>
+    </div>
   </section>
 
   <section class="press-section" id="facts">
@@ -382,7 +400,7 @@ footer { background: #040C18; padding: 48px 24px; border-top: 1px solid rgba(255
         <div><a href="/images/LastFallBack_Banner.png" download>Download banner (PNG)</a></div>
       </div>
     </div>
-    <p style="margin-top:16px;" class="placeholder-box">Founder and spokesperson biographies, headshots, broadcast-ready B-roll, and a list of endorsing organizations will be added here as they're confirmed — we don't publish names or endorsements without their permission.</p>
+    <p style="margin-top:16px;" class="placeholder-box">Additional spokesperson biographies, headshots, broadcast-ready B-roll, and a list of endorsing organizations will be added here as they're confirmed — we don't publish names or endorsements without their permission.</p>
   </section>
 
   <section class="press-section" id="contact">
