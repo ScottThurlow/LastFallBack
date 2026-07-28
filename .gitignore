@@ -15,3 +15,6 @@ submissions/*.csv
 # IDE
 .vscode/
 .idea/
+
+# Local Cloudflare Wrangler cache/state
+.wrangler/

@@ -9,8 +9,14 @@
 //     id INTEGER PRIMARY KEY AUTOINCREMENT, created_at TEXT NOT NULL,
 //     first_name TEXT NOT NULL, last_name TEXT NOT NULL, email TEXT NOT NULL,
 //     city TEXT, zip TEXT, wa_voter INTEGER NOT NULL DEFAULT 0,
-//     wants_updates INTEGER NOT NULL DEFAULT 0, volunteer INTEGER NOT NULL DEFAULT 0
+//     wants_updates INTEGER NOT NULL DEFAULT 0, volunteer INTEGER NOT NULL DEFAULT 0,
+//     district INTEGER
 //   );
+// `district` (1-49) is optional — it's only known when the signup happens on
+// /take-action.html, which resolves a full street address to a legislative
+// district before the form is shown. The homepage form only collects
+// city/ZIP, which isn't precise enough to derive a district, so it's left
+// null there.
 
 const json = (obj, status = 200) =>
   new Response(JSON.stringify(obj), {
@@ -75,6 +81,13 @@ export async function onRequestPost(context) {
   const wantsUpdates = form.get("updates") ? 1 : 0;
   const volunteer = form.get("volunteer") ? 1 : 0;
 
+  const districtRaw = form.get("district");
+  let district = null;
+  if (districtRaw) {
+    const parsed = parseInt(districtRaw, 10);
+    if (Number.isInteger(parsed) && parsed >= 1 && parsed <= 49) district = parsed;
+  }
+
   if (!firstName || !lastName) {
     return json({ success: false, error: "Please enter your first and last name." }, 400);
   }
@@ -89,8 +102,8 @@ export async function onRequestPost(context) {
   try {
     await env.DB.prepare(
       `INSERT INTO signups
-        (created_at, first_name, last_name, email, city, zip, wa_voter, wants_updates, volunteer)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`
+        (created_at, first_name, last_name, email, city, zip, wa_voter, wants_updates, volunteer, district)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
     )
       .bind(
         new Date().toISOString(),
@@ -101,7 +114,8 @@ export async function onRequestPost(context) {
         zip,
         waVoter,
         wantsUpdates,
-        volunteer
+        volunteer,
+        district
       )
       .run();
   } catch (e) {
