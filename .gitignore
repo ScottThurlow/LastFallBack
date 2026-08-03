@@ -6,12 +6,6 @@ Thumbs.db
 .env
 *.local
 
-# Test files
-test-linux.php
-
-# Submissions data
-submissions/*.csv
-
 # IDE
 .vscode/
 .idea/

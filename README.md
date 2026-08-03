@@ -12,35 +12,28 @@ The initiative is grounded in peer-reviewed research from the American Academy o
 
 ## Site Structure
 
-| File               | Description                                                  |
-| ------------------ | ------------------------------------------------------------ |
-| `index.html`       | Main landing page — overview, science, timeline, signup form |
-| `initiative.html`  | Full text of the proposed initiative                         |
-| `submit.php`       | Form submission handler (records signers to CSV data store)  |
-| `sitemap.xml`      | XML sitemap for search engines                               |
-| `robots.txt`       | Crawler directives                                           |
-| `.htaccess`        | HTTPS redirect and www → non-www rewrite                     |
-| `test-linux.php`   | Hosting environment diagnostic (delete after setup)          |
+| File / directory  | Description                                                      |
+|--------------------|--------------------------------------------------------------------|
+| `index.html`       | Main landing page — overview, science, timeline, signup form     |
+| `initiative.html`  | Full text of the proposed initiative                             |
+| `take-action.html` | Contact-your-legislators tool                                    |
+| `functions/`       | Cloudflare Pages Functions (form submission, legislator lookup)  |
+| `sitemap.xml`      | XML sitemap for search engines                                   |
+| `robots.txt`       | Crawler directives                                               |
 
 ## Deployment
 
-Hosted on Linux/cPanel at `~/public_html/lastfallback.org/`.
-
-### Setup
-
-1. Upload all files to `~/public_html/lastfallback.org/`
-2. Run `test-linux.php` in a browser to verify the environment
-3. Test form submission, then delete `test-linux.php`
+Hosted on **Cloudflare Pages**, with Cloudflare Web Analytics for privacy-first, cookieless usage stats. No build step — the repository root is served as-is.
 
 ### Branches
 
-- `main` — development
-- `prod` — production (deployed to hosting)
+- `main` — development, single source of truth
+- `ppe` — pre-production preview, deployed at [ppe.lastfallback.org](https://ppe.lastfallback.org)
+- `prod` — production (fast-forwarded from `main`, auto-deploys via Cloudflare Pages)
 
 ### Data Storage
 
-- Signer CSV is stored outside the web root at `~/lastfallback_data/lastfallback_org_signers.csv`
-- Rate limiting uses the system temp directory
+- Signups are recorded to Cloudflare D1 via the `functions/submit.js` Pages Function.
 
 ## License
 
