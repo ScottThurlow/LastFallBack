@@ -231,6 +231,32 @@ details.faq.featured summary { padding-top: 22px; }
 .data-table .col-now { background: rgba(0,0,0,0.015); }
 .data-table .col-hl { background: var(--blue-dim); color: var(--ink); }
 
+.faq-sources {
+  margin-top: 20px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+}
+.faq-sources h4 {
+  font-family: 'Barlow', sans-serif;
+  font-weight: 800;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  margin-bottom: 8px;
+}
+.faq-sources ul { margin: 0 0 10px 18px; }
+.faq-sources li {
+  font-size: 0.82rem;
+  line-height: 1.55;
+  color: var(--ink-muted);
+  font-weight: 300;
+  margin-bottom: 4px;
+}
+.faq-sources a { color: var(--blue); border-bottom: 1px solid rgba(0,87,255,0.2); text-decoration: none; }
+.faq-sources a:hover { border-bottom-color: var(--blue); }
+.faq-asof { font-size: 0.76rem; color: var(--ink-muted); font-weight: 300; margin: 0; }
+
 .pull {
   border-left: 3px solid var(--blue);
   padding: 4px 0 4px 18px; margin: 18px 0;
@@ -368,7 +394,7 @@ footer { background: var(--ink); padding: 44px 40px; border-top: 1px solid rgba(
       <p><strong>Washington kids already go to school in the dark for much of the winter, on standard time, right now.</strong> This is the argument used most often against changing anything, and it rarely arrives with the actual sunrise times attached. Here they are.</p>
 
       <table class="data-table">
-        <caption>Latest sunrise of the year, roughly the first week of January. Times are local clock time under each scenario.</caption>
+        <caption>Latest sunrise of the year, first week of January. Source: U.S. Naval Observatory. Times are local clock time under each scenario.</caption>
         <thead>
           <tr>
             <th scope="col">City</th>
@@ -377,24 +403,39 @@ footer { background: var(--ink); padding: 44px 40px; border-top: 1px solid rgba(
           </tr>
         </thead>
         <tbody>
-          <tr><td>Bellingham</td><td class="col-now">8:01 a.m.</td><td class="col-hl">9:01 a.m.</td></tr>
-          <tr><td>Seattle</td><td class="col-now">7:57 a.m.</td><td class="col-hl">8:57 a.m.</td></tr>
-          <tr><td>Vancouver, WA</td><td class="col-now">7:52 a.m.</td><td class="col-hl">8:52 a.m.</td></tr>
-          <tr><td>Spokane</td><td class="col-now">7:36 a.m.</td><td class="col-hl">8:36 a.m.</td></tr>
+          <tr><td>Bellingham</td><td class="col-now">8:03 a.m.</td><td class="col-hl">9:03 a.m.</td></tr>
+          <tr><td>Seattle</td><td class="col-now">7:58 a.m.</td><td class="col-hl">8:58 a.m.</td></tr>
+          <tr><td>Bellevue</td><td class="col-now">7:57 a.m.</td><td class="col-hl">8:57 a.m.</td></tr>
+          <tr><td>Vancouver, WA</td><td class="col-now">7:51 a.m.</td><td class="col-hl">8:51 a.m.</td></tr>
+          <tr><td>Spokane</td><td class="col-now">7:38 a.m.</td><td class="col-hl">8:38 a.m.</td></tr>
         </tbody>
       </table>
 
-      <p>Washington children already walk to school in the dark on the standard time we observe today, and it is easy to check district by district rather than take our word for it. In <a href="https://www.bsd405.org/about-us/schools/start-and-dismissal-times" target="_blank" rel="noopener">Bellevue</a>, Chinook, Highland, and Tillicum middle schools ring at 7:45 a.m., against a Puget Sound sunrise that does not arrive until about 7:57 a.m. in early January. Eleven of <a href="https://www.lwsd.org/students-families/families/school-hours" target="_blank" rel="noopener">Lake Washington's</a> twelve middle schools ring at 7:50 a.m., the same story. <a href="https://www.bellinghamschools.org/families/school-day-information" target="_blank" rel="noopener">Bellingham</a> elementary schools start at 8:00 a.m., a minute before their own 8:01 a.m. sunrise, and most Seattle elementary schools start at 7:55, two minutes before Seattle's. Bus riders in each of those districts board earlier still.</p>
+      <p>Washington children already walk to school in the dark on the standard time we observe today, and it is easy to check district by district rather than take our word for it. In <a href="https://www.bsd405.org/about-us/schools/start-and-dismissal-times" target="_blank" rel="noopener">Bellevue</a>, Chinook, Highland, and Tillicum middle schools ring at 7:45 a.m., against a local sunrise that does not arrive until 7:57 a.m. in early January. Eleven of <a href="https://www.lwsd.org/students-families/families/school-hours" target="_blank" rel="noopener">Lake Washington's</a> twelve middle schools ring at 7:50 a.m., the same story. <a href="https://www.bellinghamschools.org/families/school-day-information" target="_blank" rel="noopener">Bellingham</a> elementary schools start at 8:00 a.m., three minutes before their own 8:03 a.m. sunrise, and most Seattle elementary schools start at 7:55, three minutes before Seattle's 7:58 a.m. Bus riders in each of those districts board earlier still.</p>
 
-      <p>This is not true everywhere, and we are not going to cite only the districts that make the strongest case. <a href="https://www.spokaneschools.org/o/ferris/page/bell-schedule" target="_blank" rel="noopener">Spokane</a> sees the sun by 7:36 a.m. and its high schools start no earlier than 8:00. <a href="https://vansd.org/healthy-start-times/" target="_blank" rel="noopener">Vancouver, WA</a> moved its schedule so that nothing starts before its own 7:52 a.m. sunrise either. Where a district's bells already sit safely after sunrise, the clock was never the problem.</p>
+      <p>This is not true everywhere, and we are not going to cite only the districts that make the strongest case. <a href="https://www.spokaneschools.org/o/ferris/page/bell-schedule" target="_blank" rel="noopener">Spokane</a> sees the sun by 7:36 a.m. and its high schools start no earlier than 8:00. <a href="https://vansd.org/healthy-start-times/" target="_blank" rel="noopener">Vancouver, WA</a> moved its schedule so that nothing starts before its own 7:51 a.m. sunrise either. Where a district's bells already sit safely after sunrise, the clock was never the problem.</p>
 
       <div class="pull">
         <p>The honest version of this debate is not "dark mornings or no dark mornings." It is how many dark mornings, and whether we also make children absorb a jarring one-hour shift twice a year on top of them.</p>
       </div>
 
-      <p>We will be equally straight about the argument against it. Permanent daylight time, which is where the Last Fall Back Act ultimately points and which British Columbia adopted this year, pushes sunrise back by another hour: to about 8:57 a.m. around Puget Sound, 9:01 a.m. in Bellingham, and 8:36 a.m. in Spokane. Under that shift, the earliest bell in Bellevue's and Lake Washington's middle schools, in Bellingham's and Seattle's elementary schools, and even in Seattle's own 8:50 a.m. high schools, which sit comfortably after sunrise today, would all fall before it. That is a real cost and it is the strongest argument against this Act. It is also the tradeoff British Columbia weighed and accepted, and the tradeoff the U.S. House accepted in July by a vote of 308 to 117.</p>
+      <p>We will be equally straight about the argument against it. Permanent daylight time, which is where the Last Fall Back Act ultimately points and which British Columbia adopted this year, pushes sunrise back by another hour: to about 8:57 a.m. around Puget Sound, 9:03 a.m. in Bellingham, and 8:38 a.m. in Spokane. Under that shift, the earliest bell in Bellevue's and Lake Washington's middle schools, in Bellingham's and Seattle's elementary schools, and even in Seattle's own 8:50 a.m. high schools, which sit comfortably after sunrise today, would all fall before it. That is a real cost and it is the strongest argument against this Act. It is also the tradeoff British Columbia weighed and accepted, and the tradeoff the U.S. House accepted in July by a vote of 308 to 117.</p>
 
       <p>What is not a tradeoff, and what almost no one defends on the merits, is the switch itself. The week after the spring transition brings measurable spikes in <a href="/#science">heart attacks, strokes, workplace injuries, and fatal crashes</a>. Teenagers, whose sleep biology is already misaligned with early bells, absorb it worst. And a district that genuinely wants to protect kids from dark, sleep-deprived commutes has a far more effective tool available than the position of the clock, which is moving the bell later. <a href="https://vansd.org/healthy-start-times/" target="_blank" rel="noopener">Vancouver, WA</a> did exactly that, moving its high schools from 7:30 to 8:35 a.m. and putting every one of its schools safely after sunrise on the standard time observed today.</p>
+
+      <div class="faq-sources">
+        <h4>Sources</h4>
+        <ul>
+          <li>Bellevue School District start and dismissal times: <a href="https://www.bsd405.org/about-us/schools/start-and-dismissal-times" target="_blank" rel="noopener">bsd405.org</a></li>
+          <li>Lake Washington School District school hours: <a href="https://www.lwsd.org/students-families/families/school-hours" target="_blank" rel="noopener">lwsd.org</a></li>
+          <li>Seattle Public Schools bell schedules: <a href="https://www.seattleschools.org/resources/bell-schedules/" target="_blank" rel="noopener">seattleschools.org</a></li>
+          <li>Bellingham Public Schools calendar and school hours: <a href="https://www.bellinghamschools.org/calendar" target="_blank" rel="noopener">bellinghamschools.org</a></li>
+          <li>Spokane Public Schools, individual school pages at <a href="https://www.spokaneschools.org/" target="_blank" rel="noopener">spokaneschools.org</a></li>
+          <li>Vancouver Public Schools, individual school pages at <a href="https://vansd.org/" target="_blank" rel="noopener">vansd.org</a></li>
+          <li>Sunrise times: <a href="https://aa.usno.navy.mil/data/RS_OneDay" target="_blank" rel="noopener">U.S. Naval Observatory</a></li>
+        </ul>
+        <p class="faq-asof">School start times reflect published 2025-26 and 2026-27 district schedules. Verified August 2026.</p>
+      </div>
     </div>
   </details>
 
@@ -470,7 +511,7 @@ footer { background: var(--ink); padding: 44px 40px; border-top: 1px solid rgba(
   <details class="faq" id="q9">
     <summary>What happens to summer evenings?</summary>
     <div class="faq-body">
-      <p>They get an hour shorter, and we are not going to pretend otherwise. In Seattle, sunset on the longest day of the year would fall around 8:11 p.m. instead of 9:11 p.m., and sunrise would move correspondingly earlier too, to about 4:10 a.m. That early light does less for most people than the evening light it replaces, since almost nobody is awake to use it.</p>
+      <p>They get an hour shorter, and we are not going to pretend otherwise. In Seattle, sunset on the longest day of the year would fall around 8:11 p.m. instead of 9:11 p.m., and sunrise would move correspondingly earlier too, to about 4:11 a.m. That early light does less for most people than the evening light it replaces, since almost nobody is awake to use it.</p>
       <p>This is the cost of the interim step, and it is why the bridge provision matters. If Congress acts, Washington gets those evenings back permanently and gets the winter evenings too, with sunset at 5:20 p.m. in late December instead of 4:20 p.m. The interim period buys an end to the clock change at the price of one hour of summer evening light, for however long Congress takes.</p>
     </div>
   </details>
