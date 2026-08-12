@@ -1133,6 +1133,18 @@ window.addEventListener('scroll', () => {
   document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 10);
 });
 
+// ── Copy link to clipboard ─────────────────
+async function copyLink() {
+  const copyText = document.getElementById('copyText');
+  try {
+    await navigator.clipboard.writeText('https://LastFallBack.org');
+    copyText.textContent = 'Copied ✓';
+  } catch {
+    copyText.textContent = 'LastFallBack.org: select and copy';
+  }
+  setTimeout(() => { copyText.textContent = 'LastFallBack.org: copy and paste'; }, 2200);
+}
+
 const navToggle = document.getElementById('navToggle');
 const navRight = document.getElementById('navRight');
 if (navToggle && navRight) {
