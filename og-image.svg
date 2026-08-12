@@ -1,0 +1,32 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="38%" r="60%">
+      <stop offset="0%" stop-color="#0057FF" stop-opacity="0.16"/>
+      <stop offset="100%" stop-color="#0057FF" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="#08101F"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+
+  <!-- eyebrow -->
+  <text x="600" y="146" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-weight="700" font-size="22" letter-spacing="5" fill="#0057FF">LAST FALL BACK ACT</text>
+
+  <!-- clock mark -->
+  <g transform="translate(600,246)">
+    <circle cx="0" cy="0" r="46" fill="none" stroke="#FFFFFF" stroke-width="6"/>
+    <line x1="0" y1="0" x2="-22" y2="-22" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round"/>
+    <line x1="0" y1="0" x2="0" y2="-34" stroke="#FFFFFF" stroke-width="4.5" stroke-linecap="round"/>
+    <circle cx="0" cy="0" r="5.5" fill="#0057FF"/>
+    <circle cx="60" cy="34" r="30" fill="#0057FF"/>
+    <line x1="60" y1="16" x2="60" y2="50" stroke="#08101F" stroke-width="6" stroke-linecap="round"/>
+    <polyline points="49,42 60,53 71,42" stroke="#08101F" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  </g>
+
+  <!-- headline -->
+  <text x="600" y="392" text-anchor="middle" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="66" letter-spacing="-1" fill="#FFFFFF">Washington&#8217;s last clock</text>
+  <text x="600" y="470" text-anchor="middle" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="66" letter-spacing="-1" fill="#FFFFFF">change. <tspan fill="#0057FF">Ever.</tspan></text>
+
+  <!-- footer line -->
+  <text x="600" y="558" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-weight="400" font-size="24" fill="#8896A4">Permanent standard time now. Permanent daylight time once Congress allows.</text>
+</svg>
