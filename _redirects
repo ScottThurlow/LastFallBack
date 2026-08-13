@@ -1,7 +1,0 @@
-# Tooling files that stay in the repo (useful for contributors) but
-# shouldn't be served at the public web root — no build step means anything
-# committed here is otherwise publicly fetchable.
-/CLAUDE.md    /404.html   404
-/README.md    /404.html   404
-/.gitignore   /404.html   404
-/.claude/*    /404.html   404
