@@ -1,14 +1,18 @@
 # Last Fall Back Act
 
-A citizens' initiative to permanently establish standard time in Washington State — ending the biannual clock change.
+A citizens' effort to end Washington State's biannual clock change. Permanent standard time now, permanent daylight time once Congress allows.
 
 **Website:** [lastfallback.org](https://lastfallback.org)
 
 ## About
 
-The Last Fall Back Act is a proposed Washington State citizens' initiative to the legislature. It would permanently adopt Pacific Standard Time (UTC-8), cancel all future spring-forward transitions, and include a built-in bridge to permanent daylight saving time if Congress ever authorizes it.
+Washington voted for permanent daylight saving time in 2019 (SHB 1196, Chapter 297), but that law has never taken effect because federal law requires congressional authorization first. The Last Fall Back Act uses the authority Washington already has under the federal Uniform Time Act to end the clock change immediately on permanent Pacific Standard Time, and transitions the state to permanent daylight time automatically once Congress acts.
 
-The initiative is grounded in peer-reviewed research from the American Academy of Sleep Medicine, the American Heart Association, and others showing measurable health harms from the biannual clock change.
+The campaign is asking the Legislature to pass the Act in the 2027 session. If it doesn't, an Initiative to the Legislature would be filed in March 2027.
+
+Sponsored by Last Fall Back Washington, a Washington nonprofit corporation.
+
+Grounded in peer-reviewed research on the health and safety effects of the biannual transition, including studies published in Open Heart, Current Biology, and the Journal of Applied Psychology.
 
 ## Site Structure
 

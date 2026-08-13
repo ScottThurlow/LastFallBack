@@ -13,6 +13,9 @@ Thumbs.db
 # Local Cloudflare Wrangler cache/state
 .wrangler/
 
+# Claude Code local config — not for the public web root
+.claude/
+
 # Internal planning docs — not for the public web root (no build step; repo
 # root is served as-is, so anything committed here is publicly fetchable)
 handoffs/
