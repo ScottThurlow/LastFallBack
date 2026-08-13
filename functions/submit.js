@@ -12,6 +12,10 @@
 //     wants_updates INTEGER NOT NULL DEFAULT 0, volunteer INTEGER NOT NULL DEFAULT 0,
 //     district INTEGER
 //   );
+//   CREATE UNIQUE INDEX idx_signups_email ON signups(email);
+// A resubmission with an email already on file updates that row (latest
+// answers win) instead of creating a duplicate row. `created_at` is left
+// alone on update, so it still reflects when someone first signed up.
 // `district` (1-49) is optional — it's only known when the signup happens on
 // /take-action.html, which resolves a full street address to a legislative
 // district before the form is shown. The homepage form only collects
@@ -74,7 +78,7 @@ export async function onRequestPost(context) {
   // Validate
   const firstName = (form.get("firstName") || "").trim();
   const lastName = (form.get("lastName") || "").trim();
-  const email = (form.get("email") || "").trim();
+  const email = (form.get("email") || "").trim().toLowerCase();
   const city = (form.get("city") || "").trim();
   const zip = (form.get("zip") || "").trim();
   const waVoter = form.get("waVoter") ? 1 : 0;
@@ -103,7 +107,16 @@ export async function onRequestPost(context) {
     await env.DB.prepare(
       `INSERT INTO signups
         (created_at, first_name, last_name, email, city, zip, wa_voter, wants_updates, volunteer, district)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+       ON CONFLICT(email) DO UPDATE SET
+         first_name = excluded.first_name,
+         last_name = excluded.last_name,
+         city = excluded.city,
+         zip = excluded.zip,
+         wa_voter = excluded.wa_voter,
+         wants_updates = excluded.wants_updates,
+         volunteer = excluded.volunteer,
+         district = COALESCE(excluded.district, signups.district)`
     )
       .bind(
         new Date().toISOString(),
