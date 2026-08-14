@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+  <title>Last Fall Back Act — Updates</title>
+  <link>https://lastfallback.org/updates/</link>
+  <description>What we're doing and what we're learning as the Last Fall Back Act moves through the 2027 legislative session.</description>
+  <language>en-us</language>
+  <atom:link href="https://lastfallback.org/updates/feed.xml" rel="self" type="application/rss+xml"/>
+  <lastBuildDate>Thu, 13 Aug 2026 00:00:00 GMT</lastBuildDate>
+
+  <item>
+    <title>Most of western Canada has stopped changing clocks. Washington hasn't.</title>
+    <link>https://lastfallback.org/updates/western-canada-stopped-changing-clocks.html</link>
+    <guid isPermaLink="true">https://lastfallback.org/updates/western-canada-stopped-changing-clocks.html</guid>
+    <pubDate>Thu, 13 Aug 2026 00:00:00 GMT</pubDate>
+    <description>British Columbia, Alberta, Yukon, Saskatchewan and the Northwest Territories have all stopped changing their clocks. Washington voted to in 2019 and still can't.</description>
+  </item>
+</channel>
+</rss>
