@@ -539,8 +539,8 @@ footer {
 }
 .footer-inner {
   max-width: 1160px; margin: 0 auto;
-  display: flex; justify-content: space-between; align-items: center;
-  flex-wrap: wrap; gap: 20px;
+  display: flex; flex-direction: column; align-items: flex-start;
+  gap: 20px;
 }
 .share-group { margin-top: 40px; }
 .share-group:first-of-type { margin-top: 32px; }
@@ -625,7 +625,6 @@ button.share-card { cursor: pointer; font-family: inherit; }
   .stats-grid { grid-template-columns: repeat(2, 1fr); }
   .form-row { flex-direction: column; gap: 0; }
   .context-box { flex-direction: column; gap: 20px; }
-  .footer-inner { flex-direction: column; align-items: flex-start; }
   .tl-line { display: none; }
   .signup-form { padding: 24px; }
 }
