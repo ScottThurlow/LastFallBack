@@ -309,8 +309,8 @@ nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
 footer { background: #040C18; padding: 48px 24px; border-top: 1px solid rgba(255,255,255,0.05); }
 .footer-inner {
   max-width: 1160px; margin: 0 auto;
-  display: flex; justify-content: space-between; align-items: center;
-  flex-wrap: wrap; gap: 20px;
+  display: flex; flex-direction: column; align-items: flex-start;
+  gap: 20px;
 }
 .footer-left .footer-wordmark { font-family: 'Barlow', sans-serif; font-size: 0.9rem; font-weight: 700; color: rgba(255,255,255,0.6); margin-bottom: 6px; }
 .footer-left p { font-size: 0.78rem; color: rgba(255,255,255,0.22); line-height: 1.6; max-width: 420px; }
@@ -334,7 +334,6 @@ footer { background: #040C18; padding: 48px 24px; border-top: 1px solid rgba(255
   .nav-btn { text-align: center; margin-top: 8px; }
   .action-wrap { padding: 120px 20px 72px; }
   .lookup-row { flex-direction: column; align-items: stretch; }
-  .footer-inner { flex-direction: column; align-items: flex-start; }
 }
 </style>
 </head>
