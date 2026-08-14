@@ -118,9 +118,7 @@ nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
   font-size: clamp(1.9rem, 4vw, 2.6rem); line-height: 1.15;
   color: var(--ink); margin: 0 0 16px; letter-spacing: -0.01em;
 }
-.updates-lede { font-size: 1.05rem; line-height: 1.75; color: var(--ink-soft); font-weight: 300; max-width: 560px; margin-bottom: 8px; }
-.updates-rss { display: inline-block; font-size: 0.85rem; font-weight: 600; color: var(--blue); text-decoration: none; margin-bottom: 40px; }
-.updates-rss:hover { text-decoration: underline; }
+.updates-lede { font-size: 1.05rem; line-height: 1.75; color: var(--ink-soft); font-weight: 300; max-width: 560px; margin-bottom: 48px; }
 
 .update-list { list-style: none; }
 .update-item { padding: 28px 0; border-bottom: 1px solid var(--border); }
@@ -130,6 +128,9 @@ nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
 .update-item h2 a { color: var(--ink); text-decoration: none; }
 .update-item h2 a:hover { color: var(--blue); }
 .update-desc { font-size: 0.95rem; line-height: 1.65; color: var(--ink-soft); font-weight: 300; }
+
+.updates-rss { display: block; margin-top: 40px; font-size: 0.8rem; color: var(--ink-muted); text-decoration: none; }
+.updates-rss:hover { color: var(--ink-soft); text-decoration: underline; }
 
 /* ─── FOOTER ─────────────────────────────── */
 footer { background: #040C18; padding: 48px 24px; border-top: 1px solid rgba(255,255,255,0.05); }
@@ -206,7 +207,6 @@ footer { background: #040C18; padding: 48px 24px; border-top: 1px solid rgba(255
   <p class="eyebrow">Updates</p>
   <h1 class="updates-title">Updates</h1>
   <p class="updates-lede">What we're doing and what we're learning.</p>
-  <a class="updates-rss" href="/updates/feed.xml">RSS feed →</a>
 
   <ul class="update-list">
     <li class="update-item">
@@ -215,6 +215,8 @@ footer { background: #040C18; padding: 48px 24px; border-top: 1px solid rgba(255
       <p class="update-desc">British Columbia, Alberta, Yukon, Saskatchewan and the Northwest Territories have all stopped changing their clocks. Washington voted to in 2019 and still can't.</p>
     </li>
   </ul>
+
+  <a class="updates-rss" href="/updates/feed.xml">RSS feed</a>
 
 </div>
 </main>
