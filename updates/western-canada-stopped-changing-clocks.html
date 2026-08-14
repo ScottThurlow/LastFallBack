@@ -144,6 +144,21 @@ nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
 .post-body strong { color: var(--ink); font-weight: 600; }
 .post-body hr { border: none; border-top: 1px solid var(--border); margin: 36px 0; }
 
+.post-share { margin-top: 40px; padding-top: 28px; border-top: 1px solid var(--border); }
+.post-share-label {
+  font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--ink-muted); margin-bottom: 12px;
+}
+.post-share-row { display: flex; gap: 10px; flex-wrap: wrap; }
+.post-share-row a, .post-share-row button {
+  font-size: 0.85rem; font-weight: 600; color: var(--blue);
+  text-decoration: none; padding: 8px 16px; border-radius: 100px;
+  border: 1px solid var(--blue-dim); background: var(--blue-dim);
+  transition: background 0.15s, border-color 0.15s;
+  cursor: pointer; font-family: inherit;
+}
+.post-share-row a:hover, .post-share-row button:hover { background: #DCE7FE; border-color: #DCE7FE; }
+
 .post-back {
   display: inline-block; margin-top: 24px; font-size: 0.9rem;
   font-weight: 600; color: var(--blue); text-decoration: none;
@@ -251,6 +266,17 @@ footer { background: #040C18; padding: 48px 24px; border-top: 1px solid rgba(255
     <p>We're asking the Legislature to take this up in January. Whether they do depends on us. If you have another minute, <a href="/take-action">tell your legislator you want a vote on it</a>.</p>
   </div>
 
+  <div class="post-share">
+    <p class="post-share-label">Share this</p>
+    <div class="post-share-row">
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https://lastfallback.org/updates/western-canada-stopped-changing-clocks.html" target="_blank" rel="noopener">Facebook</a>
+      <a href="https://twitter.com/intent/tweet?text=Most%20of%20western%20Canada%20has%20stopped%20changing%20clocks.%20Washington%20hasn%27t.&url=https://lastfallback.org/updates/western-canada-stopped-changing-clocks.html" target="_blank" rel="noopener">X</a>
+      <a href="https://bsky.app/intent/compose?text=Most%20of%20western%20Canada%20has%20stopped%20changing%20clocks.%20Washington%20hasn%27t.%20https://lastfallback.org/updates/western-canada-stopped-changing-clocks.html" target="_blank" rel="noopener">Bluesky</a>
+      <a href="mailto:?subject=Most%20of%20western%20Canada%20has%20stopped%20changing%20clocks.%20Washington%20hasn%27t.&body=Thought%20you%27d%20find%20this%20interesting%3A%20https%3A%2F%2Flastfallback.org%2Fupdates%2Fwestern-canada-stopped-changing-clocks.html">Email</a>
+      <button type="button" id="postCopyBtn">Copy link</button>
+    </div>
+  </div>
+
   <a class="post-back" href="/updates/">← Back to Updates</a>
 
 </div>
@@ -300,6 +326,19 @@ if (navToggle && navRight) {
       navToggle.setAttribute('aria-expanded', 'false');
       navToggle.focus();
     }
+  });
+}
+
+const postCopyBtn = document.getElementById('postCopyBtn');
+if (postCopyBtn) {
+  postCopyBtn.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText('https://lastfallback.org/updates/western-canada-stopped-changing-clocks.html');
+      postCopyBtn.textContent = 'Copied ✓';
+    } catch {
+      postCopyBtn.textContent = 'Copy failed';
+    }
+    setTimeout(() => { postCopyBtn.textContent = 'Copy link'; }, 2200);
   });
 }
 </script>
