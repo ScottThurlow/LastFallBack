@@ -542,17 +542,27 @@ footer {
   display: flex; justify-content: space-between; align-items: center;
   flex-wrap: wrap; gap: 20px;
 }
+.share-group { margin-top: 40px; }
+.share-group:first-of-type { margin-top: 32px; }
+.share-group-title {
+  font-family: 'Barlow', sans-serif;
+  font-size: 1rem; font-weight: 800; letter-spacing: 0.02em;
+  color: var(--ink); margin-bottom: 14px;
+  display: flex; align-items: center; gap: 10px;
+}
+.share-group-title::after {
+  content: ''; flex: 1; height: 1px; background: var(--border);
+}
 .share-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-  margin-top: 48px;
+  gap: 12px;
 }
 .share-card {
   background: var(--bg-white);
   border: 1.5px solid var(--border);
   border-radius: var(--radius);
-  padding: 28px 20px;
+  padding: 18px 14px;
   text-align: center;
   transition: all 0.25s;
   text-decoration: none;
@@ -565,9 +575,9 @@ button.share-card { cursor: pointer; font-family: inherit; }
   transform: translateY(-3px);
   box-shadow: 0 8px 24px rgba(0,87,255,0.12);
 }
-.share-icon { font-size: 1.8rem; margin-bottom: 10px; color: var(--ink); }
-.share-title { font-weight: 700; font-size: 0.95rem; color: var(--ink); margin-bottom: 4px; }
-.share-text { font-size: 0.82rem; color: var(--ink-soft); }
+.share-icon { font-size: 1.4rem; margin-bottom: 6px; color: var(--ink); }
+.share-title { font-weight: 700; font-size: 0.86rem; color: var(--ink); margin-bottom: 3px; }
+.share-text { font-size: 0.74rem; color: var(--ink-soft); }
 
 @media (max-width: 900px) { .share-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 480px) { .share-grid { grid-template-columns: 1fr 1fr; } }
@@ -1075,62 +1085,71 @@ button.share-card { cursor: pointer; font-family: inherit; }
     <p class="eyebrow reveal" style="color:var(--blue);">Spread the Word</p>
     <h2 class="section-title reveal" style="color:var(--ink);" id="connect-heading">Every Washingtonian you reach<br>is one more voice for change.</h2>
 
-    <div class="share-grid reveal">
-      <a class="share-card" href="https://www.facebook.com/lastfallback" target="_blank" rel="noopener" aria-label="Follow us on Facebook">
-        <div class="share-icon" aria-hidden="true">f</div>
-        <div class="share-title">Follow on Facebook</div>
-        <div class="share-text">Updates, news and announcements</div>
-      </a>
-      <a class="share-card" href="https://www.facebook.com/sharer/sharer.php?u=https://LastFallBack.org" target="_blank" rel="noopener" aria-label="Share on Facebook (opens in new tab)">
-        <div class="share-icon" aria-hidden="true">f</div>
-        <div class="share-title">Share on Facebook</div>
-        <div class="share-text">Post to your timeline and groups</div>
-      </a>
-      <a class="share-card" href="https://www.instagram.com/lastfallback/" target="_blank" rel="noopener" aria-label="Follow us on Instagram">
-        <div class="share-icon" aria-hidden="true">📷</div>
-        <div class="share-title">Follow on Instagram</div>
-        <div class="share-text">Photos and behind-the-scenes updates</div>
-      </a>
-      <a class="share-card" href="https://x.com/lastfallback" target="_blank" rel="noopener" aria-label="Follow us on X / Twitter">
-        <div class="share-icon" aria-hidden="true">𝕏</div>
-        <div class="share-title">Follow on X / Twitter</div>
-        <div class="share-text">Get updates in your timeline</div>
-      </a>
-      <a class="share-card" href="https://twitter.com/intent/tweet?text=Washington%27s+next+clock+change+should+be+its+last.+Support+the+Last+Fall+Back+Act+%23LastFallBack+%23WAState&url=https://LastFallBack.org" target="_blank" rel="noopener" aria-label="Share on X / Twitter (opens in new tab)">
-        <div class="share-icon" aria-hidden="true">𝕏</div>
-        <div class="share-title">Share on X / Twitter</div>
-        <div class="share-text">Reach your followers with one click</div>
-      </a>
-      <a class="share-card" href="https://bsky.app/profile/lastfallback.bsky.social" target="_blank" rel="noopener" aria-label="Follow us on Bluesky">
-        <div class="share-icon" aria-hidden="true">🦋</div>
-        <div class="share-title">Follow on Bluesky</div>
-        <div class="share-text">Get updates in your feed</div>
-      </a>
-      <a class="share-card" href="https://bsky.app/intent/compose?text=Washington%27s%20next%20clock%20change%20should%20be%20its%20last.%20Support%20the%20Last%20Fall%20Back%20Act%20%23LastFallBack%20%23WAState%20https%3A//LastFallBack.org" target="_blank" rel="noopener" aria-label="Share on Bluesky (opens in new tab)">
-        <div class="share-icon" aria-hidden="true">🦋</div>
-        <div class="share-title">Share on Bluesky</div>
-        <div class="share-text">Post to your Bluesky followers</div>
-      </a>
-      <a class="share-card" href="https://www.linkedin.com/sharing/share-offsite/?url=https://LastFallBack.org" target="_blank" rel="noopener" aria-label="Share on LinkedIn (opens in new tab)">
-        <div class="share-icon" aria-hidden="true">in</div>
-        <div class="share-title">Share on LinkedIn</div>
-        <div class="share-text">Reach colleagues and professionals</div>
-      </a>
-      <a class="share-card" href="mailto:?subject=Washington's last clock change%3A sign the petition&body=I just signed the Last Fall Back Act petition. It would make Washington's next autumn clock change its last, permanently establishing standard time and ending the biannual disruption. Sign at: https://LastFallBack.org" aria-label="Email friends about the initiative">
-        <div class="share-icon" aria-hidden="true">✉️</div>
-        <div class="share-title">Email Friends</div>
-        <div class="share-text">Pre-written email, ready to send</div>
-      </a>
-      <button class="share-card" onclick="copyLink()" type="button" aria-label="Copy link to clipboard">
-        <div class="share-icon" aria-hidden="true">🔗</div>
-        <div class="share-title">Copy Link</div>
-        <div class="share-text" id="copyText" aria-live="polite">LastFallBack.org: copy and paste</div>
-      </button>
-      <a class="share-card" href="#signup" aria-label="Volunteer to collect signatures">
-        <div class="share-icon" aria-hidden="true">📋</div>
-        <div class="share-title">Volunteer to Collect</div>
-        <div class="share-text">Help gather signatures in your community</div>
-      </a>
+    <div class="share-group reveal">
+      <p class="share-group-title">Follow Us</p>
+      <div class="share-grid">
+        <a class="share-card" href="https://www.facebook.com/lastfallback" target="_blank" rel="noopener" aria-label="Follow us on Facebook">
+          <div class="share-icon" aria-hidden="true">f</div>
+          <div class="share-title">Follow on Facebook</div>
+          <div class="share-text">Updates, news and announcements</div>
+        </a>
+        <a class="share-card" href="https://www.instagram.com/lastfallback/" target="_blank" rel="noopener" aria-label="Follow us on Instagram">
+          <div class="share-icon" aria-hidden="true">📷</div>
+          <div class="share-title">Follow on Instagram</div>
+          <div class="share-text">Photos and behind-the-scenes updates</div>
+        </a>
+        <a class="share-card" href="https://x.com/lastfallback" target="_blank" rel="noopener" aria-label="Follow us on X / Twitter">
+          <div class="share-icon" aria-hidden="true">𝕏</div>
+          <div class="share-title">Follow on X / Twitter</div>
+          <div class="share-text">Get updates in your timeline</div>
+        </a>
+        <a class="share-card" href="https://bsky.app/profile/lastfallback.bsky.social" target="_blank" rel="noopener" aria-label="Follow us on Bluesky">
+          <div class="share-icon" aria-hidden="true">🦋</div>
+          <div class="share-title">Follow on Bluesky</div>
+          <div class="share-text">Get updates in your feed</div>
+        </a>
+      </div>
+    </div>
+
+    <div class="share-group reveal">
+      <p class="share-group-title">Share This</p>
+      <div class="share-grid">
+        <a class="share-card" href="https://www.facebook.com/sharer/sharer.php?u=https://LastFallBack.org" target="_blank" rel="noopener" aria-label="Share on Facebook (opens in new tab)">
+          <div class="share-icon" aria-hidden="true">f</div>
+          <div class="share-title">Share on Facebook</div>
+          <div class="share-text">Post to your timeline and groups</div>
+        </a>
+        <a class="share-card" href="https://twitter.com/intent/tweet?text=Washington%27s+next+clock+change+should+be+its+last.+Support+the+Last+Fall+Back+Act+%23LastFallBack+%23WAState&url=https://LastFallBack.org" target="_blank" rel="noopener" aria-label="Share on X / Twitter (opens in new tab)">
+          <div class="share-icon" aria-hidden="true">𝕏</div>
+          <div class="share-title">Share on X / Twitter</div>
+          <div class="share-text">Reach your followers with one click</div>
+        </a>
+        <a class="share-card" href="https://bsky.app/intent/compose?text=Washington%27s%20next%20clock%20change%20should%20be%20its%20last.%20Support%20the%20Last%20Fall%20Back%20Act%20%23LastFallBack%20%23WAState%20https%3A//LastFallBack.org" target="_blank" rel="noopener" aria-label="Share on Bluesky (opens in new tab)">
+          <div class="share-icon" aria-hidden="true">🦋</div>
+          <div class="share-title">Share on Bluesky</div>
+          <div class="share-text">Post to your Bluesky followers</div>
+        </a>
+        <a class="share-card" href="https://www.linkedin.com/sharing/share-offsite/?url=https://LastFallBack.org" target="_blank" rel="noopener" aria-label="Share on LinkedIn (opens in new tab)">
+          <div class="share-icon" aria-hidden="true">in</div>
+          <div class="share-title">Share on LinkedIn</div>
+          <div class="share-text">Reach colleagues and professionals</div>
+        </a>
+        <a class="share-card" href="mailto:?subject=Washington's last clock change%3A sign the petition&body=I just signed the Last Fall Back Act petition. It would make Washington's next autumn clock change its last, permanently establishing standard time and ending the biannual disruption. Sign at: https://LastFallBack.org" aria-label="Email friends about the initiative">
+          <div class="share-icon" aria-hidden="true">✉️</div>
+          <div class="share-title">Email Friends</div>
+          <div class="share-text">Pre-written email, ready to send</div>
+        </a>
+        <button class="share-card" onclick="copyLink()" type="button" aria-label="Copy link to clipboard">
+          <div class="share-icon" aria-hidden="true">🔗</div>
+          <div class="share-title">Copy Link</div>
+          <div class="share-text" id="copyText" aria-live="polite">LastFallBack.org: copy and paste</div>
+        </button>
+        <a class="share-card" href="#signup" aria-label="Volunteer to collect signatures">
+          <div class="share-icon" aria-hidden="true">📋</div>
+          <div class="share-title">Volunteer to Collect</div>
+          <div class="share-text">Help gather signatures in your community</div>
+        </a>
+      </div>
     </div>
   </div>
 </section>
