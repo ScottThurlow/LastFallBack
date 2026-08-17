@@ -441,6 +441,20 @@ nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
 }
 .context-link:hover { gap: 10px; }
 
+/* ─── LATEST POST ────────────────────────── */
+.latest-post-card {
+  background: var(--bg-white); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 40px;
+}
+.latest-post-title {
+  font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 1.35rem;
+  line-height: 1.35; color: var(--ink); margin-bottom: 8px;
+}
+.latest-post-title a { color: inherit; text-decoration: none; }
+.latest-post-title a:hover { color: var(--blue); }
+.latest-post-date { font-size: 0.85rem; color: var(--ink-muted); margin-bottom: 16px; }
+.latest-post-desc { font-size: 1rem; line-height: 1.7; color: var(--ink-soft); font-weight: 300; margin-bottom: 20px; }
+
 /* ─── SIGN UP ────────────────────────────── */
 #signup { background: var(--ink); }
 
@@ -846,6 +860,21 @@ button.share-card { cursor: pointer; font-family: inherit; }
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── LATEST POST ───────────────────────────────────── -->
+<section id="latest-post" class="section" style="padding: 64px 24px;" aria-label="Latest update">
+  <div class="section-narrow">
+    <div class="latest-post-card reveal">
+      <p class="eyebrow">Latest</p>
+      <!-- LATEST-POST:START -->
+      <h3 class="latest-post-title"><a href="/updates/we-already-said-yes">We already said yes. Congress hasn't delivered. Time to do this ourselves.</a></h3>
+      <p class="latest-post-date"><time datetime="2026-08-17">August 17, 2026</time></p>
+      <p class="latest-post-desc">Washington voted yes in 2019. Congress still hasn't delivered. Our Legislature could act on its own, and has tried four times without a floor vote.</p>
+      <!-- LATEST-POST:END -->
+      <a class="context-link" href="/updates/">All updates →</a>
     </div>
   </div>
 </section>

@@ -24,3 +24,19 @@ the repo, e.g. the daily-report Worker lives in `TeneoGroupLLC-WA/infra`, not he
    push `main`, then fast-forward `prod` to `main`.
 
 `main` is PR-protected on GitHub. Releases to `prod` never open a PR — they only fast-forward.
+
+## Publishing an update post — checklist
+
+Publishing a post means all of the following, every time. The homepage's "Latest" block
+(`index.html`, `#latest-post`) is easy to leave stale, and a homepage advertising old news
+reads worse than no homepage block at all — don't skip the last step.
+
+1. Create `updates/<slug>.html` (copy the newest existing post as a template — meta tags,
+   JSON-LD, `post-body` styles, share links).
+2. Add it to `updates/index.html` (top of `.update-list`) and `updates/feed.xml` (top item).
+3. Add `https://lastfallback.org/updates/<slug>` to `sitemap.xml`, and bump `<lastmod>` for
+   every page actually touched, including `/` if the homepage block changed.
+4. Regenerate the homepage block: `node scripts/update-latest-post.mjs`. It reads
+   `article:published_time` across `updates/*.html` and rewrites the block between the
+   `<!-- LATEST-POST:START -->` / `<!-- LATEST-POST:END -->` markers in `index.html` to match
+   whichever post is newest. Run it, then check the diff.
