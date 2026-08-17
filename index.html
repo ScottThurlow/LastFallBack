@@ -442,12 +442,9 @@ nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
 .context-link:hover { gap: 10px; }
 
 /* ─── LATEST POST ────────────────────────── */
-.latest-post-card {
-  background: var(--bg-white); border: 1px solid var(--border);
-  border-radius: var(--radius); padding: 40px;
-}
+.latest-post-block { max-width: 780px; margin-top: 8px; }
 .latest-post-title {
-  font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 1.35rem;
+  font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 1.2rem;
   line-height: 1.35; color: var(--ink); margin-bottom: 8px;
 }
 .latest-post-title a { color: inherit; text-decoration: none; }
@@ -825,7 +822,7 @@ button.share-card { cursor: pointer; font-family: inherit; }
   <div class="section-wide">
     <p class="eyebrow reveal">The Initiative</p>
     <h2 class="section-title reveal" id="essence-heading">Three provisions. Clean logic.</h2>
-    <p class="section-body reveal" style="max-width:580px;">The Last Fall Back Act is structured to work immediately, and to handle any future federal action gracefully.</p>
+    <p class="section-body reveal" style="max-width:780px;">The Last Fall Back Act is structured to work immediately, and to handle any future federal action gracefully.</p>
 
     <div class="essence-grid reveal">
       <div class="essence-card">
@@ -865,10 +862,11 @@ button.share-card { cursor: pointer; font-family: inherit; }
 </section>
 
 <!-- ─── LATEST POST ───────────────────────────────────── -->
-<section id="latest-post" class="section" style="padding: 64px 24px;" aria-label="Latest update">
-  <div class="section-narrow">
-    <div class="latest-post-card reveal">
-      <p class="eyebrow">Latest</p>
+<section id="latest-post" class="section" aria-labelledby="latest-post-heading">
+  <div class="section-wide">
+    <p class="eyebrow reveal">Latest</p>
+    <h2 class="section-title reveal" id="latest-post-heading">Updates</h2>
+    <div class="latest-post-block reveal">
       <!-- LATEST-POST:START -->
       <h3 class="latest-post-title"><a href="/updates/we-already-said-yes">We already said yes. Congress hasn't delivered. Time to do this ourselves.</a></h3>
       <p class="latest-post-date"><time datetime="2026-08-17">August 17, 2026</time></p>
@@ -884,7 +882,7 @@ button.share-card { cursor: pointer; font-family: inherit; }
   <div class="section-wide">
     <p class="eyebrow reveal">The Evidence</p>
     <h2 class="section-title reveal" id="science-heading">The science is not ambiguous.</h2>
-    <p class="section-body reveal" style="max-width:640px;">Every major medical organization that has studied the question agrees on this much: two clock changes a year cause real, measurable harm. These are transition effects, the kind that spike right after a change and settle back down within days, and they disappear completely once Washington stops switching, regardless of which time the state lands on. A separate category, level effects, is about the tradeoffs of staying on one time permanently, and it cuts in both directions. We give it a full, honest treatment on the <a href="/faq.html#level-effects">FAQ</a> rather than avoid it here. What follows is the uncontested part: harm caused by the switch itself.</p>
+    <p class="section-body reveal" style="max-width:780px;">Every major medical organization that has studied the question agrees on this much: two clock changes a year cause real, measurable harm. These are transition effects, the kind that spike right after a change and settle back down within days, and they disappear completely once Washington stops switching, regardless of which time the state lands on. A separate category, level effects, is about the tradeoffs of staying on one time permanently, and it cuts in both directions. We give it a full, honest treatment on the <a href="/faq.html#level-effects">FAQ</a> rather than avoid it here. What follows is the uncontested part: harm caused by the switch itself.</p>
 
     <div class="science-grid" style="margin-top:48px;">
 
@@ -967,7 +965,7 @@ button.share-card { cursor: pointer; font-family: inherit; }
   <div class="section-wide">
     <p class="eyebrow reveal">The Path Forward</p>
     <h2 class="section-title reveal" id="timeline-heading">How this becomes law.</h2>
-    <p class="section-body reveal" style="max-width:620px;">The fastest way to end the clock change is the Legislature. <strong>Contact your state legislator and ask them to introduce and pass the Last Fall Back Act, permanent standard time now, then permanent daylight time once Congress allows, in the 2027 session</strong>: <a href="/take-action">find your legislator</a>. If they don't act, we file an Initiative to the Legislature in March 2027 and put the same measure back in front of them in 2028.</p>
+    <p class="section-body reveal" style="max-width:780px;">The fastest way to end the clock change is the Legislature. <strong>Contact your state legislator and ask them to introduce and pass the Last Fall Back Act, permanent standard time now, then permanent daylight time once Congress allows, in the 2027 session</strong>: <a href="/take-action">find your legislator</a>. If they don't act, we file an Initiative to the Legislature in March 2027 and put the same measure back in front of them in 2028.</p>
 
     <div class="reveal" style="margin: 28px 0 40px;">
       <a href="/initiative.html" class="btn btn-outline">Read the full initiative text →</a>
