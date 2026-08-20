@@ -158,6 +158,12 @@ nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
   color: var(--ink); margin-bottom: 28px; letter-spacing: -0.01em;
 }
 .post-image { width: 100%; height: auto; border-radius: var(--radius); margin-bottom: 32px; display: block; }
+.post-video {
+  position: relative; width: 100%; aspect-ratio: 16 / 9;
+  border-radius: var(--radius); overflow: hidden;
+  margin-bottom: 32px; background: var(--ink);
+}
+.post-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 .post-body p { font-size: 1rem; line-height: 1.8; color: var(--ink-soft); font-weight: 300; margin-bottom: 20px; }
 .post-body h2 {
   font-family: 'Barlow', sans-serif; font-weight: 800; font-size: 1.25rem;
@@ -266,6 +272,10 @@ footer { background: #040C18; padding: 48px 24px; border-top: 1px solid rgba(255
 
   <img class="post-image" src="/images/updates/we-already-said-yes-fourbills.png" alt="Bills to end Washington's clock change: 2022, 2024, 2025, 2026. Floor votes: zero." width="1080" height="1350">
 
+  <div class="post-video">
+    <iframe src="https://www.youtube-nocookie.com/embed/VdDB7cpav8A" title="We already said yes. Congress hasn't delivered. — Last Fall Back" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  </div>
+
   <div class="post-body">
     <p>In 2019, Washington's Legislature said yes to ending the clock change. The House voted 90 to 6. The Senate voted 46 to 2. Gov. Inslee signed it into law as Chapter 297, Substitute House Bill 1196, sponsored by then-Rep. Marcus Riccelli. There was one catch: the law doesn't take effect until Congress authorizes states to observe permanent daylight time. Seven years later, we're still waiting.</p>
 
@@ -314,8 +324,8 @@ footer { background: #040C18; padding: 48px 24px; border-top: 1px solid rgba(255
     <p class="post-share-label">Share this</p>
     <div class="post-share-row">
       <a href="https://www.facebook.com/sharer/sharer.php?u=https://lastfallback.org/updates/we-already-said-yes" target="_blank" rel="noopener">Facebook</a>
-      <a href="https://twitter.com/intent/tweet?text=We%20already%20said%20yes.%20Congress%20hasn%27t%20delivered.%20Time%20to%20do%20this%20ourselves.&url=https://lastfallback.org/updates/we-already-said-yes" target="_blank" rel="noopener">X</a>
-      <a href="https://bsky.app/intent/compose?text=We%20already%20said%20yes.%20Congress%20hasn%27t%20delivered.%20Time%20to%20do%20this%20ourselves.%20https://lastfallback.org/updates/we-already-said-yes" target="_blank" rel="noopener">Bluesky</a>
+      <a href="https://twitter.com/intent/tweet?text=We%20already%20said%20yes.%20Congress%20hasn%27t%20delivered.%20Time%20to%20do%20this%20ourselves.%20%23DaylightSavingTime%20%23StandardTime%20%23Washington%20%23SunshineProtectionAct%20%23WALeg&url=https://lastfallback.org/updates/we-already-said-yes" target="_blank" rel="noopener">X</a>
+      <a href="https://bsky.app/intent/compose?text=We%20already%20said%20yes.%20Congress%20hasn%27t%20delivered.%20Time%20to%20do%20this%20ourselves.%20%23DaylightSavingTime%20%23StandardTime%20%23Washington%20%23SunshineProtectionAct%20%23WALeg%20https://lastfallback.org/updates/we-already-said-yes" target="_blank" rel="noopener">Bluesky</a>
       <a href="mailto:?subject=We%20already%20said%20yes.%20Congress%20hasn%27t%20delivered.%20Time%20to%20do%20this%20ourselves.&body=Thought%20you%27d%20find%20this%20interesting%3A%20https%3A%2F%2Flastfallback.org%2Fupdates%2Fwe-already-said-yes">Email</a>
       <button type="button" id="postCopyBtn">Copy link</button>
     </div>
