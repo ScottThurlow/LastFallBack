@@ -1,0 +1,9 @@
+city,district,school_or_schools,grade_band,bell_time,sunrise_standard_time,sunrise_permanent_daylight_time,minutes_dark_standard,minutes_dark_permanent_daylight,source_url,notes
+Bellevue,Bellevue School District,"Chinook, Highland, Tillicum",Middle,7:45 a.m.,7:57 a.m.,8:57 a.m.,12,72,https://www.bsd405.org/about-us/schools/start-and-dismissal-times,Sunrise is city of Bellevue.
+Kirkland/Redmond area,Lake Washington School District,"11 of 12 middle schools",Middle,7:50 a.m.,7:57 a.m.,8:57 a.m.,7,67,https://www.lwsd.org/students-families/families/school-hours,Sunrise approximated from adjacent Bellevue; LWSD has no single city.
+Bellingham,Bellingham Public Schools,All elementary schools,Elementary,8:00 a.m.,8:03 a.m.,9:03 a.m.,3,63,https://www.bellinghamschools.org/families/school-day-information,
+Spokane,Spokane Public Schools,Earliest reported start (all schools),All,8:00 a.m.,7:38 a.m.,8:38 a.m.,-22,38,https://www.spokaneschools.org/o/ferris/page/bell-schedule,No Spokane school starts before 8:00 a.m.; earliest bell is already after standard-time sunrise.
+Seattle,Seattle Public Schools,"High schools (current, moved 2016)",High,8:45 a.m.,7:58 a.m.,8:58 a.m.,-47,13,https://www.seattleschools.org/resources/bell-schedules/,Moved from 7:50 a.m. in 2016; the widely studied UW sleep-research case.
+Seattle,Seattle Public Schools,"High schools (pre-2016, historical)",High,7:50 a.m.,7:58 a.m.,8:58 a.m.,8,68,https://www.seattleschools.org/resources/bell-schedules/,Historical comparison row; superseded by the 2016 change above.
+"Vancouver, WA",Vancouver Public Schools,High schools (moved 2023),High,8:35 a.m.,7:51 a.m.,8:51 a.m.,-44,16,https://vansd.org/healthy-start-times/,Moved from an earlier start in 2023.
+"Vancouver, WA",Vancouver Public Schools,Middle schools,Middle,9:20 a.m.,7:51 a.m.,8:51 a.m.,-89,-29,https://vansd.org/healthy-start-times/,
