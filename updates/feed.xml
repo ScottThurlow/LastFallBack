@@ -6,7 +6,15 @@
   <description>What we're doing and what we're learning as the Last Fall Back Act moves through the 2027 legislative session.</description>
   <language>en-us</language>
   <atom:link href="https://lastfallback.org/updates/feed.xml" rel="self" type="application/rss+xml"/>
-  <lastBuildDate>Mon, 17 Aug 2026 00:00:00 GMT</lastBuildDate>
+  <lastBuildDate>Fri, 21 Aug 2026 00:00:00 GMT</lastBuildDate>
+
+  <item>
+    <title>The Portland problem is real. Oregon has already voted on it twice.</title>
+    <link>https://lastfallback.org/updates/the-portland-problem</link>
+    <guid isPermaLink="true">https://lastfallback.org/updates/the-portland-problem</guid>
+    <pubDate>Fri, 21 Aug 2026 00:00:00 GMT</pubDate>
+    <description>If Washington ends its clock change and Oregon doesn't, Clark County goes an hour off from Portland. Oregon's own legislature has voted twice to close that gap.</description>
+  </item>
 
   <item>
     <title>We already said yes. Congress hasn't delivered. Time to do this ourselves.</title>
